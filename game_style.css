@@ -1,0 +1,428 @@
+/*SPLASH STUFF*/
+
+#splash {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#center_stuff {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 10%;
+    text-align: center;
+}
+
+/*MENU STUFF*/
+
+#menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 75%;
+}
+
+#class_icon {
+    font-size: 24px;
+}
+
+.class_select {
+    width: 48px;
+    height: 48px;
+    background-color: #000000;
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    font-family: 'Game_Icns';
+    transition: background-color 0.4s;
+}
+
+.play_bttn {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 14px 64px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.class_select:has(a.red):hover,
+.class_select:has(a.red).selected {
+    background-color: #ff6666;
+}
+
+.class_select:has(a.blue):hover,
+.class_select:has(a.blue).selected {
+    background-color: #6666ff;
+}
+
+.class_select:has(a.white):hover,
+.class_select:has(a.white).selected {
+    background-color: #dddddd;
+}
+
+.class_select:has(a.green):hover,
+.class_select:has(a.green).selected {
+    background-color: #66ff66;
+}
+
+.class_select:has(a.yellow):hover,
+.class_select:has(a.yellow).selected {
+    background-color: #ffff66;
+}
+
+.class_select:has(a.purple):hover,
+.class_select:has(a.purple).selected {
+    background-color: #ff66ff;
+}
+
+.class_select:has(a.lime):hover,
+.class_select:has(a.lime).selected {
+    background-color: #ccff66;
+}
+
+.class_select:has(a.cyan):hover,
+.class_select:has(a.cyan).selected {
+    background-color: #66ffff;
+}
+
+.class_select:has(a.magenta):hover,
+.class_select:has(a.magenta).selected {
+    background-color: #ff66ff;
+}
+
+
+/*LOADING SCREEN STUFF*/
+
+#loading_scene {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:root {
+    /* Define your project colors as CSS variables for easy management */
+    --color-1: #883232;
+    --color-2: #40318d;
+    --color-3: #ffffff;
+    --color-4: #55a049;
+    --color-5: #bfce72;
+    --color-6: #7869c4;
+    --color-7: #94e089;
+    --color-8: #67b6bd;
+    --color-9: #8b3f96;
+    
+    /* Variables for segment size and gap */
+    --color-segment-width: 15px;
+    --gap-width: 2px;
+    --total-segment-width: 17px;
+    --total-colored-blocks: 8;
+    
+    /* Variables for vertical spacing */
+    --bar-inner-height: 15px;
+    --vertical-padding: 4px;
+}
+
+/* --- Container and Text Styles --- */
+
+.loading-container {
+    width: 100%;
+    text-align: center;
+}
+
+.loading-text {
+    color: var(--color-3);
+    font-size: 2em;
+    margin-bottom: 10px;
+    image-rendering: pixelated;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* --- Loading Bar Border (The outer white box) --- */
+
+.loading-bar-border {
+    border: 3px solid var(--color-3);
+    padding: var(--vertical-padding) 0px;
+    height: var(--bar-inner-height);
+    box-sizing: content-box;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+}
+
+/* --- The Actual Loading Bar (Default State) --- */
+
+.loading-bar {
+    width: 0%;
+    /* Stays at 0% until the .is-loading class is applied */
+    height: 100%;
+    background-color: transparent;
+    
+    /* 1. Define the Multi-Color Gradient with Black Gaps */
+    background-image: repeating-linear-gradient( to right, var(--color-1), var(--color-1) var(--color-segment-width), #000 var(--color-segment-width), #000 var(--total-segment-width), var(--color-2) var(--total-segment-width), var(--color-2) calc(var(--total-segment-width) * 2 - var(--gap-width)), #000 calc(var(--total-segment-width) * 2 - var(--gap-width)), #000 calc(var(--total-segment-width) * 2), var(--color-4) calc(var(--total-segment-width) * 2), var(--color-4) calc(var(--total-segment-width) * 3 - var(--gap-width)), #000 calc(var(--total-segment-width) * 3 - var(--gap-width)), #000 calc(var(--total-segment-width) * 3), var(--color-5) calc(var(--total-segment-width) * 3), var(--color-5) calc(var(--total-segment-width) * 4 - var(--gap-width)), #000 calc(var(--total-segment-width) * 4 - var(--gap-width)), #000 calc(var(--total-segment-width) * 4), var(--color-6) calc(var(--total-segment-width) * 4), var(--color-6) calc(var(--total-segment-width) * 5 - var(--gap-width)), #000 calc(var(--total-segment-width) * 5 - var(--gap-width)), #000 calc(var(--total-segment-width) * 5), var(--color-7) calc(var(--total-segment-width) * 5), var(--color-7) calc(var(--total-segment-width) * 6 - var(--gap-width)), #000 calc(var(--total-segment-width) * 6 - var(--gap-width)), #000 calc(var(--total-segment-width) * 6), var(--color-8) calc(var(--total-segment-width) * 6), var(--color-8) calc(var(--total-segment-width) * 7 - var(--gap-width)), #000 calc(var(--total-segment-width) * 7 - var(--gap-width)), #000 calc(var(--total-segment-width) * 7), var(--color-9) calc(var(--total-segment-width) * 7), var(--color-9) calc(var(--total-segment-width) * 8 - var(--gap-width)), #000 calc(var(--total-segment-width) * 8 - var(--gap-width)), #000 calc(var(--total-segment-width) * 8));
+}
+
+/* --- NEW: Trigger Class for Animation --- */
+
+.loading-bar.is-loading {
+    /* This class contains the animation property */
+    animation: load-progress 4s steps(var(--total-colored-blocks), end) forwards;
+}
+
+@keyframes load-progress {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* --- Example Button Styling --- */
+
+.start-button {
+    padding: 10px 20px;
+    background-color: var(--color-4);
+    color: #000;
+    border: 3px solid var(--color-3);
+    cursor: pointer;
+}
+
+.start-button:hover {
+    background-color: var(--color-7);
+}
+
+.start-button:disabled {
+    background-color: #666;
+    cursor: default;
+}
+
+/*GAME STUFF*/
+
+#game {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#game-canvas-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-bottom: 220px;
+    box-sizing: border-box;
+}
+
+#game_view {
+    width: 100%;
+    text-align: center;
+}
+
+/*GAME CONTROLS UI*/
+
+/* --- Controls Container (New Placement and Flat Background) --- */
+
+.controls-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    background-color: #000;
+}
+
+/* --- D-Pad Styling (Grid) --- */
+
+.dpad-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 120px;
+    height: 120px;
+    gap: 4px;
+}
+
+.dpad-btn {
+    background-color: #555;
+    border: 3px solid white;
+    color: white;
+    cursor: pointer;
+    touch-action: manipulation;
+    outline: none;
+    z-index: 10;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.dpad-btn.up {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.dpad-btn.down {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.dpad-btn.left {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.dpad-btn.right {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.dpad-center {
+    display: none;
+}
+
+/* --- D-Pad Triangles --- */
+
+.dpad-btn::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    top: 50%;
+    left: 50%;
+    transition: border-color 0.2s ease;
+}
+
+.dpad-btn.up::after {
+    border-width: 0 8px 12px 8px;
+    border-color: transparent transparent white transparent;
+    transform: translate(-50%, -65%);
+}
+
+.dpad-btn.down::after {
+    border-width: 12px 8px 0 8px;
+    border-color: white transparent transparent transparent;
+    transform: translate(-50%, -35%);
+}
+
+.dpad-btn.left::after {
+    border-width: 8px 12px 8px 0;
+    border-color: transparent white transparent transparent;
+    transform: translate(-65%, -50%);
+}
+
+.dpad-btn.right::after {
+    border-width: 8px 0 8px 12px;
+    border-color: transparent transparent transparent white;
+    transform: translate(-35%, -50%);
+}
+
+/* --- D-Pad Hover Effect --- */
+
+.dpad-btn:hover {
+    background-color: #eee;
+    border-color: #222;
+}
+
+.dpad-btn.up:hover::after {
+    border-color: transparent transparent #222 transparent;
+}
+
+.dpad-btn.down:hover::after {
+    border-color: #222 transparent transparent transparent;
+}
+
+.dpad-btn.left:hover::after {
+    border-color: transparent #222 transparent transparent;
+}
+
+.dpad-btn.right:hover::after {
+    border-color: transparent transparent transparent #222;
+}
+
+
+/* --- Action Button Styling (A, B) --- */
+
+.action-buttons {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    transform: none;
+    margin-top: 15px;
+}
+
+.action-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid white;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    touch-action: manipulation;
+    outline: none;
+    background-color: black;
+}
+
+/* --- Start/Select Buttons --- */
+
+.start-select {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+}
+
+.ss-btn {
+    width: 50px;
+    height: 18px;
+    background-color: #7f8c8d;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.7em;
+    color: white;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    outline: none;
+}
+
+/* --- Press Effect (Active state) --- */
+
+.dpad-btn:active,
+.action-btn:active,
+.ss-btn:active,
+.active {
+    opacity: 0.7;
+}
+
+.action-btn:active {
+    transform: none !important;
+}

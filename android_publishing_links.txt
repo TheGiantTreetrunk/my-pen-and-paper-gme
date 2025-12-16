@@ -1,0 +1,40 @@
+You are correct that PhoneGap is no longer the standard. Here are the links for the modern, recommended approaches to publishing a web app as an Android app for the Google Play Store.
+
+
+---
+
+### **Approach 1: Trusted Web Activity (TWA) - The Official Google Method**
+
+This is Google's replacement for the old Cordova/PWA model. It involves wrapping your web app in a native Android shell. The `bubblewrap` tool automates this process.
+
+1.  **Introduction to Trusted Web Activities**
+    *   **Link:** https://developer.chrome.com/docs/android/trusted-web-activity/
+    *   **Description:** The official documentation from the Chrome team. It explains what TWAs are, how they work, and their benefits.
+
+2.  **Bubblewrap: The Command-Line Tool for TWA**
+    *   **Link:** https://github.com/GoogleChromeLabs/bubblewrap
+    *   **Description:** Bubblewrap is a command-line utility that makes packaging your web app into an Android App Bundle incredibly simple. This is the main tool you will use.
+
+3.  **Your First TWA: A Step-by-Step Guide**
+    *   **Link:** https://codelabs.developers.google.com/codelabs/pwa-in-play
+    *   **Description:** An official Google Codelab that provides a hands-on tutorial for taking a Progressive Web App (PWA) and publishing it to the Google Play Store using a TWA.
+
+
+---
+
+
+### **Approach 2: Capacitor - The Spiritual Successor to Cordova/PhoneGap**
+
+Capacitor is a modern, open-source tool that is widely considered the next generation of hybrid app development, built by the Ionic team.
+
+1.  **Capacitor Official Documentation**
+    *   **Link:** https://capacitorjs.com/docs
+    *   **Description:** The main documentation site for Capacitor. This is your central resource for everything related to it.
+
+2.  **Getting Started with Capacitor**
+    *   **Link:** https://capacitorjs.com/docs/getting-started
+    *   **Description:** This guide walks you through initializing Capacitor in an existing web project, which is exactly your use case.
+
+3.  **Building for Android**
+    *   **Link:** https://capacitorjs.com/docs/android
+    *   **Description:** Once you have Capacitor initialized, this guide shows you the specific steps and commands to add the Android platform, build your native project, and run it in Android Studio.

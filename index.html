@@ -1,14 +1,123 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
-</head>
-<body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
-</body>
+<html>
+    <head>
+        <title>game_core</title>
+        <meta charset="UTF-8">
+        <meta name="MobileOptimized" content="480"/>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <meta name="keywords" content="Adventure">
+        <meta name="description" content="A Game">
+        <meta name="author" content="Austin Elke">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="HandheldFriendly" content="true"/>
+
+        <link href='style.css?v=4.4' rel='stylesheet'>
+        <link href='game_style.css?v=4.4' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.3"></script>
+        <script defer type="text/javascript" src="main.js?v=4.3"></script>
+    </head>
+    <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
+        <div id="splash" onclick="hud(0)">
+            <div id="center_stuff">
+                <p>Tap to Start!</p>
+            </div>
+        </div>
+
+        <div id="menu">
+
+            <h1 style="text-align: center">Class Select</h1> 
+            <h3 id="name_of_class" style="text-align: center">class name</h3>
+            <p id="class_description" style="text-align: center">'class description'</p>
+            <p id="class_icon" class="icns" style="text-align: center">@</p>
+            <p id="class_stats" class="icns" style="text-align: center">1,0,0,1</p>
+            <table style="margin: auto; text-align: center;">
+                <tr>
+                    <td><button data-class-num="1" class="class_select"><a class="icns red">@</a></button></td>
+                    <td><button data-class-num="2" class="class_select"><a class="icns blue">@</a></button></td>
+                    <td><button data-class-num="3" class="class_select"><a class="icns white">@</a></button></td>
+                </tr>
+                <tr>
+                    <td><button data-class-num="4" class="class_select"><a class="icns green">@</a></button></td>
+                    <td><button data-class-num="5" class="class_select"><a class="icns yellow">@</a></button></td>
+                    <td><button data-class-num="6" class="class_select"><a class="icns purple">@</a></button></td>
+                </tr>
+                <tr>
+                    <td><button data-class-num="7" class="class_select"><a class="icns lime">@</a></button></td>
+                    <td><button data-class-num="8" class="class_select"><a class="icns cyan">@</a></button></td>
+                    <td><button data-class-num="9" class="class_select"><a class="icns magenta">@</a></button></td>
+                </tr>
+            </table>
+
+            <br>
+
+            <div style="text-align: center">
+                <button class="play_bttn" onclick="hud(1)">Play!</button> 
+            </div>
+        </div>
+
+        <div id="loading_scene">
+            <div style="text-align: center" id="myLoadingBar1" class="loading-container">
+                <div class="loading-text">LOADING...</div>
+                <div class="loading-bar-border">
+                    <div class="loading-bar" id="myLoadingBar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="game">
+            <div id="game-canvas-container">
+                <h2>Score 1000</h2>
+                <div id="game_view">
+                    <p id="game_sene" class="icns">
+                        ##########
+                        <br>
+                        _@________
+                        <br>
+                        ##########
+                    </p>
+                </div>
+            </div>
+
+            <div class="controls-container">
+                <div id="dpad" class="dpad-container">
+                    <button id="up" class="dpad-btn up"></button>
+                    <button id="left" class="dpad-btn left"></button>
+                    <button id="right" class="dpad-btn right"></button>
+                    <button id="down" class="dpad-btn down"></button>
+                    <div class="dpad-center"></div>
+                </div>
+        
+                <div class="action-buttons">
+                    <button id="b-btn" class="action-btn b-btn">B</button>
+                    <button id="a-btn" class="action-btn a-btn">A</button>
+                </div>
+                
+                <div class="start-select">
+                    <button id="select-btn" class="ss-btn">Select</button>
+                    <button id="start-btn" class="ss-btn">Start</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="battle">3</div>
+
+        <div id="stage_cleared">4</div>
+
+        <div id="defeat">5</div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const classButtons = document.querySelectorAll('.class_select');
+                classButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const classNum = button.dataset.classNum;
+                        if (classNum) {
+                            if (typeof class_selection === 'function') {
+                                class_selection(parseInt(classNum, 10), button);
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
 </html>
