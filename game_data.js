@@ -1,4 +1,18 @@
 // Add JS here
+var mottos = [
+    "Break it. Loot it. Repeat it.",
+    "The faster you smash, the richer you get.",
+    "Unleash the Fury. Claim the Fortune.",
+    "There's only one way through: Destroy everything.",
+    "Upgrade your Guts, upgrade your Grit, upgrade your Grade.",
+    "Brains, Brawn, and Bosses: It takes all three.",
+    "Master the Mobility, Maximize the Might.",
+    "Every run is a test of Strength and Scholarship.",
+    "Find the key. Face the boss. Restart richer.",
+    "Dungeons are temporary. Loot is eternal.",
+    "Ruin leads to Riches. Every time."
+];
+
 var section = 0;
 var rooms = [];
 var room_t = ["Woods","Cavern","Dungeon","Plains"];
@@ -132,6 +146,10 @@ function Start() {
     document.getElementById("defeat").style.display = "none";
     document.getElementById("pause").style.display = "none";
     document.getElementById("inventory").style.display = "none";
+
+    //motto_funny
+    var mottox = Math.floor((Math.random() * mottos.length));
+    document.getElementById("motto_funny").innerHTML = mottos[mottox];
 }
 
 function hud(callout){

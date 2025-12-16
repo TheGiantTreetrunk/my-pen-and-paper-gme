@@ -457,3 +457,11 @@
     color:#fff;
 
 }
+
+#motto_funny {
+    position: fixed;
+    bottom: 16px;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
