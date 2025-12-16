@@ -13,6 +13,7 @@ var itm_4a = [];
 var itm_nm = ["Gold","Food","Potion","Armor","Weapon","Arrows","Bullets","Scrolls"];
 
 var obj_nm = ["Chest","Barrel","Vase","Safe"];
+var obj_icn = [];
 var obj_1 = [];
 var obj_2 = [];
 var obj_3 = [];
@@ -129,16 +130,22 @@ function Start() {
     document.getElementById("battle").style.display = "none";
     document.getElementById("stage_cleared").style.display = "none";
     document.getElementById("defeat").style.display = "none";
+    document.getElementById("pause").style.display = "none";
+    document.getElementById("inventory").style.display = "none";
 }
 
 function hud(callout){
     if(callout == 0) {
         document.getElementById("splash").style.display = "none";
         document.getElementById("menu").style.display = "block";
+
+        document.getElementById("pause").style.display = "none";
+        document.getElementById("inventory").style.display = "none";
 		document.getElementById("name_of_class").innerHTML = "";
 		document.getElementById("class_description").innerHTML = "";
 		document.getElementById("class_icon").innerHTML = "";
 		document.getElementById("class_stats").innerHTML = "";
+        
     }
 
     if(callout == 1) {
@@ -151,6 +158,26 @@ function hud(callout){
 
     if(callout == 2) {
         document.getElementById("loading_scene").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
+
+    if(callout == 3) {
+        document.getElementById("pause").style.display = "block";
+        document.getElementById("game").style.display = "none";
+    }
+
+    if(callout == 4) {
+        document.getElementById("pause").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
+
+    if(callout == 5) {
+        document.getElementById("inventory").style.display = "block";
+        document.getElementById("game").style.display = "none";
+    }
+
+    if(callout == 6) {
+        document.getElementById("inventory").style.display = "none";
         document.getElementById("game").style.display = "block";
     }
 }
@@ -192,12 +219,38 @@ function startLoading() {
         bar.style.width = '0%'; 
         
         document.getElementById("myLoadingBar1").style.display = "none";
+        World()
         hud(2);
     }, 4000);
+
+
+    setTimeout(() => {
+        document.getElementById("myLoadingBar1").style.display = "block";
+    }, 4500);
 }
 
 function Generation(conditional) {
-    if(conditional == 0) {
+    if(conditional == 0) { // generate the world in a section
+        rooms = [];
+        itm_1t = [];
+        itm_2t = [];
+        itm_3t = [];
+        itm_4t = [];
+        itm_1a = [];
+        itm_2a = [];
+        itm_3a = [];
+        itm_4a = [];
+        obj_icn = [];
+        obj_1 = [];
+        obj_2 = [];
+        obj_3 = [];
+        obj_4 = [];
+        obj_1a = [];
+        obj_2a = [];
+        obj_3a = [];
+        obj_4a = [];
+
+
         for (var i = 0; i < 10; i++) {
             var level_playarea = Math.floor((Math.random() * room_t.length));
             rooms.push(room_t[level_playarea]);
@@ -235,6 +288,11 @@ function Generation(conditional) {
             obj_4a.push(0);
         }
     }
+}
+
+function World(){
+    //show the player what the world looks like
+    document.getElementById("game_sene").innerHTML = "##########";
 }
 
 

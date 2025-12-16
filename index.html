@@ -10,10 +10,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='style.css?v=4.4' rel='stylesheet'>
-        <link href='game_style.css?v=4.4' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.3"></script>
-        <script defer type="text/javascript" src="main.js?v=4.3"></script>
+        <link href='style.css?v=4.5' rel='stylesheet'>
+        <link href='game_style.css?v=4.5' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.5"></script>
+        <script defer type="text/javascript" src="main.js?v=4.5"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -92,8 +92,8 @@
                 </div>
                 
                 <div class="start-select">
-                    <button id="select-btn" class="ss-btn">Select</button>
-                    <button id="start-btn" class="ss-btn">Start</button>
+                    <button id="select-btn" class="ss-btn" onclick="hud(5)">Select</button>
+                    <button id="start-btn" class="ss-btn" onclick="hud(3)">Start</button>
                 </div>
             </div>
         </div>
@@ -103,6 +103,18 @@
         <div id="stage_cleared">4</div>
 
         <div id="defeat">5</div>
+
+        <div id="pause">
+          <h2>Game Paused</h2>
+          <button onclick="hud(4)">Resume</button>
+          <button onclick="hud(0)">Menu</button>
+        </div>
+
+        <div id="inventory">
+          <h2>Inventory</h2>
+          <p>this is a test</p>
+          <button onclick="hud(6)">Back</button>
+        </div>
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
