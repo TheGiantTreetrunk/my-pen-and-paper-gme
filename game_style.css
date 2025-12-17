@@ -439,7 +439,11 @@
 	overflow-y: scroll;
     box-shadow: 10px 10px #40318d;
     color:#fff;
+}
 
+#pause button {
+    padding: 14px 0px;
+    width: 95%;
 }
 
 
@@ -465,3 +469,39 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+#inventory_bot_hud {
+    list-style-type: none;
+     margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#inventory_bot_hud button {
+    padding: 14px 32px;
+}
+
+#inventory_table {
+    font-family: 'main';
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+#inventory_table td, th {
+    padding: 8px;
+  }
+  
+#inventory_table tr:nth-child(even){background-color: #212626;}
+  
+#inventory_table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }

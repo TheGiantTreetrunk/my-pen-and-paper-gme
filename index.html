@@ -10,10 +10,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='style.css?v=4.7' rel='stylesheet'>
-        <link href='game_style.css?v=4.7' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.6"></script>
-        <script defer type="text/javascript" src="main.js?v=4.6"></script>
+        <link href='style.css?v=4.8' rel='stylesheet'>
+        <link href='game_style.css?v=4.8' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.7"></script>
+        <script defer type="text/javascript" src="main.js?v=4.7"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -108,15 +108,56 @@
         <div id="defeat">5</div>
 
         <div id="pause">
-          <h2>Game Paused</h2>
-          <button onclick="hud(4)">Resume</button>
-          <button onclick="hud(0)">Menu</button>
+          <h2 style="text-align: center">Game Paused</h2>
+          <hr>
+
+          <br><br><br>
+          <center>
+            <button onclick="hud(4)">Resume</button>
+            <br>
+            <button onclick="hud(0)">Menu</button>
+          </center>
         </div>
 
         <div id="inventory">
-          <h2>Inventory</h2>
-          <p>this is a test</p>
-          <button onclick="hud(6)">Back</button>
+          <h2 style="text-align: center">Inventory</h2>
+          <hr>
+          <p id="plyr_inv_class_name" style="text-align: center">'class name'</p>
+          <table id="inventory_table">
+            <tr>
+              <td>Gold</td>
+              <td id="plyr_gold_count"></td>
+            </tr>
+            <tr>
+              <td>Food</td>
+              <td id="plyr_food_count"></td>
+            </tr>
+            <tr>
+                <td>Water</td>
+                <td id="plyr_water_count"></td>
+              </tr>
+            <tr>
+              <td>Potions</td>
+              <td id="plyr_potion_count"></td>
+            </tr>
+            <tr>
+              <td>Arrows</td>
+              <td id="plyr_arrow_count"></td>
+            </tr>
+            <tr>
+              <td>Bullets</td>
+              <td id="plyr_bullet_count"></td>
+            </tr>
+            <tr>
+              <td>Scrolls</td>
+              <td id="plyr_scroll_count"></td>
+            </tr>
+          </table>
+          <br><br><br><br><br>
+
+          <div id="inventory_bot_hud">
+            <button onclick="hud(6)">Back</button>
+          </div>
         </div>
 
         <script>

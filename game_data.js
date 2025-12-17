@@ -24,7 +24,7 @@ var itm_1a = [];
 var itm_2a = [];
 var itm_3a = [];
 var itm_4a = [];
-var itm_nm = ["Gold","Food","Potion","Armor","Weapon","Arrows","Bullets","Scrolls"];
+var itm_nm = ["Gold","Food","Potion","Armor","Weapon","Arrows","Bullets","Scrolls","Water"];
 
 var obj_nm = ["Chest","Barrel","Vase","Safe"];
 var obj_icn = [];
@@ -53,7 +53,14 @@ var player = {
     strength: 10,
     shield: 0,
     weapon: 1,
-    class: 0
+    class: 0,
+    gold: 0,
+    food: 0,
+    potion: 0,
+    arrows: 0,
+    bullets: 0,
+    scrolls: 0,
+    water: 0
 };
 
 
@@ -192,6 +199,14 @@ function hud(callout){
     if(callout == 5) {
         document.getElementById("inventory").style.display = "block";
         document.getElementById("game").style.display = "none";
+        document.getElementById("plyr_gold_count").innerHTML = "x " + player.gold;
+        document.getElementById("plyr_food_count").innerHTML = "x " + player.food;
+        document.getElementById("plyr_water_count").innerHTML = "x " + player.water;
+        document.getElementById("plyr_potion_count").innerHTML = "x " + player.potion;
+        document.getElementById("plyr_arrow_count").innerHTML = "x " + player.arrows;
+        document.getElementById("plyr_bullet_count").innerHTML = "x " + player.bullets;
+        document.getElementById("plyr_scroll_count").innerHTML = "x " + player.scrolls;
+
     }
 
     if(callout == 6) {
