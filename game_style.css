@@ -515,6 +515,16 @@
     color: white;
   }
 
+.inventory_player_equipment {
+    width: 48px;
+    height: 48px;
+    background-color: #000000;
+    color: #ffffff;
+    border: 3px solid #ffffff;
+    font-family: 'Game_Icns';
+    font-size: 24px;
+}
+
 #player_game_score {
     position: fixed;
     position: fixed;
@@ -545,4 +555,19 @@
     bottom: 0;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#attention_early_development {
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+	height: 50%;
+	border: 3px solid #ffffff;
+	background-color: #000;
+	overflow-y: scroll;
+    box-shadow: 10px 10px #ffffff;
+    color:#fff;
+    padding: 10px;
 }

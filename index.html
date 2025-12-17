@@ -10,10 +10,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='style.css?v=4.9' rel='stylesheet'>
-        <link href='game_style.css?v=4.9' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.8"></script>
-        <script defer type="text/javascript" src="main.js?v=4.8"></script>
+        <link href='style.css?v=4.10' rel='stylesheet'>
+        <link href='game_style.css?v=4.10' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.9"></script>
+        <script defer type="text/javascript" src="main.js?v=4.9"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -124,6 +124,16 @@
           <h2 style="text-align: center">Inventory</h2>
           <hr>
           <p id="plyr_inv_class_name" style="text-align: center">'class name'</p>
+          <p id="plyr_cls_icn" style="text-align: center; font-size: 24px;"><a class="icns red">@</a></p>
+          <center>
+            <table style="text-align: center">
+                <tr>
+                    <td><button class="inventory_player_equipment">1</button></td>
+                    <td><button class="inventory_player_equipment">2</button></td>
+                    <td><button class="inventory_player_equipment">3</button></td>
+                </tr>
+            </table>
+          </center>
           <table id="inventory_table">
             <tr>
               <td>Gold</td>
@@ -166,6 +176,16 @@
             <hr>
             <p>Its too dangerous to go in here! Please select a class.</p>
             <button onclick="hud(7)">Ok, fine.</button>
+        </div>
+
+        <div id="attention_early_development">
+            <h2 style="text-align: center">Attention!</h2>
+            <hr>
+            <h3>Early Development</h3>
+            <p>This game is still in early development. All features are subject to change, and are not final. 
+                Some mechanics may not work as intended or are still under development. All bugs please report to the developer. 
+                Please use at your own risk.</p>
+            <button onclick="hud(8)">Ok, Thanks.</button>
         </div>
 
         <script>

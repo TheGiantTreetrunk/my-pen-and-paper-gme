@@ -224,6 +224,10 @@ function hud(callout){
     if(callout == 7 ) {
         document.getElementById("attention_class_select").style.display = "none";
     }
+
+    if(callout == 8 ) {
+        document.getElementById("attention_early_development").style.display = "none";
+    }
 }
 
 function class_selection(class_num, button_element) {
