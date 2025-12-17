@@ -153,6 +153,7 @@ function Start() {
     document.getElementById("defeat").style.display = "none";
     document.getElementById("pause").style.display = "none";
     document.getElementById("inventory").style.display = "none";
+    document.getElementById("attention_class_select").style.display = "none";
 
     //motto_funny
     var mottox = Math.floor((Math.random() * mottos.length));
@@ -161,24 +162,30 @@ function Start() {
 
 function hud(callout){
     if(callout == 0) {
+        player.class = 0;
         document.getElementById("splash").style.display = "none";
         document.getElementById("menu").style.display = "block";
 
         document.getElementById("pause").style.display = "none";
         document.getElementById("inventory").style.display = "none";
-		document.getElementById("name_of_class").innerHTML = "";
-		document.getElementById("class_description").innerHTML = "";
-		document.getElementById("class_icon").innerHTML = "";
-		document.getElementById("class_stats").innerHTML = "";
+		document.getElementById("name_of_class").innerHTML = "Select a Class";
+		document.getElementById("class_description").innerHTML = "its too dangerous to go in without a class";
+		document.getElementById("class_icon").innerHTML = "@";
+		document.getElementById("class_stats").innerHTML = "Look so many to choose from";
         
     }
 
     if(callout == 1) {
-        document.getElementById("menu").style.display = "none";
-        document.getElementById("loading_scene").style.display = "block";
 
-        //start loading animation
-        startLoading();
+        if(player.class != 0) {
+            document.getElementById("menu").style.display = "none";
+            document.getElementById("loading_scene").style.display = "block";
+
+            //start loading animation
+            startLoading();
+        } else {
+            document.getElementById("attention_class_select").style.display = "block";
+        }
     }
 
     if(callout == 2) {
@@ -212,6 +219,10 @@ function hud(callout){
     if(callout == 6) {
         document.getElementById("inventory").style.display = "none";
         document.getElementById("game").style.display = "block";
+    }
+
+    if(callout == 7 ) {
+        document.getElementById("attention_class_select").style.display = "none";
     }
 }
 
