@@ -214,6 +214,12 @@ function hud(callout){
         document.getElementById("plyr_bullet_count").innerHTML = "x " + player.bullets;
         document.getElementById("plyr_scroll_count").innerHTML = "x " + player.scrolls;
 
+        if (class_data[player.class]) {
+            var selected_class = class_data[player.class];
+            document.getElementById("plyr_inv_class_name").innerHTML = selected_class.name;
+            document.getElementById("plyr_cls_icn").innerHTML = `<a class="icns ${player_colors[player.class]}">@</a>`;
+        }
+
     }
 
     if(callout == 6) {
