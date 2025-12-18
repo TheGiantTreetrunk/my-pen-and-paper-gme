@@ -1,4 +1,8 @@
 /* Add styles here */
+:root {
+    --shadow-color: #000000;
+}
+
 @font-face {
     font-family: 'Game_Icns'; /* Choose a name for your font */
     font-weight: normal;
@@ -62,7 +66,7 @@ button:disabled {
 	pointer-events: none;
 	background-color: #555555;
 	color: white;
-	box-shadow: 10px 10px #000000;	
+	box-shadow: 10px 10px var(--shadow-color, #000000);
 
 }
 

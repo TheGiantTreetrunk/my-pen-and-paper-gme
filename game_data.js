@@ -255,6 +255,8 @@ function class_selection(class_num, button_element) {
 
     const selectedColor = window.getComputedStyle(button_element.querySelector('a')).color;
 
+    document.documentElement.style.setProperty('--shadow-color', selectedColor);
+
     const dpadButtons = document.querySelectorAll('.dpad-btn, .dpad-center');
     dpadButtons.forEach(button => button.style.backgroundColor = selectedColor);
 
