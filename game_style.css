@@ -243,6 +243,10 @@
 
 #game_view {
     width: 100%;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
@@ -574,8 +578,4 @@
 
 #game_sene {
     font-size: 24px;
-    position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 }
