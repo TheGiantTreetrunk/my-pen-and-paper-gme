@@ -358,16 +358,16 @@ function World(){
     "<br>" + "##########";
 
     if(players_pos == 0) {
-        document.getElementById("plyr_sp1").innerHTML = "<a class='red'>@</a>";
+        document.getElementById("plyr_sp1").innerHTML = "<a class='" + player_colors[player.class] + "'>@</a>";
     }
     if(players_pos == 1) {
-        document.getElementById("plyr_sp2").innerHTML = "<a class='red'>@</a>";
+        document.getElementById("plyr_sp2").innerHTML = "<a class='" + player_colors[player.class] + "'>@</a>";
     }
     if(players_pos == 2) {
-        document.getElementById("plyr_sp3").innerHTML = "<a class='red'>@</a>";
+        document.getElementById("plyr_sp3").innerHTML = "<a class='" + player_colors[player.class] + "'>@</a>";
     }
     if(players_pos == 3) {
-        document.getElementById("plyr_sp4").innerHTML = "<a class='red'>@</a>";
+        document.getElementById("plyr_sp4").innerHTML = "<a class='" + player_colors[player.class] + "'>@</a>";
     }
 
     //we need to know the current room of the player is in to pull from the arrays
@@ -531,4 +531,3 @@ function Game_Command(command) {
 		}
 	}
 }
-''
