@@ -539,4 +539,78 @@ function Game_Command(command) {
 			}
 		}
 	}
+    if(command == 4) {
+        if(players_pos == 0){
+            if(obj_1a[room] == 0) {
+                if(Math.random() < 0.5){
+                    var itm_g = itm_1t[room];
+                    switch(itm_g){
+                        case "Gold": player.gold += 1; break;
+                        case "Food": player.food += 1; break;
+                        case "Potion": player.potion += 1; break;
+                        case "Arrows": player.arrows += 1; break;
+                        case "Bullets": player.bullets += 1; break;
+                        case "Scrolls": player.scrolls += 1; break;
+                        case "Water": player.water += 1; break;
+                    }
+                }
+                obj_1a[room] = 2;
+                World();
+            }
+        }
+        if(players_pos == 1){
+            if(obj_2a[room] == 0) {
+                if(Math.random() < 0.5){
+                    var itm_g = itm_2t[room];
+                    switch(itm_g){
+                        case "Gold": player.gold += 1; break;
+                        case "Food": player.food += 1; break;
+                        case "Potion": player.potion += 1; break;
+                        case "Arrows": player.arrows += 1; break;
+                        case "Bullets": player.bullets += 1; break;
+                        case "Scrolls": player.scrolls += 1; break;
+                        case "Water": player.water += 1; break;
+                    }
+                }
+                obj_2a[room] = 2;
+                World();
+            }
+        }
+        if(players_pos == 2){
+            if(obj_3a[room] == 0) {
+                if(Math.random() < 0.5){
+                    var itm_g = itm_3t[room];
+                    switch(itm_g){
+                        case "Gold": player.gold += 1; break;
+                        case "Food": player.food += 1; break;
+                        case "Potion": player.potion += 1; break;
+                        case "Arrows": player.arrows += 1; break;
+                        case "Bullets": player.bullets += 1; break;
+                        case "Scrolls": player.scrolls += 1; break;
+                        case "Water": player.water += 1; break;
+                    }
+                }
+                obj_3a[room] = 2;
+                World();
+            }
+        }
+        if(players_pos == 3){
+            if(obj_4a[room] == 0) {
+                if(Math.random() < 0.5){
+                    var itm_g = itm_4t[room];
+                    switch(itm_g){
+                        case "Gold": player.gold += 1; break;
+                        case "Food": player.food += 1; break;
+                        case "Potion": player.potion += 1; break;
+                        case "Arrows": player.arrows += 1; break;
+                        case "Bullets": player.bullets += 1; break;
+                        case "Scrolls": player.scrolls += 1; break;
+                        case "Water": player.water += 1; break;
+                    }
+                }
+                obj_4a[room] = 2;
+                World();
+            }
+        }
+    }
 }
