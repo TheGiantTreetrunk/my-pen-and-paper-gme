@@ -297,7 +297,6 @@ function Generation(conditional) {
         itm_2a = [];
         itm_3a = [];
         itm_4a = [];
-        obj_icn = [];
         obj_1 = [];
         obj_2 = [];
         obj_3 = [];
@@ -375,12 +374,37 @@ function World(){
     var x_known = room;
 
     //load the items into their spots
-    document.getElementById("itm_sp1").innerHTML = obj_icn[obj_1[x_known].value];
-    document.getElementById("itm_sp2").innerHTML = "2";
-    document.getElementById("itm_sp3").innerHTML = "3";
-    document.getElementById("itm_sp4").innerHTML = "4";
+    var obj1_name = obj_1[x_known];
+    var obj1_index = obj_nm.indexOf(obj1_name);
+	if(obj_1a[x_known] == 0) {
+		document.getElementById("itm_sp1").innerHTML = obj_icn[obj1_index];
+	} else {
+		document.getElementById("itm_sp1").innerHTML = obj_icn_d;
+	}
 
+    var obj2_name = obj_2[x_known];
+    var obj2_index = obj_nm.indexOf(obj2_name);
+	if(obj_2a[x_known] == 0) {
+		document.getElementById("itm_sp2").innerHTML = obj_icn[obj2_index];
+	} else {
+		document.getElementById("itm_sp2").innerHTML = obj_icn_d;
+	}
+	
+    var obj3_name = obj_3[x_known];
+    var obj3_index = obj_nm.indexOf(obj3_name);
+	if(obj_3a[x_known] == 0) {
+		document.getElementById("itm_sp3").innerHTML = obj_icn[obj3_index];
+	} else {
+		document.getElementById("itm_sp3").innerHTML = obj_icn_d;
+	}
 
+    var obj4_name = obj_4[x_known];
+    var obj4_index = obj_nm.indexOf(obj4_name);
+    if(obj_4a[x_known] == 0) {
+		document.getElementById("itm_sp4").innerHTML = obj_icn[obj4_index];
+	} else {
+		document.getElementById("itm_sp4").innerHTML = obj_icn_d;
+	}
 }
 
 
@@ -425,6 +449,7 @@ function Game_Command(command) {
         } else if(room != 0) {
             room -= 1;
             players_pos = 3;
+			World();
         }
     }
     if(command == 2) {
@@ -439,4 +464,71 @@ function Game_Command(command) {
             }
         }
     }
+	if(command == 3) {
+		if(players_pos == 0){
+			if(obj_1a[room] == 0) {
+				var itm_g = itm_1t[room];
+				switch(itm_g){
+					case "Gold": player.gold += 1; break;
+					case "Food": player.food += 1; break;
+					case "Potion": player.potion += 1; break;
+					case "Arrows": player.arrows += 1; break;
+					case "Bullets": player.bullets += 1; break;
+					case "Scrolls": player.scrolls += 1; break;
+					case "Water": player.water += 1; break;
+				}
+				obj_1a[room] = 1;
+				World();
+			}
+		}
+		if(players_pos == 1){
+			if(obj_2a[room] == 0) {
+				var itm_g = itm_2t[room];
+				switch(itm_g){
+					case "Gold": player.gold += 1; break;
+					case "Food": player.food += 1; break;
+					case "Potion": player.potion += 1; break;
+					case "Arrows": player.arrows += 1; break;
+					case "Bullets": player.bullets += 1; break;
+					case "Scrolls": player.scrolls += 1; break;
+					case "Water": player.water += 1; break;
+				}
+				obj_2a[room] = 1;
+				World();
+			}
+		}
+		if(players_pos == 2){
+			if(obj_3a[room] == 0) {
+				var itm_g = itm_3t[room];
+				switch(itm_g){
+					case "Gold": player.gold += 1; break;
+					case "Food": player.food += 1; break;
+					case "Potion": player.potion += 1; break;
+					case "Arrows": player.arrows += 1; break;
+					case "Bullets": player.bullets += 1; break;
+					case "Scrolls": player.scrolls += 1; break;
+					case "Water": player.water += 1; break;
+				}
+				obj_3a[room] = 1;
+				World();
+			}
+		}
+		if(players_pos == 3){
+			if(obj_4a[room] == 0) {
+				var itm_g = itm_4t[room];
+				switch(itm_g){
+					case "Gold": player.gold += 1; break;
+					case "Food": player.food += 1; break;
+					case "Potion": player.potion += 1; break;
+					case "Arrows": player.arrows += 1; break;
+					case "Bullets": player.bullets += 1; break;
+					case "Scrolls": player.scrolls += 1; break;
+					case "Water": player.water += 1; break;
+				}
+				obj_4a[room] = 1;
+				World();
+			}
+		}
+	}
 }
+''
