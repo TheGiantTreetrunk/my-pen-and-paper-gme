@@ -28,6 +28,7 @@ var itm_nm = ["Gold","Food","Potion","Armor","Weapon","Arrows","Bullets","Scroll
 
 var obj_nm = ["Chest","Vase"];
 var obj_icn = ["(", "<"];
+var obj_icn_o = [")", ">"];
 var obj_icn_d = "*";
 var obj_1 = [];
 var obj_2 = [];
@@ -378,7 +379,9 @@ function World(){
     var obj1_index = obj_nm.indexOf(obj1_name);
 	if(obj_1a[x_known] == 0) {
 		document.getElementById("itm_sp1").innerHTML = obj_icn[obj1_index];
-	} else {
+	} else if(obj_1a[x_known] == 1) {
+        document.getElementById("itm_sp1").innerHTML = obj_icn_o[obj1_index];
+    } else {
 		document.getElementById("itm_sp1").innerHTML = obj_icn_d;
 	}
 
@@ -386,7 +389,9 @@ function World(){
     var obj2_index = obj_nm.indexOf(obj2_name);
 	if(obj_2a[x_known] == 0) {
 		document.getElementById("itm_sp2").innerHTML = obj_icn[obj2_index];
-	} else {
+	} else if(obj_2a[x_known] == 1) {
+        document.getElementById("itm_sp2").innerHTML = obj_icn_o[obj2_index];
+    }else {
 		document.getElementById("itm_sp2").innerHTML = obj_icn_d;
 	}
 	
@@ -394,7 +399,9 @@ function World(){
     var obj3_index = obj_nm.indexOf(obj3_name);
 	if(obj_3a[x_known] == 0) {
 		document.getElementById("itm_sp3").innerHTML = obj_icn[obj3_index];
-	} else {
+     } else if(obj_3a[x_known] == 1) {
+        document.getElementById("itm_sp3").innerHTML = obj_icn_o[obj3_index];
+    } else {
 		document.getElementById("itm_sp3").innerHTML = obj_icn_d;
 	}
 
@@ -402,7 +409,9 @@ function World(){
     var obj4_index = obj_nm.indexOf(obj4_name);
     if(obj_4a[x_known] == 0) {
 		document.getElementById("itm_sp4").innerHTML = obj_icn[obj4_index];
-	} else {
+	} else if(obj_4a[x_known] == 1) {
+        document.getElementById("itm_sp4").innerHTML = obj_icn_o[obj4_index];
+    } else {
 		document.getElementById("itm_sp4").innerHTML = obj_icn_d;
 	}
 }
