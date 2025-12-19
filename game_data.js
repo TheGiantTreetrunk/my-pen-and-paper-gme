@@ -349,6 +349,8 @@ function Generation(conditional) {
 
 function World(){
     //show the player what the world looks like
+    //document.getElementById("game_player_stats_ui").innerHTML = "";
+
     document.getElementById("game_sene").innerHTML = "##########" + "<br>" + 
     "<a class='brown'>:</a>" + 
     "<a id='plyr_sp1'>_</a><a id='itm_sp1'>1</a>" + 
