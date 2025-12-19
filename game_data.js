@@ -26,8 +26,9 @@ var itm_3a = [];
 var itm_4a = [];
 var itm_nm = ["Gold","Food","Potion","Armor","Weapon","Arrows","Bullets","Scrolls","Water"];
 
-var obj_nm = ["Chest","Barrel","Vase","Safe"];
-var obj_icn = [];
+var obj_nm = ["Chest","Vase"];
+var obj_icn = ["(", "<"];
+var obj_icn_d = "*";
 var obj_1 = [];
 var obj_2 = [];
 var obj_3 = [];
@@ -348,7 +349,38 @@ function Generation(conditional) {
 
 function World(){
     //show the player what the world looks like
-    document.getElementById("game_sene").innerHTML = "##########";
+    document.getElementById("game_sene").innerHTML = "##########" + "<br>" + 
+    "<a class='brown'>:</a>" + 
+    "<a id='plyr_sp1'>_</a><a id='itm_sp1'>1</a>" + 
+    "<a id='plyr_sp2'>_</a><a id='itm_sp2'>1</a>" +
+    "<a id='plyr_sp3'>_</a><a id='itm_sp3'>1</a>" + 
+    "<a id='plyr_sp4'>_</a><a id='itm_sp4'>1</a>" + 
+    "<a class='brown'>:</a>" + 
+    "<br>" + "##########";
+
+    if(players_pos == 0) {
+        document.getElementById("plyr_sp1").innerHTML = "<a class='red'>@</a>";
+    }
+    if(players_pos == 1) {
+        document.getElementById("plyr_sp2").innerHTML = "<a class='red'>@</a>";
+    }
+    if(players_pos == 2) {
+        document.getElementById("plyr_sp3").innerHTML = "<a class='red'>@</a>";
+    }
+    if(players_pos == 3) {
+        document.getElementById("plyr_sp4").innerHTML = "<a class='red'>@</a>";
+    }
+
+    //we need to know the current room of the player is in to pull from the arrays
+    var x_known = room;
+
+    //load the items into their spots
+    document.getElementById("itm_sp1").innerHTML = obj_icn[obj_1[x_known].value];
+    document.getElementById("itm_sp2").innerHTML = "2";
+    document.getElementById("itm_sp3").innerHTML = "3";
+    document.getElementById("itm_sp4").innerHTML = "4";
+
+
 }
 
 
@@ -356,30 +388,55 @@ function keydownFunction() {
     let key = event.key;
 
     if (key == "w" || key == "W") {
-        Game_Command(1);
+        //Game_Command(1);
     }
 
     if (key == "s" || key == "S") {
-        Game_Command(2);
+        //Game_Command(2);
     }
 
     if (key == "a" || key == "A") {
-        Game_Command(4);
+        Game_Command(1);
     }
 
     if (key == "d" || key == "D") {
-        Game_Command(3);
+        Game_Command(2);
     }
 
     if (key == "o" || key == "O") {
-        Game_Command(5);
+        Game_Command(3);
     }
 
     if (key == "k" || key == "K") {
-        Game_Command(6);
+        Game_Command(4);
     }
 
 }
 
 function keyupFunction() {
+}
+
+
+function Game_Command(command) {
+    if(command == 1) {
+        if(players_pos != 0) {
+            players_pos -= 1;
+            World();
+        } else if(room != 0) {
+            room -= 1;
+            players_pos = 3;
+        }
+    }
+    if(command == 2) {
+        if(players_pos != 3) {
+            players_pos += 1; 
+            World();
+        } else if(players_pos == 3) {
+            if(room != 9) {
+                room += 1;
+                players_pos = 0;
+                World();
+            }
+        }
+    }
 }
