@@ -349,7 +349,10 @@ function Generation(conditional) {
 
 function World(){
     //show the player what the world looks like
-    //document.getElementById("game_player_stats_ui").innerHTML = "";
+    document.getElementById("game_player_stats_ui").innerHTML = "<a class='red icns'>~</a>" + player.health +
+                    " <a class='white icns'> }</a>" + player.academic +
+                    " <a class='yellow icns'>|</a>" + player.mobility +
+                    " <a class='purple icns'>{</a>" + player.strength;
 
     document.getElementById("game_sene").innerHTML = "##########" + "<br>" + 
     "<a class='brown'>:</a>" + 
