@@ -13,6 +13,29 @@ var mottos = [
     "Ruin leads to Riches. Every time."
 ];
 
+var quotes = [
+    "Our greatest glory is not in never falling, but in rising every time we fall, - Confucius",
+    "Fall seven times, stand up eight, - Japaneese Proverb",
+    "Success is not final, failure is not fatal: it is the courage to continue that counts, - Winston Churchill",
+    "I have not failed. I've just found 10,000 ways that won't work, - Thomas Edison",
+    "The best time to plant a tree was 20 years ago. The second best time is now, - Chinese Proverb",
+    "Failure is simply the opportunity to begin again, this time more intelligently, - Henry Ford",
+    "You have to let your failures teach you, - Barack Obama",
+    "I can accept failure, everyone fails at something. But I can't accept not trying, - Michael Jordan",
+    "Only those who dare to fail greatly can ever achieve greatly, - Robert F Kennedy",
+    "It is hard to fail, but it is worse never to have tried to succeed, - Theodore Rosevelt",
+    "It is not the mountain we conquer but ourselves, -  Edmund Hillary",
+    "Courage isn't having the strength to go on—it is going on when you don't have strength, - Napoleon Bonaparte",
+    "Strength does not come from physical capacity. It comes from an indomitable will, - Mahatma Gandhi",
+    "You never know how strong you are, until being strong is your only choice, - Bob Marley",
+    "Valor is stability, not of legs and arms, but of courage and the soul, - Michel de Montaigne",
+    "I learned that courage was not the absence of fear, but the triumph over it. The brave man is not he who does not feel afraid, but he who conquers that fear, - Nelson Mandela",
+    "True valor lies between cowardice and rashness, - Miguel de Cervantes",
+    "Our own heart, and not other men's opinions, forms our true honor, - Samuel Taylor Coleridge",
+    "The secret to happiness is freedom, the secret of freedom is courage, - Thucydides",
+    "For to be free is not merely to cast off one's chains, but to live in a way that respects and enhances the freedom of others, - Nelson Mandela"
+];
+
 var section = 0;
 var rooms = [];
 var room_t = ["Woods","Cavern","Dungeon","Plains"];
