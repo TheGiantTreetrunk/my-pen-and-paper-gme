@@ -583,3 +583,19 @@
 #game_player_stats_ui {
     font-size: 24px;
 }
+
+#game_ui_super_size_health {
+    font-size: 40px;
+}
+
+#game_ui_super_size_academic{
+    font-size: 36px;
+}
+
+#game_ui_super_size_mobility {
+    font-size: 40px;
+}
+
+#game_ui_super_size_strength {
+    font-size: 44px;
+}
