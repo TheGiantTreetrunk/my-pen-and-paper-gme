@@ -187,7 +187,7 @@ function hud(callout){
             document.getElementById("loading_scene").style.display = "block";
 
             //start loading animation
-            startLoading();
+            startLoading(0);
         } else {
             document.getElementById("attention_class_select").style.display = "block";
         }
@@ -258,6 +258,14 @@ function hud(callout){
         document.getElementById("game").style.display = "none";
         document.getElementById("defeat").style.display = "block";
     }
+
+    if(callout == 12) {//victory but transition to a new section!
+        document.getElementById("loading_scene").style.display = "block";
+        document.getElementById("stage_cleared").style.display = "none";
+
+        //start loading animation
+        startLoading(1);
+    }
 }
 
 function class_selection(class_num, button_element) {
@@ -288,8 +296,15 @@ function class_selection(class_num, button_element) {
     actionButtons.forEach(button => button.style.backgroundColor = selectedColor);
 }
 
-function startLoading() {
-    Generation(0);
+function startLoading(conditional) {
+    if(conditional == 0) {
+        Generation(0);
+    }
+
+    if(conditional == 1) {
+        Generation(1);
+    }
+
     const bar = document.getElementById('myLoadingBar');
     
     bar.classList.add('is-loading');
@@ -310,7 +325,14 @@ function startLoading() {
 }
 
 function Generation(conditional) {
-    if(conditional == 0) { // generate the world in a section
+    if(conditional == 0) { // generate the world from start
+        section = 0;
+    }
+
+    if(conditional == 1) { // generate the world add another section
+        section += 1;
+    }
+
         rooms = [];
         itm_1t = [];
         itm_2t = [];
@@ -366,7 +388,6 @@ function Generation(conditional) {
             obj_4.push(obj_nm[obj_4x]);
             obj_4a.push(0);
         }
-    }
 }
 
 function World(){
