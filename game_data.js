@@ -167,8 +167,11 @@ function hud(callout){
         player.class = 0;
         document.getElementById("splash").style.display = "none";
         document.getElementById("menu").style.display = "block";
-
         document.getElementById("pause").style.display = "none";
+        document.getElementById("game").style.display = "none";
+        document.getElementById("battle").style.display = "none";
+        document.getElementById("stage_cleared").style.display = "none";
+        document.getElementById("defeat").style.display = "none";
         document.getElementById("inventory").style.display = "none";
 		document.getElementById("name_of_class").innerHTML = "Select a Class";
 		document.getElementById("class_description").innerHTML = "its too dangerous to go in without a class";
@@ -235,6 +238,25 @@ function hud(callout){
 
     if(callout == 8 ) {
         document.getElementById("attention_early_development").style.display = "none";
+    }
+
+    if(callout == 9) {//Game Encounter!!!!!
+        document.getElementById("battle").style.display = "block";
+        document.getElementById("game").style.display = "none";
+    
+    }
+
+    if(callout == 10) {//victory condition!
+        document.getElementById("battle").style.display = "none";
+        document.getElementById("game").style.display = "none";
+        document.getElementById("stage_cleared").style.display = "block";
+        document.getElementById("stage_cleared_text").innerHTML = "Section " + section + " cleared!";
+    }
+
+    if(callout == 11) {//Defeat condition!
+        document.getElementById("battle").style.display = "none";
+        document.getElementById("game").style.display = "none";
+        document.getElementById("defeat").style.display = "block";
     }
 }
 
