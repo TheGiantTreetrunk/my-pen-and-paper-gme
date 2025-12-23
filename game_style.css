@@ -484,15 +484,9 @@
 }
 
 #inventory_bot_hud {
-    list-style-type: none;
-     margin: 0;
-    padding: 0;
-    overflow: hidden;
-    position: fixed;
-    bottom: 0;
+    position: sticky;
+    bottom: 15px;
     text-align: center;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 #inventory_bot_hud button {
@@ -655,4 +649,22 @@
 #defeat button{
     padding: 14px 0px;
     width: 95%;
+}
+
+#battle {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#battle_center_ui_content{
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+	height: 50%;
+    color:#fff;
 }

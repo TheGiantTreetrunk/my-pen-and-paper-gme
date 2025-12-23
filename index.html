@@ -10,10 +10,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='style.css?v=4.20' rel='stylesheet'>
-        <link href='game_style.css?v=4.20' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.23"></script>
-        <script defer type="text/javascript" src="main.js?v=4.23"></script>
+        <link href='style.css?v=4.23' rel='stylesheet'>
+        <link href='game_style.css?v=4.23' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.24"></script>
+        <script defer type="text/javascript" src="main.js?v=4.24"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -54,11 +54,14 @@
             <br>
 
             <div style="text-align: center">
-                <button class="play_bttn" onclick="hud(1)">Play!</button> 
+                <button class="play_bttn" onclick="hud(1)">Play!</button>
+                <br>
+                <button class="play_bttn" onclick="hud(9)">Battle!</button> 
             </div>
         </div>
 
         <div id="loading_scene">
+            <p>Section 1</p>
             <div style="text-align: center" id="myLoadingBar1" class="loading-container">
                 <div class="loading-text">LOADING...</div>
                 <div class="loading-bar-border">
@@ -98,8 +101,8 @@
                 </div>
         
                 <div class="action-buttons">
-                    <button id="b-btn" class="action-btn b-btn">B</button>
-                    <button id="a-btn" class="action-btn a-btn">A</button>
+                    <button id="b-btn" class="action-btn b-btn" onclick="Game_Command(4)">B</button>
+                    <button id="a-btn" class="action-btn a-btn" onclick="Game_Command(3)">A</button>
                 </div>
                 
                 <div class="start-select">
@@ -112,10 +115,10 @@
         <div id="battle">
             <h2 style="text-align: center">Battle</h2>
             <hr>
-
-            <p id="battle_player_stats">test</p>
-            <p id="battle_enemy_stats">test</p>
-
+            <div id="battle_center_ui_content">
+                <p id="battle_player_stats">test</p>
+                <p id="battle_enemy_stats">test</p>
+            </div>
             
         </div>
 
@@ -187,16 +190,20 @@
           <hr>
           <p id="plyr_inv_class_name" style="text-align: center">'class name'</p>
           <p id="plyr_cls_icn" style="text-align: center; font-size: 24px;"><a class="icns red">@</a></p>
-          <center>
-            <table style="text-align: center">
-                <tr>
-                    <td><button class="inventory_player_equipment">1</button></td>
-                    <td><button class="inventory_player_equipment">2</button></td>
-                    <td><button class="inventory_player_equipment">3</button></td>
-                </tr>
-            </table>
-          </center>
+          
           <table id="inventory_table">
+            <tr>
+              <td>Weapon</td>
+              <td id="plyr_weapon_name">Sword</td>
+            </tr>
+            <tr>
+              <td>Armor</td>
+              <td id="plyr_armor_name">Plate (Full)</td>
+            </tr>
+            <tr>
+              <td>Shield</td>
+              <td id="plyr_shield_name">None</td>
+            </tr>
             <tr>
               <td>Gold</td>
               <td id="plyr_gold_count"></td>

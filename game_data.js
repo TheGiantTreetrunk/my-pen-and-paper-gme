@@ -36,7 +36,24 @@ var quotes = [
     "For to be free is not merely to cast off one's chains, but to live in a way that respects and enhances the freedom of others, - Nelson Mandela"
 ];
 
+var encounter_sentence = [
+    "A group of goblins leaps from the ceiling rafters just as you step into a dimly lit chamber.",
+    "You pull a gold coin from a fountain, only for the water to solidify into a hostile Elemental.",
+    "You try to insert the dungeon key into a door, but the door grows teeth and bites your arm.",
+    "You accidentally sneeze while passing a sentient portrait, and the subject climbs out of the frame to demand an apology.",
+    "You stumble over a hidden cord, which doesn’t trigger arrows but instead rings a massive 'Dinner Time' bell for the local ogres.",
+    "You open a supply closet only to find a skeleton mid-way through changing its ribs, and it attacks out of pure embarrassment.",
+    "You try to harvest a 'healing herb' for your inventory, but it screams and summons its very angry floral family.",
+    "You reach for a glowing treasure chest that turns out to be a very well-disguised, very grumpy hermit crab.",
+    "You celebrate finding the key too loudly, and the vibration shakes a nest of giant spiders loose from the ceiling.",
+    "You break a decorative vase looking for loot, and the dungeon’s 'Clean-Up Crew' golems arrive to fine you with violence."
+];
+
 var section = 0;
+var enemies_defeated = 0;
+var items_opened = 0;
+var items_smashed = 0;
+var gold_earned = 0;
 var rooms = [];
 var room_t = ["Woods","Cavern","Dungeon","Plains"];
 var itm_1t = [];
@@ -264,6 +281,7 @@ function hud(callout){
     }
 
     if(callout == 9) {//Game Encounter!!!!!
+        document.getElementById("menu").style.display = "none";
         document.getElementById("battle").style.display = "block";
         document.getElementById("game").style.display = "none";
     
