@@ -434,7 +434,8 @@ function Generation(conditional) {
 function World(){
     document.getElementById("player_game_score").innerHTML = "Score " + score;
     //show the player what the world looks like
-    document.getElementById("game_player_stats_ui").innerHTML = "<a id='game_ui_super_size_health' class='red icns'>~</a>" + player.health +
+    document.getElementById("game_player_stats_ui").innerHTML = 
+                    "<a id='game_ui_super_size_health' class='red icns'>~</a>" + player.health +
                     " <a id='game_ui_super_size_academic' class='white icns'> }</a>" + player.academic +
                     " <a id='game_ui_super_size_mobility' class='yellow icns'>|</a>" + player.mobility +
                     " <a id='game_ui_super_size_strength' class='purple icns'>{</a>" + player.strength;
