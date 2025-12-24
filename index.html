@@ -10,8 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='style.css?v=4.32' rel='stylesheet'>
-        <link href='game_style.css?v=4.32' rel='stylesheet'>
+        <link href='style.css?v=4.33' rel='stylesheet'>
+        <link href='game_style.css?v=4.33' rel='stylesheet'>
         <script defer type="text/javascript" src="game_data.js?v=4.24"></script>
         <script defer type="text/javascript" src="main.js?v=4.24"></script>
     </head>
@@ -286,6 +286,59 @@
                 Some mechanics may not work as intended or are still under development. All bugs please report to the developer. 
                 Please use at your own risk.</p>
             <button onclick="hud(8)">Ok, Thanks.</button>
+        </div>
+
+        <div id="notification_new_weapon_or_shield">
+            <h2 style="text-align: center" id="notification_new_gear_title">New Gear!</h2>
+            <hr>
+            <p id="notification_new_gear_text" style="text-align: center">You Hav Discovered a new 'Item'! </p>
+            <table id="new_item_draft_table">
+                <tr>
+                    <td>Old</td>
+                    <td>vs.</td>
+                    <td>New</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Damage</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Damage</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Ability</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Requirement</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Damage Type</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Handling</td>
+                    <td></td>
+                </tr>
+            </table>
+            <br><br>
+            <button>Take Item</button>
+            <br>
+            <button>Discard</button>
+            <br><br>
         </div>
 
         <script>
