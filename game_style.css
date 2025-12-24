@@ -670,10 +670,20 @@
 }
 
 .battle_combat_button_actions {
-    width: 40%;
+    padding: 14px 0px;
+    width: 100%;
 
 }
 
 #battle_combat_table {
     width: 100%;
+    table-layout: fixed;
+}
+
+#battle_combat_table td {
+    width: 50%;
+}
+
+.battle_ui_hud_icns {
+    font-size: 24px;
 }
