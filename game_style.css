@@ -664,7 +664,16 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 50%;
+	width: 80%;
 	height: 50%;
     color:#fff;
+}
+
+.battle_combat_button_actions {
+    width: 40%;
+
+}
+
+#battle_combat_table {
+    width: 100%;
 }
