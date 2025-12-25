@@ -41,10 +41,10 @@ var encounter_sentence = [
     "You pull a gold coin from a fountain, only for the water to solidify into a hostile Elemental.",
     "You try to insert the dungeon key into a door, but the door grows teeth and bites your arm.",
     "You accidentally sneeze while passing a sentient portrait, and the subject climbs out of the frame to demand an apology.",
-    "You stumble over a hidden cord, which doesn’t trigger arrows but instead rings a massive 'Dinner Time' bell for the local ogres.",
+    "You stumble over a hidden cord, which doesn’t trigger arrows but instead rings a massive 'Dinner Time' bell for the local entities.",
     "You open a supply closet only to find a skeleton mid-way through changing its ribs, and it attacks out of pure embarrassment.",
     "You try to harvest a 'healing herb' for your inventory, but it screams and summons its very angry floral family.",
-    "You reach for a glowing treasure chest that turns out to be a very well-disguised, very grumpy hermit crab.",
+    "You reach for a glowing treasure chest that turns out to be a very well-disguised, very grumpy entity.",
     "You celebrate finding the key too loudly, and the vibration shakes a nest of giant spiders loose from the ceiling.",
     "You break a decorative vase looking for loot, and the dungeon’s 'Clean-Up Crew' golems arrive to fine you with violence."
 ];
@@ -590,14 +590,14 @@ function Game_Command(command) {
 			if(obj_1a[room] == 0) {
 				var itm_g = itm_1t[room];
 				switch(itm_g){
-					case "Gold": player.gold += 1; data_output(); break;
-					case "Food": player.food += 1; data_output(); break;
-					case "Potion": player.potion += 1; data_output(); break;
-					case "Arrows": player.arrows += 1; data_output(); break;
-					case "Bullets": player.bullets += 1; data_output(); break;
-					case "Scrolls": player.scrolls += 1; data_output(); break;
-					case "Water": player.water += 1; data_output(); break;
-                    case "Key": console.log("key!"); data_output(); break;
+					case "Gold": player.gold += 1; data_output(1); break;
+					case "Food": player.food += 1; data_output(2); break;
+					case "Potion": player.potion += 1; data_output(3); break;
+					case "Arrows": player.arrows += 1; data_output(4); break;
+					case "Bullets": player.bullets += 1; data_output(5); break;
+					case "Scrolls": player.scrolls += 1; data_output(6); break;
+					case "Water": player.water += 1; data_output(7); break;
+                    case "Key": console.log("key!"); data_output(8); break;
 				}
 				obj_1a[room] = 1;
 				World();
@@ -607,14 +607,14 @@ function Game_Command(command) {
 			if(obj_2a[room] == 0) {
 				var itm_g = itm_2t[room];
 				switch(itm_g){
-					case "Gold": player.gold += 1; data_output(); break;
-					case "Food": player.food += 1; data_output(); break;
-					case "Potion": player.potion += 1; data_output(); break;
-					case "Arrows": player.arrows += 1; data_output(); break;
-					case "Bullets": player.bullets += 1; data_output(); break;
-					case "Scrolls": player.scrolls += 1; data_output(); break;
-					case "Water": player.water += 1; data_output(); break;
-                    case "Key": console.log("key!"); data_output(); break;
+					case "Gold": player.gold += 1; data_output(1); break;
+					case "Food": player.food += 1; data_output(2); break;
+					case "Potion": player.potion += 1; data_output(3); break;
+					case "Arrows": player.arrows += 1; data_output(4); break;
+					case "Bullets": player.bullets += 1; data_output(5); break;
+					case "Scrolls": player.scrolls += 1; data_output(6); break;
+					case "Water": player.water += 1; data_output(7); break;
+                    case "Key": console.log("key!"); data_output(8); break;
 				}
 				obj_2a[room] = 1;
 				World();
@@ -624,14 +624,14 @@ function Game_Command(command) {
 			if(obj_3a[room] == 0) {
 				var itm_g = itm_3t[room];
 				switch(itm_g){
-					case "Gold": player.gold += 1; data_output(); break;
-					case "Food": player.food += 1; data_output(); break;
-					case "Potion": player.potion += 1; data_output(); break;
-					case "Arrows": player.arrows += 1; data_output(); break;
-					case "Bullets": player.bullets += 1; data_output(); break;
-					case "Scrolls": player.scrolls += 1; data_output(); break;
-					case "Water": player.water += 1; data_output(); break;
-                    case "Key": console.log("key!"); data_output(); break;
+					case "Gold": player.gold += 1; data_output(1); break;
+					case "Food": player.food += 1; data_output(2); break;
+					case "Potion": player.potion += 1; data_output(3); break;
+					case "Arrows": player.arrows += 1; data_output(4); break;
+					case "Bullets": player.bullets += 1; data_output(5); break;
+					case "Scrolls": player.scrolls += 1; data_output(6); break;
+					case "Water": player.water += 1; data_output(7); break;
+                    case "Key": console.log("key!"); data_output(8); break;
 				}
 				obj_3a[room] = 1;
 				World();
@@ -641,14 +641,14 @@ function Game_Command(command) {
 			if(obj_4a[room] == 0) {
 				var itm_g = itm_4t[room];
 				switch(itm_g){
-					case "Gold": player.gold += 1; data_output(); break;
-					case "Food": player.food += 1; data_output(); break;
-					case "Potion": player.potion += 1; data_output(); break;
-					case "Arrows": player.arrows += 1; data_output(); break;
-					case "Bullets": player.bullets += 1; data_output(); break;
-					case "Scrolls": player.scrolls += 1; data_output(); break;
-					case "Water": player.water += 1; data_output(); break;
-                    case "Key": console.log("key!"); data_output(); break;
+					case "Gold": player.gold += 1; data_output(1); break;
+					case "Food": player.food += 1; data_output(2); break;
+					case "Potion": player.potion += 1; data_output(3); break;
+					case "Arrows": player.arrows += 1; data_output(4); break;
+					case "Bullets": player.bullets += 1; data_output(5); break;
+					case "Scrolls": player.scrolls += 1; data_output(6); break;
+					case "Water": player.water += 1; data_output(7); break;
+                    case "Key": console.log("key!"); data_output(8); break;
 				}
 				obj_4a[room] = 1;
 				World();
@@ -661,14 +661,14 @@ function Game_Command(command) {
                 if(Math.random() < 0.5){
                     var itm_g = itm_1t[room];
                     switch(itm_g){
-                        case "Gold": player.gold += 1; data_output(); break;
-                        case "Food": player.food += 1; data_output(); break;
-                        case "Potion": player.potion += 1; data_output(); break;
-                        case "Arrows": player.arrows += 1; data_output(); break;
-                        case "Bullets": player.bullets += 1; data_output(); break;
-                        case "Scrolls": player.scrolls += 1; data_output(); break;
-                        case "Water": player.water += 1; data_output(); break;
-                        case "Key": console.log("key!"); data_output(); break;
+                        case "Gold": player.gold += 1; data_output(1); break;
+                        case "Food": player.food += 1; data_output(2); break;
+                        case "Potion": player.potion += 1; data_output(3); break;
+                        case "Arrows": player.arrows += 1; data_output(4); break;
+                        case "Bullets": player.bullets += 1; data_output(5); break;
+                        case "Scrolls": player.scrolls += 1; data_output(6); break;
+                        case "Water": player.water += 1; data_output(7); break;
+                        case "Key": console.log("key!"); data_output(8); break;
                     }
                 }
                 obj_1a[room] = 2;
@@ -680,14 +680,14 @@ function Game_Command(command) {
                 if(Math.random() < 0.5){
                     var itm_g = itm_2t[room];
                     switch(itm_g){
-                        case "Gold": player.gold += 1; data_output(); break;
-                        case "Food": player.food += 1; data_output(); break;
-                        case "Potion": player.potion += 1; data_output(); break;
-                        case "Arrows": player.arrows += 1; data_output(); break;
-                        case "Bullets": player.bullets += 1; data_output(); break;
-                        case "Scrolls": player.scrolls += 1; data_output(); break;
-                        case "Water": player.water += 1; data_output(); break;
-                        case "Key": console.log("key!"); data_output(); break;
+                        case "Gold": player.gold += 1; data_output(1); break;
+                        case "Food": player.food += 1; data_output(2); break;
+                        case "Potion": player.potion += 1; data_output(3); break;
+                        case "Arrows": player.arrows += 1; data_output(4); break;
+                        case "Bullets": player.bullets += 1; data_output(5); break;
+                        case "Scrolls": player.scrolls += 1; data_output(6); break;
+                        case "Water": player.water += 1; data_output(7); break;
+                        case "Key": console.log("key!"); data_output(8); break;
                     }
                 }
                 obj_2a[room] = 2;
@@ -699,14 +699,14 @@ function Game_Command(command) {
                 if(Math.random() < 0.5){
                     var itm_g = itm_3t[room];
                     switch(itm_g){
-                        case "Gold": player.gold += 1; data_output(); break;
-                        case "Food": player.food += 1; data_output(); break;
-                        case "Potion": player.potion += 1; data_output(); break;
-                        case "Arrows": player.arrows += 1; data_output(); break;
-                        case "Bullets": player.bullets += 1; data_output(); break;
-                        case "Scrolls": player.scrolls += 1; data_output(); break;
-                        case "Water": player.water += 1; data_output(); break;
-                        case "Key": console.log("key!"); data_output(); break;
+                        case "Gold": player.gold += 1; data_output(1); break;
+                        case "Food": player.food += 1; data_output(2); break;
+                        case "Potion": player.potion += 1; data_output(3); break;
+                        case "Arrows": player.arrows += 1; data_output(4); break;
+                        case "Bullets": player.bullets += 1; data_output(5); break;
+                        case "Scrolls": player.scrolls += 1; data_output(6); break;
+                        case "Water": player.water += 1; data_output(7); break;
+                        case "Key": console.log("key!"); data_output(8); break;
                     }
                 }
                 obj_3a[room] = 2;
@@ -718,14 +718,14 @@ function Game_Command(command) {
                 if(Math.random() < 0.5){
                     var itm_g = itm_4t[room];
                     switch(itm_g){
-                        case "Gold": player.gold += 1; data_output(); break;
-                        case "Food": player.food += 1; data_output(); break;
-                        case "Potion": player.potion += 1; data_output(); break;
-                        case "Arrows": player.arrows += 1; data_output(); break;
-                        case "Bullets": player.bullets += 1; data_output(); break;
-                        case "Scrolls": player.scrolls += 1; data_output(); break;
-                        case "Water": player.water += 1; data_output(); break;
-                        case "Key": console.log("key!"); data_output(); break;
+                        case "Gold": player.gold += 1; data_output(1); break;
+                        case "Food": player.food += 1; data_output(2); break;
+                        case "Potion": player.potion += 1; data_output(3); break;
+                        case "Arrows": player.arrows += 1; data_output(4); break;
+                        case "Bullets": player.bullets += 1; data_output(5); break;
+                        case "Scrolls": player.scrolls += 1; data_output(6); break;
+                        case "Water": player.water += 1; data_output(7); break;
+                        case "Key": console.log("key!"); data_output(8); break;
                     }
                 }
                 obj_4a[room] = 2;
@@ -737,6 +737,8 @@ function Game_Command(command) {
 
 
 function data_output(infor) {
+    document.getElementById("ingame_notification_on_loot").style.opacity = 1;
+
     if(infor == 1) {
         //gold
         document.getElementById("ingame_notification_on_loot").innerHTML = "You found some Gold! (+1)";
@@ -751,6 +753,26 @@ function data_output(infor) {
     }
     if(infor == 4) {
         //arrows
-        document.getElementById("ingame_notification_on_loot").innerHTML = "You found some Arrows! (+1);
+        document.getElementById("ingame_notification_on_loot").innerHTML = "You found some Arrows! (+1)";
     }
+    if(infor == 5) {
+        //bullets
+        document.getElementById("ingame_notification_on_loot").innerHTML = "You found some Bullets! (+1)";
+    }
+    if(infor == 6) {
+        //scrolls
+        document.getElementById("ingame_notification_on_loot").innerHTML = "You found some Scrolls! (+1)";
+    }
+    if(infor == 7) {
+        //water
+        document.getElementById("ingame_notification_on_loot").innerHTML = "You found some Water! (+1)";
+    }
+    if(infor == 8) {
+        //key
+        document.getElementById("ingame_notification_on_loot").innerHTML = "You found the Key!";
+    }
+
+    setTimeout(() => {
+        document.getElementById("ingame_notification_on_loot").style.opacity = 0;
+    }, 1500);
 }
