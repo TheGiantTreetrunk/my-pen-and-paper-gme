@@ -196,6 +196,7 @@ function Start() {
     document.getElementById("pause").style.display = "none";
     document.getElementById("inventory").style.display = "none";
     document.getElementById("attention_class_select").style.display = "none";
+    document.getElementById("notification_new_weapon_or_shield").style.display = "none";
 
     //motto_funny
     var mottox = Math.floor((Math.random() * mottos.length));
@@ -429,6 +430,26 @@ function Generation(conditional) {
             obj_4.push(obj_nm[obj_4x]);
             obj_4a.push(0);
         }
+
+        //Add the key
+        var yy2 = Math.floor((Math.random() * 4) + 1);
+        var yy3 = Math.floor((Math.random() * (10 - 1)) + 1);
+
+        if(yy2 == 1) {
+            itm_1t[yy3] = "Key";
+        }
+
+        if(yy2 == 2) {
+            itm_2t[yy3] = "Key";
+        }
+
+        if(yy2 == 3) {
+            itm_3t[yy3] = "Key";
+        }
+
+        if(yy2 == 4) {
+            itm_4t[yy3] = "Key";
+        }
 }
 
 function World(){
@@ -576,6 +597,7 @@ function Game_Command(command) {
 					case "Bullets": player.bullets += 1; break;
 					case "Scrolls": player.scrolls += 1; break;
 					case "Water": player.water += 1; break;
+                    case "Key": console.log("key!"); break;
 				}
 				obj_1a[room] = 1;
 				World();
@@ -592,6 +614,7 @@ function Game_Command(command) {
 					case "Bullets": player.bullets += 1; break;
 					case "Scrolls": player.scrolls += 1; break;
 					case "Water": player.water += 1; break;
+                    case "Key": console.log("key!"); break;
 				}
 				obj_2a[room] = 1;
 				World();
@@ -608,6 +631,7 @@ function Game_Command(command) {
 					case "Bullets": player.bullets += 1; break;
 					case "Scrolls": player.scrolls += 1; break;
 					case "Water": player.water += 1; break;
+                    case "Key": console.log("key!"); break;
 				}
 				obj_3a[room] = 1;
 				World();
@@ -624,6 +648,7 @@ function Game_Command(command) {
 					case "Bullets": player.bullets += 1; break;
 					case "Scrolls": player.scrolls += 1; break;
 					case "Water": player.water += 1; break;
+                    case "Key": console.log("key!"); break;
 				}
 				obj_4a[room] = 1;
 				World();
@@ -643,6 +668,7 @@ function Game_Command(command) {
                         case "Bullets": player.bullets += 1; break;
                         case "Scrolls": player.scrolls += 1; break;
                         case "Water": player.water += 1; break;
+                        case "Key": console.log("key!"); break;
                     }
                 }
                 obj_1a[room] = 2;
@@ -661,6 +687,7 @@ function Game_Command(command) {
                         case "Bullets": player.bullets += 1; break;
                         case "Scrolls": player.scrolls += 1; break;
                         case "Water": player.water += 1; break;
+                        case "Key": console.log("key!"); break;
                     }
                 }
                 obj_2a[room] = 2;
@@ -679,6 +706,7 @@ function Game_Command(command) {
                         case "Bullets": player.bullets += 1; break;
                         case "Scrolls": player.scrolls += 1; break;
                         case "Water": player.water += 1; break;
+                        case "Key": console.log("key!"); break;
                     }
                 }
                 obj_3a[room] = 2;
@@ -697,6 +725,7 @@ function Game_Command(command) {
                         case "Bullets": player.bullets += 1; break;
                         case "Scrolls": player.scrolls += 1; break;
                         case "Water": player.water += 1; break;
+                        case "Key": console.log("key!"); break;
                     }
                 }
                 obj_4a[room] = 2;
