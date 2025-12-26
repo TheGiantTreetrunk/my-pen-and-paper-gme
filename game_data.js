@@ -64,7 +64,7 @@ var itm_1a = [];
 var itm_2a = [];
 var itm_3a = [];
 var itm_4a = [];
-var itm_nm = ["Gold","Food","Potion","Armor","Weapon","Arrows","Bullets","Scrolls","Water"];
+var itm_nm = ["Gold","Food","Potion","Armor","Weapon","Arrows","Bullets","Scrolls","Water","Shield"];
 
 var obj_nm = ["Chest","Vase"];
 var obj_icn = ["(", "<"];
@@ -93,6 +93,7 @@ var player = {
     academic: 10,
     mobility: 10,
     strength: 10,
+    armor: 0,
     shield: 0,
     weapon: 1,
     class: 0,
@@ -136,48 +137,47 @@ var class_data = {
 weapon names
 weapon damage (how many d6 to roll)
 weapon ability (what value of the HAMS system to grab from)
-weapon requirement
-weapon requirement value
 weapon damage type
 weapon handling (1h or 2h)
-*/
 
+piercing is health
+slashing is mobility
+bludgening is strength
+stress is academic for shields and armor!
+*/
+var damage_type = ["Slashing", "Piercing", "Bludgening"];
 var weapon_nme = ["Short Sword","Long Sword","Excalibur","Zweihandler","Dagger","Rapier","Katana","Scimitar","Falchion","Arming Swords","Lance","Pike","War Hammer","Axe","Mace","Morning Star","Quarterstaff","Bow","LongBow","Crossbow","Musket"];
 var weapon_dmg = [2,3,5,4,1,2,3,2,3,2,3,3,3,2,2,4,1,2,3,4,5];
-var weapon_abi = [4,3];
-var weapon_req = [];
-var weapon_rev = [];
-var weapon_dty = [];
+var weapon_dty = [0,0,0,0,0,0,0,0,0,0,1,1,2,2,2,2,2,1,1,1,1];
 var weapon_hnd = [1,1,1,2,1,1,1,1,1,2,2,2,2,1,1,2,1,2,2,2,2];
 
 /*Armor Class
 
 armor names
 armor temporary hit points
-armor requirement
-armor requirement value
+armor stress value
 
 */
 
 var armor_nme = ["Simple Clothes","Padded Gambeson","Leather Coat","Mail Hauberk","Brigandine","Cuirass 'Breastplate'","Field Plate '3/4 Harness'","Gothic Harness 'Full Plate'"];
-var armor_thp = [];
-var armor_req = [];
-var armor_rev = [];
+var armor_thp = [0,1,2,3,3,4,5,6];
+var armor_stv = [1,2,4,6,6,8,10,12];
 
 /*Shield Class
 
 shield names
 shield temporary hit points
-shield requirement
-shield requirement value
+shield stress value
 
 */
 
-var shield_nme = ["Simple Shield","Buckler"];
-var shield_thp = [];
-var shield_req = [];
-var shield_rev = [];
+var shield_nme = ["None","Buckler","Targe","Round","Heater","Kite","Rotella","Passive"];
+var shield_thp = [0,1,1,2,2,2,3,4];
+var shield_stv = [0,2,2,4,4,4,6,8];
 
+
+//coconut.png shit right here...
+var new_gear_call = 0;
 
 var enemy_nme = ["Ghost","Glarb"];
 var enemy_hth = [5,8];
@@ -307,6 +307,135 @@ function hud(callout){
 
         //start loading animation
         startLoading(1);
+    }
+
+    if(callout == 13) {//found a new weapon
+        /*
+        Weapon class
+
+        weapon names
+        weapon damage (how many d6 to roll)
+        weapon ability (what value of the HAMS system to grab from)
+        weapon damage type
+        weapon handling (1h or 2h)
+
+        piercing is health
+        slashing is mobility
+        bludgening is strength
+        stress is academic for shields and armor!
+
+        var damage_type = ["Slashing", "Piercing", "Bludgening"];
+        var weapon_nme = ["Short Sword","Long Sword","Excalibur","Zweihandler","Dagger","Rapier","Katana","Scimitar","Falchion","Arming Swords","Lance","Pike","War Hammer","Axe","Mace","Morning Star","Quarterstaff","Bow","LongBow","Crossbow","Musket"];
+        var weapon_dmg = [2,3,5,4,1,2,3,2,3,2,3,3,3,2,2,4,1,2,3,4,5];
+        var weapon_dty = [0,0,0,0,0,0,0,0,0,0,1,1,2,2,2,2,2,1,1,1,1];
+        var weapon_hnd = [1,1,1,2,1,1,1,1,1,2,2,2,2,1,1,2,1,2,2,2,2];
+
+        */
+
+        //roll as to what the player got
+        new_gear_call = 1;
+        var weapon_roll = Math.floor((Math.random() * weapon_nme.length));
+
+        //now we will display it in the window
+
+        document.getElementById("notification_new_gear_text").innerHTML = "You have found a new " + weapon_nme[weapon_roll] + "!";
+        
+        document.getElementById("old_item").innerHTML = weapon_nme[player.weapon];
+        document.getElementById("new_item").innerHTML = weapon_nme[weapon_roll];
+
+        document.getElementById("old_item_dmg").innerHTML = weapon_dmg[player.weapon];
+        document.getElementById("new_item_dmg").innerHTML = weapon_dmg[weapon_roll];
+        document.getElementById("modifier_1").innerHTML = "Damage";
+
+        document.getElementById("old_item_dmg_ty").innerHTML = damage_type[weapon_dty[player.weapon]];
+        document.getElementById("new_item_dmg_ty").innerHTML = damage_type[weapon_dty[weapon_roll]];
+        document.getElementById("modifier_2").innerHTML = "Damage Type";
+
+        document.getElementById("old_item_handling").innerHTML = weapon_hnd[player.weapon] + " Handed";
+        document.getElementById("new_item_handling").innerHTML = weapon_hnd[weapon_roll] + " Handed";
+        document.getElementById("modifier_3").innerHTML = "Handling";
+    
+    }
+
+    if(callout == 14) {//found a new piece of armor
+        /*
+          Armor Class
+
+          armor names
+          armor temporary hit points
+          armor stress value
+
+
+          var armor_nme = ["Simple Clothes","Padded Gambeson","Leather Coat","Mail Hauberk","Brigandine","Cuirass 'Breastplate'","Field Plate '3/4 Harness'","Gothic Harness 'Full Plate'"];
+          var armor_thp = [0,1,2,3,3,4,5,6];
+          var armor_stv = [1,2,4,6,6,8,10,12];
+
+        */
+
+        //roll as to what the player got
+        new_gear_call = 2;
+        var armor_roll = Math.floor((Math.random() * armor_nme.length));
+
+        //now we will display it in the window
+
+        document.getElementById("notification_new_gear_text").innerHTML = "You have found a new " + armor_nme[armor_roll] + "!";
+        
+        document.getElementById("old_item").innerHTML = armor_nme[player.armor];
+        document.getElementById("new_item").innerHTML = armor_nme[armor_roll];
+
+        document.getElementById("old_item_dmg").innerHTML = armor_thp[player.armor];
+        document.getElementById("new_item_dmg").innerHTML = armor_thp[armor_roll];
+        document.getElementById("modifier_1").innerHTML = "Temp. Hp";
+
+        document.getElementById("old_item_dmg_ty").innerHTML = armor_stv[player.armor];
+        document.getElementById("new_item_dmg_ty").innerHTML = armor_stv[armor_roll];
+        document.getElementById("modifier_2").innerHTML = "Stress Value";
+
+        document.getElementById("old_item_handling").innerHTML = "";
+        document.getElementById("new_item_handling").innerHTML = "";
+        document.getElementById("modifier_3").innerHTML = "";
+    }
+
+    if(callout == 15) {//found a new shield
+        /*
+            Shield Class
+
+            shield names
+            shield temporary hit points
+            shield stress value
+
+
+            var shield_nme = ["None","Buckler","Targe","Round","Heater","Kite","Rotella","Passive"];
+            var shield_thp = [0,1,1,2,2,2,3,4];
+            var shield_stv = [0,2,2,4,4,4,6,8];
+        */
+
+        //roll as to what the player got
+        new_gear_call = 3;
+        var shield_roll = Math.floor((Math.random() * shield_nme.length));
+
+        //now we will display it in the window
+
+        document.getElementById("notification_new_gear_text").innerHTML = "You have found a new " + shield_nme[shield_roll] + "!";
+        
+        document.getElementById("old_item").innerHTML = shield_nme[player.shield];
+        document.getElementById("new_item").innerHTML = shield_nme[shield_roll];
+
+        document.getElementById("old_item_dmg").innerHTML = shield_thp[player.shield];
+        document.getElementById("new_item_dmg").innerHTML = shield_thp[shield_roll];
+        document.getElementById("modifier_1").innerHTML = "Temp. Hp";
+
+        document.getElementById("old_item_dmg_ty").innerHTML = shield_stv[player.shield];
+        document.getElementById("new_item_dmg_ty").innerHTML = shield_stv[shield_roll];
+        document.getElementById("modifier_2").innerHTML = "Stress Value";
+
+        document.getElementById("old_item_handling").innerHTML = "";
+        document.getElementById("new_item_handling").innerHTML = "";
+        document.getElementById("modifier_3").innerHTML = "";
+    }
+
+    if(callout == 16) {//were simply closing the new item section / popup!
+        document.getElementById("notification_new_weapon_or_shield").style.display = "none";
     }
 }
 
@@ -598,6 +727,9 @@ function Game_Command(command) {
 					case "Scrolls": player.scrolls += 1; data_output(6); break;
 					case "Water": player.water += 1; data_output(7); break;
                     case "Key": console.log("key!"); data_output(8); break;
+                    case "Armor": data_output(9); break;
+                    case "Weapon": data_output(10); break;
+                    case "Shield": data_output(11); break;
 				}
 				obj_1a[room] = 1;
 				World();
@@ -615,6 +747,9 @@ function Game_Command(command) {
 					case "Scrolls": player.scrolls += 1; data_output(6); break;
 					case "Water": player.water += 1; data_output(7); break;
                     case "Key": console.log("key!"); data_output(8); break;
+                    case "Armor": data_output(9); break;
+                    case "Weapon": data_output(10); break;
+                    case "Shield": data_output(11); break;
 				}
 				obj_2a[room] = 1;
 				World();
@@ -632,6 +767,9 @@ function Game_Command(command) {
 					case "Scrolls": player.scrolls += 1; data_output(6); break;
 					case "Water": player.water += 1; data_output(7); break;
                     case "Key": console.log("key!"); data_output(8); break;
+                    case "Armor": data_output(9); break;
+                    case "Weapon": data_output(10); break;
+                    case "Shield": data_output(11); break;
 				}
 				obj_3a[room] = 1;
 				World();
@@ -649,6 +787,9 @@ function Game_Command(command) {
 					case "Scrolls": player.scrolls += 1; data_output(6); break;
 					case "Water": player.water += 1; data_output(7); break;
                     case "Key": console.log("key!"); data_output(8); break;
+                    case "Armor": data_output(9); break;
+                    case "Weapon": data_output(10); break;
+                    case "Shield": data_output(11); break;
 				}
 				obj_4a[room] = 1;
 				World();
@@ -669,6 +810,9 @@ function Game_Command(command) {
                         case "Scrolls": player.scrolls += 1; data_output(6); break;
                         case "Water": player.water += 1; data_output(7); break;
                         case "Key": console.log("key!"); data_output(8); break;
+                        case "Armor": data_output(9); break;
+                        case "Weapon": data_output(10); break;
+                        case "Shield": data_output(11); break;
                     }
                 }
                 obj_1a[room] = 2;
@@ -688,6 +832,9 @@ function Game_Command(command) {
                         case "Scrolls": player.scrolls += 1; data_output(6); break;
                         case "Water": player.water += 1; data_output(7); break;
                         case "Key": console.log("key!"); data_output(8); break;
+                        case "Armor": data_output(9); break;
+                        case "Weapon": data_output(10); break;
+                        case "Shield": data_output(11); break;
                     }
                 }
                 obj_2a[room] = 2;
@@ -707,6 +854,9 @@ function Game_Command(command) {
                         case "Scrolls": player.scrolls += 1; data_output(6); break;
                         case "Water": player.water += 1; data_output(7); break;
                         case "Key": console.log("key!"); data_output(8); break;
+                        case "Armor": data_output(9); break;
+                        case "Weapon": data_output(10); break;
+                        case "Shield": data_output(11); break;
                     }
                 }
                 obj_3a[room] = 2;
@@ -726,6 +876,9 @@ function Game_Command(command) {
                         case "Scrolls": player.scrolls += 1; data_output(6); break;
                         case "Water": player.water += 1; data_output(7); break;
                         case "Key": console.log("key!"); data_output(8); break;
+                        case "Armor": data_output(9); break;
+                        case "Weapon": data_output(10); break;
+                        case "Shield": data_output(11); break;
                     }
                 }
                 obj_4a[room] = 2;
@@ -770,6 +923,24 @@ function data_output(infor) {
     if(infor == 8) {
         //key
         document.getElementById("ingame_notification_on_loot").innerHTML = "You found the Key!";
+    }
+    if(infor == 9) {
+        //weapon
+        document.getElementById("ingame_notification_on_loot").innerHTML = "You found a new weapon!";
+        document.getElementById("notification_new_weapon_or_shield").style.display = "block";
+        hud(13);
+    }
+    if(infor == 10) {
+        //armor
+        document.getElementById("ingame_notification_on_loot").innerHTML = "You found some armor!";
+        document.getElementById("notification_new_weapon_or_shield").style.display = "block";
+        hud(14);
+    }
+    if(infor == 11) {
+        //shield
+        document.getElementById("ingame_notification_on_loot").innerHTML = "You found a shield!";
+        document.getElementById("notification_new_weapon_or_shield").style.display = "block";
+        hud(15);
     }
 
     setTimeout(() => {
