@@ -178,6 +178,9 @@ var shield_stv = [0,2,2,4,4,4,6,8];
 
 //coconut.png shit right here...
 var new_gear_call = 0;
+var weapon_roll = 0;
+var armor_roll = 0;
+var shield_roll = 0;
 
 var enemy_nme = ["Ghost","Glarb"];
 var enemy_hth = [5,8];
@@ -252,6 +255,11 @@ function hud(callout){
     if(callout == 5) {
         document.getElementById("inventory").style.display = "block";
         document.getElementById("game").style.display = "none";
+
+        document.getElementById("plyr_weapon_name").innerHTML = weapon_nme[player.weapon];
+        document.getElementById("plyr.armor_name").innerHTML = armor_nme[player.armor];
+        document.getElementById("plyr_shield_name").innerHTML = shield_nme[player.shield];
+
         document.getElementById("plyr_gold_count").innerHTML = "x " + player.gold;
         document.getElementById("plyr_food_count").innerHTML = "x " + player.food;
         document.getElementById("plyr_water_count").innerHTML = "x " + player.water;
@@ -334,7 +342,7 @@ function hud(callout){
 
         //roll as to what the player got
         new_gear_call = 1;
-        var weapon_roll = Math.floor((Math.random() * weapon_nme.length));
+        weapon_roll = Math.floor((Math.random() * weapon_nme.length));
 
         //now we will display it in the window
 
@@ -374,7 +382,7 @@ function hud(callout){
 
         //roll as to what the player got
         new_gear_call = 2;
-        var armor_roll = Math.floor((Math.random() * armor_nme.length));
+        armor_roll = Math.floor((Math.random() * armor_nme.length));
 
         //now we will display it in the window
 
@@ -412,7 +420,7 @@ function hud(callout){
 
         //roll as to what the player got
         new_gear_call = 3;
-        var shield_roll = Math.floor((Math.random() * shield_nme.length));
+        shield_roll = Math.floor((Math.random() * shield_nme.length));
 
         //now we will display it in the window
 
@@ -946,4 +954,36 @@ function data_output(infor) {
     setTimeout(() => {
         document.getElementById("ingame_notification_on_loot").style.opacity = 0;
     }, 1500);
+}
+
+function accept_new_item() {
+    
+    if(new_gear_call == 1) {
+        //weapon
+        if(weapon_hnd[weapon_roll] == 2) {
+            if(player.shield == 0) {
+                player.weapon = weapon_roll;
+            } else {
+                player.weapon = weapon_roll;
+                player.shield = 0;
+            }
+        } else {
+            player.weapon = weapon_roll;
+        }
+        
+    }
+    if(new_gear_call == 2) {
+        //armor
+        player.armor = armor_roll;
+    }
+    if(new_gear_call == 3) {
+        //shield
+        if(weapon_hnd[player.weapon] == 1) {
+            player.shield = shield_roll;
+        } else {
+            //can't grab item
+        }
+    }
+
+    document.getElementById("notification_new_weapon_or_shield").style.display = "none";
 }
