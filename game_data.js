@@ -257,7 +257,7 @@ function hud(callout){
         document.getElementById("game").style.display = "none";
 
         document.getElementById("plyr_weapon_name").innerHTML = weapon_nme[player.weapon];
-        document.getElementById("plyr.armor_name").innerHTML = armor_nme[player.armor];
+        document.getElementById("plyr_armor_name").innerHTML = armor_nme[player.armor];
         document.getElementById("plyr_shield_name").innerHTML = shield_nme[player.shield];
 
         document.getElementById("plyr_gold_count").innerHTML = "x " + player.gold;
@@ -418,9 +418,9 @@ function hud(callout){
             var shield_stv = [0,2,2,4,4,4,6,8];
         */
 
-        //roll as to what the player got
+        //roll as to what the player got  var yy3 = Math.floor((Math.random() * (10 - 1)) + 1);
         new_gear_call = 3;
-        shield_roll = Math.floor((Math.random() * shield_nme.length));
+        shield_roll = Math.floor((Math.random() * shield_nme.length) + 1);
 
         //now we will display it in the window
 
