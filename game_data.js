@@ -823,6 +823,10 @@ function Game_Command(command) {
                         case "Weapon": data_output(10); break;
                         case "Shield": data_output(11); break;
                     }
+                }else if(itm_1t[room] == "Key") {
+                    data_output(8);
+                } else {
+                    data_output(0);
                 }
                 obj_1a[room] = 2;
                 World();
@@ -845,6 +849,10 @@ function Game_Command(command) {
                         case "Weapon": data_output(10); break;
                         case "Shield": data_output(11); break;
                     }
+                }else if(itm_2t[room] == "Key") {
+                    data_output(8);
+                } else {
+                    data_output(0);
                 }
                 obj_2a[room] = 2;
                 World();
@@ -867,6 +875,10 @@ function Game_Command(command) {
                         case "Weapon": data_output(10); break;
                         case "Shield": data_output(11); break;
                     }
+                }else if(itm_3t[room] == "Key") {
+                    data_output(8);
+                } else {
+                    data_output(0);
                 }
                 obj_3a[room] = 2;
                 World();
@@ -889,6 +901,10 @@ function Game_Command(command) {
                         case "Weapon": data_output(10); break;
                         case "Shield": data_output(11); break;
                     }
+                } else if(itm_4t[room] == "Key") {
+                    data_output(8);
+                } else {
+                    data_output(0);
                 }
                 obj_4a[room] = 2;
                 World();
@@ -900,6 +916,11 @@ function Game_Command(command) {
 
 function data_output(infor) {
     document.getElementById("ingame_notification_on_loot").style.opacity = 1;
+
+    if(infor == 0) {
+        //destroyed item
+        document.getElementById("ingame_notification_on_loot").innerHTML = "You smash the box!";
+    }
 
     if(infor == 1) {
         //gold
