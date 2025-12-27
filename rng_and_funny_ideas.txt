@@ -1,27 +1,26 @@
 Here are some RNG and funny game mechanic ideas for the exploring side of your game:
-
-**Container/Object Interaction Ideas:**
-
-*   **Mimics:** A classic for a reason! A chest the player tries to loot turns out to be a monster in disguise and attacks.
-*   **"Benevolent" Mimic:** A twist on the classic mimic. A chest that looks like a mimic, but if the player interacts with it in a non-aggressive way (e.g., "feeds" it an item), it provides a reward.
-*   **Recursive Chests:** The player finds a large, ornate chest. Inside is a smaller chest. Inside that, an even smaller one, and so on, for several layers. The final chest contains something comically mundane, like a single gold coin or a note that says "IOU one treasure."
-*   **Schrödinger's Box:** A container with a 50/50 chance of containing something great (a pile of gold) or something terrible (a powerful enemy, a curse).
-*   **Themed Traps:**
-    *   **Glitter Bomb:** Opening a chest covers the player in glitter, making them unable to hide from enemies for a while.
-    *   **Clown Box:** A spring-loaded boxing glove punches the player.
-    *   **"It's just a spring" box:** A box containing a large, loose spring that just... springs out. No damage, just confusion.
-*   **Sentient Loot:**
-    *   **The Complaining Sword:** A weapon that provides a running commentary on the player's performance, mostly negative.
-    *   **The Pacifist Shield:** A shield that begs the player not to fight every time a battle starts.
-    *   **The Hungry Armor:** A piece of armor that occasionally eats a random item from the player's inventory.
-*   **Unstable Potions/Scrolls:** When used, these have a completely random effect from a large pool of possibilities, ranging from beneficial to harmful to just plain weird (e.g., turning the player's hair blue, making them unable to stop jumping, summoning a non-hostile but very annoying pixie).
-*   **The "Everything is Cake" Room:** A rare room where every object (chests, tables, chairs) is made of cake. The player can "eat" the objects for a small amount of healing, but has a chance of getting a "sugar rush" debuff.
-
 **Environmental RNG Ideas:**
 
 *   **Themed Hallways:**
     *   **The Slippery Hallway:** A hallway covered in ice or slime. The player has a chance to slip and fall with every step.
-    *   **The Bouncy Hallway:** A hallway made of a bouncy material. The player is forced to bounce their way through.
-    *   **The "Dad Joke" Door:** A door that won't open until the player interacts with it and is told a terrible pun.
-*   **Randomized Architecture:** A hallway that is described as "impossibly long" and keeps generating new sections as the player walks, only ending when a certain random condition is met.
-*   **Sudden, Pointless Mini-Games:** The player steps on a specific tile and is forced into a very simple, 5-second mini-game (like "press 'A' to clap along with the singing frog"). Success gives a minor buff, failure gives a minor debuff.
+
+*   **Quick Time Events (QTEs):**
+    *   **Falling Bookshelf/Statue:** As you suggested, a large object tips over, and the player has to rapidly mash a button to push it away. Failure could result in damage, being pinned for a short time, or being knocked back.
+    *   **Vine Snare:** A vine drops from the ceiling and tries to grab the player. A QTE to cut it away before being hoisted into the air.
+    *   **Tripwire:** A sudden QTE to jump over a nearly invisible tripwire.
+    *   **Sudden, Pointless Mini-Games:** The player steps on a specific tile and is forced into a very simple, 5-second mini-game (like "press 'A' to clap along with the singing frog"). Success gives a minor buff, failure gives a minor debuff.
+    *   **The Hungry Armor:** A piece of armor that occasionally eats a random item from the player's inventory.
+    *   **Unstable Potions/Scrolls:** When used, these have a completely random effect from a large pool of possibilities, ranging from beneficial to harmful to just plain weird (e.g., turning the player's hair blue, making them unable to stop jumping, summoning a non-hostile but very annoying pixie).
+    *   **The "Everything is Cake" Room:** A rare room where every object (chests, tables, chairs) is made of cake. The player can "eat" the objects for a small amount of healing, but has a chance of getting a "sugar rush" debuff.
+    *   **Exploding Crates:** Some crates or barrels have a visible crack. Hitting them a few times causes them to explode. This could be a hazard or a tool to damage nearby enemies.
+    *   **Crumbling Floors:** Certain floor tiles crack when stepped on and will collapse after a few seconds, forcing the player to keep moving.
+    *   **Rising Lava/Water:** Entering a room triggers it to slowly fill with a hazardous substance, putting a time limit on looting or puzzle-solving.
+    *   **Sudden Darkness:** Torches on the wall are suddenly extinguished by a gust of wind, plunging the room into darkness and spawning shadow-type enemies until a light source is restored.
+    *   **Rolling Boulders:** Classic trap, but with a twist. Maybe the player can trigger it on purpose to clear a path or has to outrun it through a more complex obstacle course.
+
+**Themed Traps:**
+    *   **Glitter Bomb:** Opening a chest covers the player in glitter, making them unable to hide from enemies for a while.
+    *   **Clown Box:** A spring-loaded boxing glove punches the player.
+    *   **"It's just a spring" box:** A box containing a large, loose spring that just... springs out. No damage, just confusion.
+*   **Recursive Chests:** The player finds a large, ornate chest. Inside is a smaller chest. Inside that, an even smaller one, and so on, for several layers. The final chest contains something comically mundane, like a single gold coin or a note that says "IOU one treasure."
+
