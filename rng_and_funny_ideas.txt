@@ -7,8 +7,9 @@ Here are some RNG and funny game mechanic ideas for the exploring side of your g
 *   **Quick Time Events (QTEs):**
     *   **Falling Bookshelf/Statue:** As you suggested, a large object tips over, and the player has to rapidly mash a button to push it away. Failure could result in damage, being pinned for a short time, or being knocked back.
     *   **Vine Snare:** A vine drops from the ceiling and tries to grab the player. A QTE to cut it away before being hoisted into the air.
-    *   **Tripwire:** A sudden QTE to jump over a nearly invisible tripwire.
+    
     *   **Sudden, Pointless Mini-Games:** The player steps on a specific tile and is forced into a very simple, 5-second mini-game (like "press 'A' to clap along with the singing frog"). Success gives a minor buff, failure gives a minor debuff.
+    
     *   **The Hungry Armor:** A piece of armor that occasionally eats a random item from the player's inventory.
     *   **Unstable Potions/Scrolls:** When used, these have a completely random effect from a large pool of possibilities, ranging from beneficial to harmful to just plain weird (e.g., turning the player's hair blue, making them unable to stop jumping, summoning a non-hostile but very annoying pixie).
     *   **The "Everything is Cake" Room:** A rare room where every object (chests, tables, chairs) is made of cake. The player can "eat" the objects for a small amount of healing, but has a chance of getting a "sugar rush" debuff.

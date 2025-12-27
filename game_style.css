@@ -383,9 +383,9 @@
 
 .action-buttons {
     display: flex;
-    gap: 25px;
+    gap: 10px; /* Reduced gap */
     align-items: center;
-    transform: none;
+    position: relative; /* Needed for absolute positioning of C button */
     margin-top: 15px;
 }
 
@@ -396,12 +396,29 @@
     border: 3px solid white;
     font-size: 1.4em;
     font-weight: bold;
-    color: black;
+    color: white;
     cursor: pointer;
     touch-action: manipulation;
     outline: none;
-    background-color: black;
 }
+
+.a-btn {
+    background-color: #883232; /* Red */
+}
+
+.b-btn {
+    background-color: #55a049; /* Green */
+}
+
+.c-btn {
+    background-color: #40318d; /* Blue */
+    position: absolute;
+    top: -64px; /* Position it higher */
+    left: 50%;
+    transform: translateX(-50%); /* Center it */
+}
+
+
 
 /* --- Start/Select Buttons --- */
 
