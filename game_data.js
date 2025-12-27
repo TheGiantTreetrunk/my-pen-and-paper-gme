@@ -461,7 +461,7 @@ function class_selection(class_num, button_element) {
         document.getElementById("name_of_class").innerHTML = selected_class.name;
         document.getElementById("class_description").innerHTML = selected_class.description;
         document.getElementById("class_icon").innerHTML = `<a class='${player_colors[class_num]}'>@</a>`;
-        document.getElementById("class_stats").innerHTML = `<a class='red'>~</a> ${player_class_health_value[player.class]}<a class='white'> }</a> ${player_class_academic_value[player.class]} <a class='yellow'>|</a> ${player_class_mobility_value[player.class]} <a class='purple'>{</a> ${player_class_strength_value[player.class]}`;
+        document.getElementById("class_stats").innerHTML = `<a class='red icns'>~</a> ${player_class_health_value[player.class]}<a class='white icns'> }</a> ${player_class_academic_value[player.class]} <a class='yellow icns'>|</a> ${player_class_mobility_value[player.class]} <a class='purple icns'>{</a> ${player_class_strength_value[player.class]}`;
     }
 
     const selectedColor = window.getComputedStyle(button_element.querySelector('a')).color;
@@ -590,6 +590,7 @@ function Generation(conditional) {
 }
 
 function World(){
+    document.getElementById("game_special_items_checklist").innerHTML = "<a id='game_has_key_icon' class='white icns'>-</a><a id='game_has_life_up' class='yellow icns'>/</a>";
     document.getElementById("player_game_score").innerHTML = "Score " + score;
     //show the player what the world looks like
     document.getElementById("game_player_stats_ui").innerHTML = 

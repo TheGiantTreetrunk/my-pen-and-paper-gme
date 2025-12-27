@@ -6,7 +6,7 @@
 @font-face {
     font-family: 'Game_Icns'; /* Choose a name for your font */
     font-weight: normal;
-    src: url(test.ttf);
+    src: url('test.ttf?v=4.34') format('truetype');
     font-style: normal;
 }
 

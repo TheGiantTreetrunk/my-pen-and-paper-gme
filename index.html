@@ -10,9 +10,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='style.css?v=4.33' rel='stylesheet'>
-        <link href='game_style.css?v=4.33' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.41"></script>
+        <link href='style.css?v=4.36' rel='stylesheet'>
+        <link href='game_style.css?v=4.36' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.43"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -31,7 +31,7 @@
             <h3 id="name_of_class" style="text-align: center">class name</h3>
             <p id="class_description" style="text-align: center">'class description'</p>
             <p id="class_icon" class="icns" style="text-align: center">@</p>
-            <p id="class_stats" class="icns" style="text-align: center">1,0,0,1</p>
+            <p id="class_stats" style="text-align: center">1,0,0,1</p>
             <table style="margin: auto; text-align: center;">
                 <tr>
                     <td><button data-class-num="1" class="class_select"><a class="icns red">@</a></button></td>
@@ -70,6 +70,7 @@
         <div id="game">
             <div id="game-canvas-container">
                 <h2 id="player_game_score">Score 1000</h2>
+                <p id="game_special_items_checklist">test</p>
                 <div id="game_view">
                     <p id="game_sene" class="icns">
                         ##########

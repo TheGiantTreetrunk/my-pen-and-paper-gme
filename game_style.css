@@ -728,3 +728,22 @@
     background-color: #04AA6D;
     color: white;
   }
+
+
+#game_special_items_checklist {
+    position: fixed;
+    top: 64px;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+#game_has_key_icon {
+    font-size: 24px;
+    padding: 8px;
+}
+
+#game_has_life_up {
+    font-size: 32px;
+    padding: 8px;
+}
