@@ -54,6 +54,8 @@ var enemies_defeated = 0;
 var items_opened = 0;
 var items_smashed = 0;
 var gold_earned = 0;
+
+//rooms and items
 var rooms = [];
 var room_t = ["Woods","Cavern","Dungeon","Plains"];
 var itm_1t = [];
@@ -66,6 +68,7 @@ var itm_3a = [];
 var itm_4a = [];
 var itm_nm = ["Gold","Food","Potion","Armor","Weapon","Arrows","Bullets","Scrolls","Water","Shield"];
 
+//room objects
 var obj_nm = ["Chest","Vase"];
 var obj_icn = ["(", "<"];
 var obj_icn_o = [")", ">"];
@@ -78,6 +81,14 @@ var obj_1a = [];
 var obj_2a = [];
 var obj_3a = [];
 var obj_4a = [];
+
+//traps
+var trap_roll = [0,1,0,0,0,0,1,0,1,0];
+var traps = ["Bookshelf","Vine Snare","Singing Frog","Recursive Chest","Rising Water","Clown Box","Sudden Darkness","Boulders","Glitter Bomb","Everything is Cake!"];
+var trap_1 = [];
+var trap_2 = [];
+var trap_3 = [];
+var trap_4 = [];
 
 
 var room = 0;
@@ -529,6 +540,10 @@ function Generation(conditional) {
         obj_2a = [];
         obj_3a = [];
         obj_4a = [];
+        trap_1 = [];
+        trap_2 = [];
+        trap_3 = [];
+        trap_4 = [];
 
 
         for (var i = 0; i < 10; i++) {
@@ -566,6 +581,38 @@ function Generation(conditional) {
             var obj_4x = Math.floor((Math.random() * obj_nm.length));
             obj_4.push(obj_nm[obj_4x]);
             obj_4a.push(0);
+
+            var da_traps_1 = Math.floor((Math.random() * trap_roll.length));
+            if(trap_roll[da_traps_1] == 1) {
+                var x_traps_1 = Math.floor((Math.random() * traps.length));
+                trap_1.push(traps[x_traps_1]);
+            } else {
+                trap_1.push("Nothing");
+            }
+            
+            var da_traps_2 = Math.floor((Math.random() * trap_roll.length));
+            if(trap_roll[da_traps_2] == 1) {
+                var x_traps_2 = Math.floor((Math.random() * traps.length));
+                trap_2.push(traps[x_traps_2]);
+            } else {
+                trap_2.push("Nothing");
+            }
+
+            var da_traps_3 = Math.floor((Math.random() * trap_roll.length));
+            if(trap_roll[da_traps_3] == 1) {
+                var x_traps_3 = Math.floor((Math.random() * traps.length));
+                trap_3.push(traps[x_traps_3]);
+            } else {
+                trap_3.push("Nothing");
+            }
+
+            var da_traps_4 = Math.floor((Math.random() * trap_roll.length));
+            if(trap_roll[da_traps_4] == 1) {
+                var x_traps_4 = Math.floor((Math.random() * traps.length));
+                trap_4.push(traps[x_traps_4]);
+            } else {
+                trap_4.push("Nothing");
+            }
         }
 
         //Add the key
