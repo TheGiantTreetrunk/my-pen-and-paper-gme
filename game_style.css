@@ -767,10 +767,11 @@
 
 .bookshelf-container {
     font-family: "main";
-    text-align: center;
     padding: 20px;
     color: #ffffff;
-    font-size: 8px;
+    font-size: 6px;
+    display: flex;
+    justify-content: center;
 }
 pre {
     margin: 0;
@@ -783,8 +784,8 @@ pre {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 60%;
-	height: 60%;
+	width: 80%;
+	height: 80%;
 	border: 3px solid #ffffff;
 	background-color: #000;
 	overflow-y: scroll;
@@ -796,4 +797,88 @@ pre {
 #qte_bookshelf button {
     padding: 14px 0px;
     width: 100%;
+}
+
+.snare-container {
+    color: #ffffff;
+    font-family: monospace;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+#qte_vine_snare{
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	height: 80%;
+	border: 3px solid #ffffff;
+	background-color: #000;
+	overflow-y: scroll;
+    box-shadow: 10px 10px var(--shadow-color, #ffffff);
+    color:#fff;
+    padding: 10px;
+}
+
+#qte_vine_snare button {
+    padding: 14px 0px;
+    width: 100%;
+}
+
+
+.chest-art {
+    font-family: 'Courier New', monospace;
+    color: #ffffff; /* Wood Brown */
+    line-height: 1.2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+#qte_chest_of_knowledge {
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	height: 80%;
+	border: 3px solid #ffffff;
+	background-color: #000;
+	overflow-y: scroll;
+    box-shadow: 10px 10px var(--shadow-color, #ffffff);
+    color:#fff;
+    padding: 10px;
+}
+
+#qte_chest_of_knowledge button {
+    padding: 14px 0px;
+    width: 100%;
+}
+
+#qte_clown_box {
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	height: 80%;
+	border: 3px solid #ffffff;
+	background-color: #000;
+	overflow-y: scroll;
+    box-shadow: 10px 10px var(--shadow-color, #ffffff);
+    color:#fff;
+    padding: 10px;
+}
+
+#qte_clown_box button {
+    padding: 14px 0px;
+    width: 100%;
+}
+
+.clown-box {
+    font-family: 'Courier New', monospace;
+    color: #ffffff; /* Circus Yellow */
+    line-height: 1.1;
+    font-weight: bold;
 }

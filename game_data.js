@@ -84,7 +84,7 @@ var obj_4a = [];
 
 //traps
 var trap_roll = [0,1,0,0,0,0,1,0,1,0];
-var traps = ["Bookshelf","Vine Snare","Singing Frog","Recursive Chest","Rising Water","Clown Box","Sudden Darkness","Boulders","Glitter Bomb","Everything is Cake!"];
+var traps = ["Bookshelf","Vine Snare","Chest","Clown Box","Sudden Darkness","Glitter Bomb","Everything is Cake!"];
 var trap_1 = [];
 var trap_2 = [];
 var trap_3 = [];
@@ -211,6 +211,9 @@ function Start() {
     document.getElementById("inventory").style.display = "none";
     document.getElementById("attention_class_select").style.display = "none";
     document.getElementById("notification_new_weapon_or_shield").style.display = "none";
+    document.getElementById("qte_bookshelf").style.display = "none";
+    document.getElementById("qte_vine_snare").style.display = "none";
+    document.getElementById("qte_chest_of_knowledge").style.display = "none";
 
     //motto_funny
     var mottox = Math.floor((Math.random() * mottos.length));
