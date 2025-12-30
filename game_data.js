@@ -90,6 +90,12 @@ var trap_2 = [];
 var trap_3 = [];
 var trap_4 = [];
 
+//for sudden darkness
+var encounter_triggered = 0;
+var has_tripped_torch_spot = 0;
+var room_torch_location = 0;
+var spot_torch_location = 0;
+
 
 var room = 0;
 var score = 0;
