@@ -10,8 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='style.css?v=4.39' rel='stylesheet'>
-        <link href='game_style.css?v=4.39' rel='stylesheet'>
+        <link href='style.css?v=4.40' rel='stylesheet'>
+        <link href='game_style.css?v=4.40' rel='stylesheet'>
         <script defer type="text/javascript" src="game_data.js?v=4.45"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
@@ -327,6 +327,42 @@
             <br>
             <button onclick="hud(16)">Discard</button>
             <br><br>
+        </div>
+
+        <div id="qte_bookshelf">
+            <h3>Falling Bookshelf</h3>
+            <hr>
+            <div class="bookshelf-container">
+                <pre>
+                       ________________________________________________
+                      /                                                \
+                     |    __________________________________________    |
+                     |   |                                          |   |
+                     |   |  [||||]  &lt;-~-&gt;  __________   _________   |   |
+                     |   |  [||||]   | |  |          | |      #  |  |   |
+                     |   |  [||||]   | |  |  History | |  {*} #  |  |   |
+                     |   |  [||||]   |_|  |__________| |______#__|  |   |
+                     |   |__________________________________________|   |
+                     |   |                                          |   |
+                     |   |   ______    __    ______    ______       |   |
+                     |   |  |      |  |  |  |      |  |      |  /|  |   |
+                     |   |  |  Sp  |  |  |  |  Lo  |  |  Ma  | / |  |   |
+                     |   |  |  el  |  |  |  |  re  |  |  gic |/  |  |   |
+                     |   |  |__ls__|  |__|  |______|  |______|   |  |   |
+                     |   |__________________________________________|   |
+                     |   |             __                           |   |
+                     |   |     _      /  \        [ ]    _______    |   |
+                     |   |    | |    | P  |      |   |  |   |   |   |   |
+                     |   |    | |    |  o |      |   |  |   |   |   |   |
+                     |   |    |_|     \__/       |___|  |___|___|   |   |
+                     |   |__________________________________________|   |
+                     |                                                  |
+                     \__________________________________________________/
+                            ||                                  ||
+                            ||                                  ||
+                </pre>
+                </div>
+                <button>Push</button>
         </div>
 
         <script>
