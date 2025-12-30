@@ -214,6 +214,8 @@ function Start() {
     document.getElementById("qte_bookshelf").style.display = "none";
     document.getElementById("qte_vine_snare").style.display = "none";
     document.getElementById("qte_chest_of_knowledge").style.display = "none";
+    document.getElementById("qte_clown_box").style.display = "none";
+    document.getElementById("qte_sudden_darkness").style.display = "none";
 
     //motto_funny
     var mottox = Math.floor((Math.random() * mottos.length));

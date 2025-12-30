@@ -882,3 +882,29 @@ pre {
     line-height: 1.1;
     font-weight: bold;
 }
+
+#qte_sudden_darkness {
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	height: 80%;
+	border: 3px solid #ffffff;
+	background-color: #000;
+	overflow-y: scroll;
+    box-shadow: 10px 10px var(--shadow-color, #ffffff);
+    color:#fff;
+    padding: 10px;
+}
+
+#qte_sudden_darkness button {
+    padding: 14px 0px;
+    width: 100%;
+}
+
+.torch-container {=
+    color: #ffffff; /* Ashy Grey */
+    line-height: 1.1;
+    text-align: center;
+}
