@@ -49,6 +49,8 @@ var encounter_sentence = [
     "You break a decorative vase looking for loot, and the dungeon’s 'Clean-Up Crew' golems arrive to fine you with violence."
 ];
 
+
+var difficulty = 0;
 var section = 0;
 var enemies_defeated = 0;
 var items_opened = 0;
@@ -83,12 +85,19 @@ var obj_3a = [];
 var obj_4a = [];
 
 //traps
+var trap_tripped = 0;
+var trap_triggered_type = "Nothing";
 var trap_roll = [0,1,0,0,0,0,1,0,1,0];
-var traps = ["Bookshelf","Vine Snare","Chest","Clown Box","Sudden Darkness","Glitter Bomb","Everything is Cake!"];
+var traps = ["Bookshelf","Vine Snare","Chest","Clown Box","Sudden Darkness"];
 var trap_1 = [];
 var trap_2 = [];
 var trap_3 = [];
 var trap_4 = [];
+
+var trap_1d = [];
+var trap_2d = [];
+var trap_3d = [];
+var trap_4d = [];
 
 //for sudden darkness
 var encounter_triggered = 0;
@@ -467,6 +476,21 @@ function hud(callout){
     if(callout == 16) {//were simply closing the new item section / popup!
         document.getElementById("notification_new_weapon_or_shield").style.display = "none";
     }
+
+    if(callout == 17) {
+        document.getElementById("qte_bookshelf").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
+
+    if(callout == 18) {
+        document.getElementById("qte_vine_snare").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
+
+    if(callout == 19) {
+        document.getElementById("qte_sudden_darkness").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
 }
 
 function class_selection(class_num, button_element) {
@@ -555,6 +579,10 @@ function Generation(conditional) {
         trap_2 = [];
         trap_3 = [];
         trap_4 = [];
+        trap_1d = [];
+        trap_2d = [];
+        trap_3d = [];
+        trap_4d = [];
 
 
         for (var i = 0; i < 10; i++) {
@@ -624,6 +652,13 @@ function Generation(conditional) {
             } else {
                 trap_4.push("Nothing");
             }
+            
+            trap_1[0] = "Nothing";
+            trap_2[0] = "Bookshelf";
+            trap_1d.push(0);
+            trap_2d.push(0);
+            trap_3d.push(0);
+            trap_4d.push(0);
         }
 
         //Add the key
@@ -658,25 +693,120 @@ function World(){
                     " <a id='game_ui_super_size_strength' class='purple icns'>{</a>" + player.strength;
 
     document.getElementById("game_sene").innerHTML = "##########" + "<br>" + 
-    "<a class='brown'>:</a>" + 
+    "<a id='door1' class='brown'>:</a>" + 
     "<a id='plyr_sp1'>_</a><a id='itm_sp1'>1</a>" + 
     "<a id='plyr_sp2'>_</a><a id='itm_sp2'>1</a>" +
     "<a id='plyr_sp3'>_</a><a id='itm_sp3'>1</a>" + 
     "<a id='plyr_sp4'>_</a><a id='itm_sp4'>1</a>" + 
-    "<a class='brown'>:</a>" + 
+    "<a id='door2' class='brown'>:</a>" + 
     "<br>" + "##########";
 
     if(players_pos == 0) {
         document.getElementById("plyr_sp1").innerHTML = "<a class='" + player_colors[player.class] + "'>@</a>";
+
+        if(trap_1[room] != "Nothing") {
+            //check if the trap was engaged!
+            if(trap_1d[room] == 0) {
+                //set the encounter
+                trap_tripped = 1;
+                trap_triggered_type = trap_1[room];
+                Encounter();
+            }
+        }
     }
     if(players_pos == 1) {
         document.getElementById("plyr_sp2").innerHTML = "<a class='" + player_colors[player.class] + "'>@</a>";
+        if(trap_2[room] != "Nothing") {
+            //check if the trap was engaged!
+            if(trap_2d[room] == 0) {
+                //set the encounter
+                trap_tripped = 2;
+                trap_triggered_type = trap_2[room];
+                Encounter();
+            }
+        }
     }
     if(players_pos == 2) {
         document.getElementById("plyr_sp3").innerHTML = "<a class='" + player_colors[player.class] + "'>@</a>";
+        if(trap_3[room] != "Nothing") {
+            //check if the trap was engaged!
+            if(trap_3d[room] == 0) {
+                //set the encounter
+                trap_tripped = 3;
+                trap_triggered_type = trap_3[room];
+                Encounter();
+            }
+        }
     }
     if(players_pos == 3) {
         document.getElementById("plyr_sp4").innerHTML = "<a class='" + player_colors[player.class] + "'>@</a>";
+        if(trap_4[room] != "Nothing") {
+            //check if the trap was engaged!
+            if(trap_4d[room] == 0) {
+                //set the encounter
+                trap_tripped = 4;
+                trap_triggered_type = trap_4[room];
+                Encounter();
+            }
+        }
+    }
+
+    if(qte_sud_drk == 1) {
+        
+        /*
+            var qte_sud_drk = 0;
+            var sud_darkness_torch_location = 0;
+            var torch_room_spot = 0;
+        */
+        if(sud_darkness_torch_location == room) {
+
+            if(torch_room_spot == 0) {
+                document.getElementById("plyr_sp1").innerHTML = "a";
+                document.getElementById("plyr_sp1").classList.add('yellow');
+            }
+
+            if(torch_room_spot == 1) {
+                document.getElementById("plyr_sp2").innerHTML = "a";
+                document.getElementById("plyr_sp2").classList.add('yellow');
+            }
+            if(torch_room_spot == 2) {
+                document.getElementById("plyr_sp3").innerHTML = "a";
+                document.getElementById("plyr_sp3").classList.add('yellow');
+            }
+            if(torch_room_spot == 3) {
+                document.getElementById("plyr_sp4").innerHTML = "a";
+                document.getElementById("plyr_sp4").classList.add('yellow');
+            }
+
+            if(torch_room_spot == players_pos) {
+                sudden_darkness(2);
+            }
+        }
+    }
+
+    if(qte_sud_drk == 0) {
+        
+        /*
+            var qte_sud_drk = 0;
+            var sud_darkness_torch_location = 0;
+            var torch_room_spot = 0;
+        */
+        if(sud_darkness_torch_location == room) {
+
+            if(torch_room_spot == 0) {
+                document.getElementById("plyr_sp1").classList.remove('yellow');
+            }
+
+            if(torch_room_spot == 1) {
+                document.getElementById("plyr_sp2").classList.remove('yellow');
+            }
+            if(torch_room_spot == 2) {
+                document.getElementById("plyr_sp3").classList.remove('yellow');
+            }
+            if(torch_room_spot == 3) {
+                document.getElementById("plyr_sp4").classList.remove('yellow');
+            }
+        }
     }
 
     //we need to know the current room of the player is in to pull from the arrays
@@ -1067,3 +1197,248 @@ function accept_new_item() {
 
     document.getElementById("notification_new_weapon_or_shield").style.display = "none";
 }
+
+function Encounter() {
+    //trap_triggered = 'whatever'
+    //var traps = ["Bookshelf","Vine Snare","Chest","Clown Box","Sudden Darkness"];
+
+    if(trap_triggered_type == "Bookshelf"){
+        document.getElementById("qte_bookshelf").style.display = "block";
+        document.getElementById("game").style.display = "none";
+        bookshelf_qte();
+    }
+
+    if(trap_triggered_type == "Vine Snare"){
+        document.getElementById("qte_vine_snare").style.display = "block";
+        document.getElementById("game").style.display = "none";
+        vine_qte();
+    }
+
+    if(trap_triggered_type == "Chest"){
+        //document.getElementById("qte_chest_of_knowledge").style.display = "block";
+        //document.getElementById("game").style.display = "none";
+    }
+
+    if(trap_triggered_type == "Clown Box"){
+        //document.getElementById("qte_clown_box").style.display = "block";
+        //document.getElementById("game").style.display = "none";
+    }
+
+    if(trap_triggered_type == "Sudden Darkness"){
+        document.getElementById("qte_sudden_darkness").style.display = "block";
+        document.getElementById("game").style.display = "none";
+        sudden_darkness(1);
+    }
+}
+
+var qte_book_cur_status = 0;
+
+function bookshelf_qte() {
+    document.getElementById("qte_book_push_button").style.display = "block";
+    document.getElementById("qte_book_cont_button").style.display = "none";
+    document.getElementById("bookshelf").style.color = "#ffffff";
+    document.getElementById("qte_bookshelf_text").innerHTML = "An old bookshelf comes falling down towards you!";
+
+     qte_book_cur_status = 75;
+    const countdownInterval = setInterval(function() {
+        console.log(qte_book_cur_status);
+        qte_book_cur_status -= 1;
+        document.getElementById("qte_bookshelf_meter").value = qte_book_cur_status;
+            if (qte_book_cur_status === 100) {
+                clearInterval(countdownInterval); // Stop the interval when count reaches 5
+
+                document.getElementById("qte_bookshelf_text").innerHTML = "You pushed away the bookshelf with ease!";
+                document.getElementById("qte_book_push_button").style.display = "none";
+                document.getElementById("qte_book_cont_button").style.display = "block";
+
+                document.getElementById("bookshelf").style.color = "#55a049";
+
+                score += 100;
+
+                if(trap_tripped == 1) {
+                    trap_1d[room] = 1;
+                }
+                if(trap_tripped == 2) {
+                    trap_2d[room] = 1;
+                }
+                if(trap_tripped == 3) {
+                    trap_3d[room] = 1;
+                }
+                if(trap_tripped == 4) {
+                    trap_4d[room] = 1;
+                }
+            }
+
+            if(qte_book_cur_status === 0) {
+                clearInterval(countdownInterval); // Stop the interval when count reaches 5
+                document.getElementById("qte_bookshelf_text").innerHTML = "You've been hurt by the bookshelf!";
+                document.getElementById("bookshelf").style.color = "#883232";
+
+                document.getElementById("qte_book_push_button").style.display = "none";
+                document.getElementById("qte_book_cont_button").style.display = "block";
+
+                player.health -= 1;
+
+                if(trap_tripped == 1) {
+                    trap_1d[room] = 1;
+                }
+                if(trap_tripped == 2) {
+                    trap_2d[room] = 1;
+                }
+                if(trap_tripped == 3) {
+                    trap_3d[room] = 1;
+                }
+                if(trap_tripped == 4) {
+                    trap_4d[room] = 1;
+                }
+            }
+    }, 100);
+    
+}
+
+function qte_book_increase() {
+    if(difficulty == 0) {
+        qte_book_cur_status += 5;
+    }
+}
+
+
+var qte_vine_cur_status = 0;
+
+function vine_qte() {
+    document.getElementById("qte_vine_push_button").style.display = "block";
+    document.getElementById("qte_vine_cont_button").style.display = "none";
+    document.getElementById("snare").style.color = "#ffffff";
+    document.getElementById("qte_vine_snare_text").innerHTML = "You get caught in a old vine snare trap!";
+
+    qte_vine_cur_status = 75;
+    const countdownInterval = setInterval(function() {
+        console.log(qte_vine_cur_status);
+        qte_vine_cur_status -= 1;
+        document.getElementById("qte_vine_meter").value = qte_vine_cur_status;
+            if (qte_vine_cur_status === 100) {
+                clearInterval(countdownInterval); // Stop the interval when count reaches 5
+
+                document.getElementById("qte_vine_snare_text").innerHTML = "You escaped the vine snare trap!";
+                document.getElementById("qte_vine_push_button").style.display = "none";
+                document.getElementById("qte_vine_cont_button").style.display = "block";
+
+                document.getElementById("snare").style.color = "#55a049";
+
+                score += 125;
+
+                if(trap_tripped == 1) {
+                    trap_1d[room] = 1;
+                }
+                if(trap_tripped == 2) {
+                    trap_2d[room] = 1;
+                }
+                if(trap_tripped == 3) {
+                    trap_3d[room] = 1;
+                }
+                if(trap_tripped == 4) {
+                    trap_4d[room] = 1;
+                }
+            }
+
+            if(qte_vine_cur_status === 0) {
+                clearInterval(countdownInterval); // Stop the interval when count reaches 5
+                document.getElementById("qte_vine_snare_text").innerHTML = "The vine snare fully tightens around your leg and throws you up into the air destroying the trap and hurting you!";
+                document.getElementById("snare").style.color = "#883232";
+
+                document.getElementById("qte_vine_push_button").style.display = "none";
+                document.getElementById("qte_vine_cont_button").style.display = "block";
+
+                player.health -= 1;
+
+                if(trap_tripped == 1) {
+                    trap_1d[room] = 1;
+                }
+                if(trap_tripped == 2) {
+                    trap_2d[room] = 1;
+                }
+                if(trap_tripped == 3) {
+                    trap_3d[room] = 1;
+                }
+                if(trap_tripped == 4) {
+                    trap_4d[room] = 1;
+                }
+            }
+    }, 100);
+    
+}
+
+function qte_vine_increase() {
+    if(difficulty == 0) {
+        qte_vine_cur_status += 5;
+    }
+}
+
+
+var qte_sud_drk = 0;
+var sud_darkness_torch_location = 0;
+var torch_room_spot = 0;
+function sudden_darkness(conditional) {
+    
+    if(conditional == 1) {
+
+        //lights out
+        document.getElementById("game_sene").classList.toggle('dark_gray');
+        document.getElementById("door1").classList.replace('brown', 'dark_brown');
+        document.getElementById("door2").classList.replace('brown', 'dark_brown');
+
+        qte_sud_drk = 1;
+
+        //determine what spot to place the torch
+        var currentRoom = room;
+        let possibleRooms = [];
+
+        if (currentRoom === 8) {
+            // Three rooms behind (5, 6, 7) or one room forward (9)
+            possibleRooms = [5, 6, 7, 9];
+        } else if (currentRoom === 2) {
+            // Three rooms ahead (3, 4, 5) or one room behind (1)
+            possibleRooms = [1, 3, 4, 5];
+        } else {
+            // Standard case: two rooms ahead or two rooms behind
+            const ahead = currentRoom + 2;
+            const behind = currentRoom - 2;
+
+            // Assuming rooms are within a 1-10 range
+            if (ahead <= 10) {
+                possibleRooms.push(ahead);
+            }
+            if (behind >= 1) {
+                possibleRooms.push(behind);
+            }
+        }
+        
+        torch_room_spot = Math.floor(Math.random() * 4);
+
+        if (possibleRooms.length > 0) {
+            const randomIndex = Math.floor(Math.random() * possibleRooms.length);
+            sud_darkness_torch_location = possibleRooms[randomIndex];
+            console.log("Torch placed in room: " + sud_darkness_torch_location);
+            console.log("Torch placed in spot: " + torch_room_spot);
+        } else {
+            // Fallback in case no rooms are possible
+            sud_darkness_torch_location = currentRoom;
+            console.log("Torch placed in current room (fallback): " + sud_darkness_torch_location);
+            console.log("Torch placed in spot: " + torch_room_spot);
+        }
+
+        
+        
+    }
+
+    if(conditional == 2) {
+        //lights on
+        document.getElementById("game_sene").classList.toggle('dark_gray');
+        document.getElementById("door1").classList.replace('dark_brown', 'brown');
+        document.getElementById("door2").classList.replace('dark_brown', 'brown');
+
+        qte_sud_drk = 0;
+        World();
+    }
+}
+

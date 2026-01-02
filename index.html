@@ -12,7 +12,7 @@
 
         <link href='style.css?v=4.41' rel='stylesheet'>
         <link href='game_style.css?v=4.41' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.47"></script>
+        <script defer type="text/javascript" src="game_data.js?v=4.57"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -72,14 +72,13 @@
                 <h2 id="player_game_score">Score 1000</h2>
                 <p id="game_special_items_checklist">test</p>
                 <div id="game_view">
-                    <p id="game_sene" class="icns">
+                    <p id="game_sene" class="icns ">
                         ##########
                         <br>
                         _@________
                         <br>
                         ##########
                     </p>
-                    <br>
                 </div>
                 <p id="ingame_notification_on_loot"></p>
                 
@@ -333,7 +332,7 @@
             <h3 style="text-align: center;">Falling Bookshelf</h3>
             <hr>
             <p id="qte_bookshelf_text" style="text-align: center;">An old bookshelf comes falling down towards you!</p>
-            <div class="bookshelf-container">
+            <div id="bookshelf" class="bookshelf-container">
                 <pre>
         ________________________________________________
        /                                                \
@@ -363,15 +362,16 @@
               ||                                  ||
                 </pre>
                 </div>
-                <progress value="20" max="100"></progress>
-                <button>Push</button>
+                <progress id="qte_bookshelf_meter" value="75" max="100"></progress>
+                <button id="qte_book_push_button" onclick="qte_book_increase()">Push</button>
+                <button id="qte_book_cont_button" onclick="hud(17)">Continue</button>
         </div>
 
         <div id="qte_vine_snare">
             <h3 style="text-align: center;">Vine Snare</h3>
             <hr>
             <p id="qte_vine_snare_text" style="text-align: center;">You get caught in a old vine snare trap!</p>
-            <div class="snare-container">
+            <div id="snare" class="snare-container">
                 <pre>
                             __   __
                            /  \ /  \
@@ -392,8 +392,9 @@
                       
                 </pre>
                 </div>
-                <progress value="20" max="100"></progress>
-                <button>Push</button>
+                <progress id="qte_vine_meter" value="75" max="100"></progress>
+                <button id="qte_vine_push_button" onclick="qte_vine_increase()">Tear!</button>
+                <button id="qte_vine_cont_button" onclick="hud(18)">Continue</button>
         </div>
 
         <div id="qte_chest_of_knowledge">
@@ -425,7 +426,7 @@
         <div id="qte_clown_box">
             <h3 style="text-align: center;">A funny looking box...</h3>
             <hr>
-            <p id="qte_vine_snare_text" style="text-align: center;">You have a sneaking suspicion your gonna get a jump scare... but you wanna open, it dont ya?</p>
+            <p id="qte_vine_snare_text" style="text-align: center;">You have a sneaking suspicion your gonna get a jump scare... but you wanna open it, dont ya?</p>
             <div class="clown-box">
                 <pre >
                     ___
@@ -449,7 +450,8 @@
          </pre>
                 </div>
                 <progress value="20" max="100"></progress>
-                <button>Push</button>
+                <button>Open the Box</button>
+                <button>Walk Away</button>
         </div>
 
         <div id="qte_sudden_darkness">
@@ -476,8 +478,7 @@
 |____|
                 </pre>
                 </div>
-                <progress value="20" max="100"></progress>
-                <button>Push</button>
+                <button onclick="hud(19)">Ok, Got It.</button>
         </div>
 
         <script>
