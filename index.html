@@ -10,9 +10,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='style.css?v=4.41' rel='stylesheet'>
-        <link href='game_style.css?v=4.41' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.60"></script>
+        <link href='style.css?v=4.42' rel='stylesheet'>
+        <link href='game_style.css?v=4.42' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.61"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -484,13 +484,70 @@
         <div id="qte_banquet_table">
             <h3 style="text-align: center;">The Banquet Table</h3>
             <hr>
-            <p id="qte_banquet_text" style="text-align: center;"></p>
+            <p id="qte_banquet_text" style="text-align: center;">You've come across a banquet table! Looks like some table scraps are still left over...</p>
+            <div id="dice-display">⚀</div>
             <div class="banquet-container">
-                <pre>
+                
+                
+                <pre class="banquet_table">
+                    _________________________________________________
+                   /                                                 \
+                  /      (  )           _______           (  )        \
+                 /      __||__         |   _   |         __||__        \
+                /      |      |        |  ( )  |        |      |        \
+               /       | BANQ |        |_______|        | UET  |         \
+              /        |______|          _|_|_          |______|          \
+             /                          (_____)                            \
+            /            ____             ___             ____              \
+           /      _     /    \     _     (   )     _     /    \     _        \
+          /      ( )   |  RO  |   ( )     | |     ( )   | AST  |   ( )        \
+         /      __|_   |______|   _|_     | |     _|_   |______|   _|_         \
+        /      |____|            |___|    |_|    |___|            |____|        \
+       /_________________________________________________________________________\
+       ||                                                                       ||
+       ||         _|_                     _|_                     _|_           ||
+       ||        |   |                   |   |                   |   |          ||
+       ||        |   |                   |   |                   |   |          ||
+       ||        |___|                   |___|                   |___|          ||
+       ||_______________________________________________________________________||
+                |   |                                               |   |
+                |   |                                               |   |
+                |___|                                               |___|
+         </pre>
+        </div>
+        <hr>
+        <table id="banquet_table_roll_chart">
+            <tr>
+                <td>Rolls 6</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Rolls 5</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Rolls 4</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Rolls 3</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Rolls 2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Rolls 1</td>
+                <td>2</td>
+            </tr>
+        </table>
+        <hr>
+        <br><br>
 
-                </pre>
-                </div>
-                <button onclick="">Ok, Got It.</button>
+                <button id="qte_banquet_dice_button" onclick="">Roll Dice</button>
+                <button id="qte_banquet_cont_button" onclick="">Ok, Got It.</button>
+        <br><br>
         </div>
 
         <div id="qte_the_armoury">

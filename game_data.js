@@ -658,7 +658,7 @@ function Generation(conditional) {
             }
             
             trap_1[0] = "Nothing";
-            trap_2[0] = "Bookshelf";
+            trap_2[0] = "Banquet";
             trap_1d.push(0);
             trap_2d.push(0);
             trap_3d.push(0);
@@ -1237,8 +1237,8 @@ function Encounter() {
     }
 
     if(trap_triggered_type == "Banquet"){
-        //document.getElementById("qte_banquet_table").style.display = "block";
-        //document.getElementById("game").style.display = "none";
+        document.getElementById("qte_banquet_table").style.display = "block";
+        document.getElementById("game").style.display = "none";
     }
 
     if(trap_triggered_type == "Armoury"){
@@ -1482,3 +1482,30 @@ function sudden_darkness(conditional) {
     }
 }
 
+function Banquet(callout) {
+    if(callout == 0) {
+
+    }
+
+    if(callout == 1) {
+        const diceDisplay = document.getElementById('dice-display');
+        const rollBtn = document.getElementById('roll-btn');
+
+        // 2. Define the roll function
+        function rollDice() {
+            // Generate random number 1-6
+            const roll = Math.floor(Math.random() * 6) + 1;
+
+            // 3. Calculate Unicode code point
+            // Face-1 (⚀) starts at U+2680 (decimal 9856)
+            // Use String.fromCodePoint for modern 2026 JS standards
+            const unicodePoint = 0x267F + roll; 
+            
+            // 4. Update the DOM
+            diceDisplay.textContent = String.fromCodePoint(unicodePoint);
+        }
+
+        // 5. Attach event listener
+        rollBtn.addEventListener('click', rollDice);
+    }
+}
