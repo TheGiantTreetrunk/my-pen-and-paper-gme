@@ -12,7 +12,7 @@
 
         <link href='style.css?v=4.41' rel='stylesheet'>
         <link href='game_style.css?v=4.41' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.57"></script>
+        <script defer type="text/javascript" src="game_data.js?v=4.60"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -400,7 +400,7 @@
         <div id="qte_chest_of_knowledge">
             <h3 style="text-align: center;">The Chest of Knowledge</h3>
             <hr>
-            <p id="qte_vine_snare_text" style="text-align: center;">You've discovered the chest that reads a book almost every day...</p>
+            <p id="qte_know_chest_text" style="text-align: center;">You've discovered the chest that reads a book almost every day...</p>
             <div class="chest-art">
                 <pre>
                     __________
@@ -426,7 +426,7 @@
         <div id="qte_clown_box">
             <h3 style="text-align: center;">A funny looking box...</h3>
             <hr>
-            <p id="qte_vine_snare_text" style="text-align: center;">You have a sneaking suspicion your gonna get a jump scare... but you wanna open it, dont ya?</p>
+            <p id="qte_clown_box_text" style="text-align: center;">You have a sneaking suspicion your gonna get a jump scare... but you wanna open it, dont ya?</p>
             <div class="clown-box">
                 <pre >
                     ___
@@ -457,7 +457,7 @@
         <div id="qte_sudden_darkness">
             <h3 style="text-align: center;">Sudden Darkness</h3>
             <hr>
-            <p id="qte_vine_snare_text" style="text-align: center;">Your torch has gone out suddenly! Find a light source before more monsters show up!</p>
+            <p id="qte_sud_darkness_text" style="text-align: center;">Your torch has gone out suddenly! Find a light source before more monsters show up!</p>
             <div class="torch-container">
                 <pre>
 (      )
@@ -479,6 +479,54 @@
                 </pre>
                 </div>
                 <button onclick="hud(19)">Ok, Got It.</button>
+        </div>
+
+        <div id="qte_banquet_table">
+            <h3 style="text-align: center;">The Banquet Table</h3>
+            <hr>
+            <p id="qte_banquet_text" style="text-align: center;"></p>
+            <div class="banquet-container">
+                <pre>
+
+                </pre>
+                </div>
+                <button onclick="">Ok, Got It.</button>
+        </div>
+
+        <div id="qte_the_armoury">
+            <h3 style="text-align: center;">The Armoury</h3>
+            <hr>
+            <p id="qte_armoury_text" style="text-align: center;"></p>
+            <div class="armoury-container">
+                <pre>
+
+                </pre>
+                </div>
+                <button onclick="">Ok, Got It.</button>
+        </div>
+
+        <div id="qte_the_cake">
+            <h3 style="text-align: center;">EVERYTHING IS CAKE!</h3>
+            <hr>
+            <p id="qte_cake_text" style="text-align: center;"></p>
+            <div class="cake-container">
+                <pre>
+
+                </pre>
+                </div>
+                <button onclick="">Ok, Got It.</button>
+        </div>
+
+        <div id="qte_the_mint">
+            <h3 style="text-align: center;">The Mint</h3>
+            <hr>
+            <p id="qte_mint_text" style="text-align: center;"></p>
+            <div class="mint-container">
+                <pre>
+
+                </pre>
+                </div>
+                <button onclick="">Ok, Got It.</button>
         </div>
 
         <script>

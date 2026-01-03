@@ -88,7 +88,7 @@ var obj_4a = [];
 var trap_tripped = 0;
 var trap_triggered_type = "Nothing";
 var trap_roll = [0,1,0,0,0,0,1,0,1,0];
-var traps = ["Bookshelf","Vine Snare","Chest","Clown Box","Sudden Darkness"];
+var traps = ["Bookshelf","Vine Snare","Chest","Clown Box","Sudden Darkness","Banquet","Armoury","Cake","Mint"];
 var trap_1 = [];
 var trap_2 = [];
 var trap_3 = [];
@@ -231,6 +231,10 @@ function Start() {
     document.getElementById("qte_chest_of_knowledge").style.display = "none";
     document.getElementById("qte_clown_box").style.display = "none";
     document.getElementById("qte_sudden_darkness").style.display = "none";
+    document.getElementById("qte_banquet_table").style.display = "none";
+    document.getElementById("qte_the_armoury").style.display = "none";
+    document.getElementById("qte_the_cake").style.display = "none";
+    document.getElementById("qte_the_mint").style.display = "none";
 
     //motto_funny
     var mottox = Math.floor((Math.random() * mottos.length));
@@ -1225,9 +1229,31 @@ function Encounter() {
     }
 
     if(trap_triggered_type == "Sudden Darkness"){
-        document.getElementById("qte_sudden_darkness").style.display = "block";
-        document.getElementById("game").style.display = "none";
-        sudden_darkness(1);
+        if(qte_sud_drk == 0) {
+            document.getElementById("qte_sudden_darkness").style.display = "block";
+            document.getElementById("game").style.display = "none";
+            sudden_darkness(1);
+        }
+    }
+
+    if(trap_triggered_type == "Banquet"){
+        //document.getElementById("qte_banquet_table").style.display = "block";
+        //document.getElementById("game").style.display = "none";
+    }
+
+    if(trap_triggered_type == "Armoury"){
+        //document.getElementById("qte_the_armoury").style.display = "block";
+        //document.getElementById("game").style.display = "none";
+    }
+
+    if(trap_triggered_type == "Cake"){
+        //document.getElementById("qte_the_cake").style.display = "block";
+        //document.getElementById("game").style.display = "none";
+    }
+
+    if(trap_triggered_type == "Mint"){
+        //document.getElementById("qte_the_mint").style.display = "block";
+        //document.getElementById("game").style.display = "none";
     }
 }
 
@@ -1378,12 +1404,26 @@ function qte_vine_increase() {
 var qte_sud_drk = 0;
 var sud_darkness_torch_location = 0;
 var torch_room_spot = 0;
+
 function sudden_darkness(conditional) {
     
     if(conditional == 1) {
 
+        if(trap_tripped == 1) {
+            trap_1d[room] = 1;
+        }
+        if(trap_tripped == 2) {
+            trap_2d[room] = 1;
+        }
+        if(trap_tripped == 3) {
+            trap_3d[room] = 1;
+        }
+        if(trap_tripped == 4) {
+            trap_4d[room] = 1;
+        }
+
         //lights out
-        document.getElementById("game_sene").classList.toggle('dark_gray');
+        document.getElementById("game_sene").classList.add('dark_gray');
         document.getElementById("door1").classList.replace('brown', 'dark_brown');
         document.getElementById("door2").classList.replace('brown', 'dark_brown');
 
@@ -1433,7 +1473,7 @@ function sudden_darkness(conditional) {
 
     if(conditional == 2) {
         //lights on
-        document.getElementById("game_sene").classList.toggle('dark_gray');
+        document.getElementById("game_sene").classList.remove('dark_gray');
         document.getElementById("door1").classList.replace('dark_brown', 'brown');
         document.getElementById("door2").classList.replace('dark_brown', 'brown');
 
