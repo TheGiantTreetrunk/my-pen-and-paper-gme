@@ -495,6 +495,11 @@ function hud(callout){
         document.getElementById("qte_sudden_darkness").style.display = "none";
         document.getElementById("game").style.display = "block";
     }
+
+    if(callout == 20) {
+        document.getElementById("qte_banquet_table").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
 }
 
 function class_selection(class_num, button_element) {
@@ -545,7 +550,7 @@ function startLoading(conditional) {
         document.getElementById("myLoadingBar1").style.display = "none";
         World()
         hud(2);
-    }, 4000);
+    }, 1000);
 
 
     setTimeout(() => {
@@ -1239,6 +1244,7 @@ function Encounter() {
     if(trap_triggered_type == "Banquet"){
         document.getElementById("qte_banquet_table").style.display = "block";
         document.getElementById("game").style.display = "none";
+        Banquet(0);
     }
 
     if(trap_triggered_type == "Armoury"){
@@ -1267,10 +1273,9 @@ function bookshelf_qte() {
 
      qte_book_cur_status = 75;
     const countdownInterval = setInterval(function() {
-        console.log(qte_book_cur_status);
         qte_book_cur_status -= 1;
         document.getElementById("qte_bookshelf_meter").value = qte_book_cur_status;
-            if (qte_book_cur_status === 100) {
+            if (qte_book_cur_status >= 100) {
                 clearInterval(countdownInterval); // Stop the interval when count reaches 5
 
                 document.getElementById("qte_bookshelf_text").innerHTML = "You pushed away the bookshelf with ease!";
@@ -1339,10 +1344,9 @@ function vine_qte() {
 
     qte_vine_cur_status = 75;
     const countdownInterval = setInterval(function() {
-        console.log(qte_vine_cur_status);
         qte_vine_cur_status -= 1;
         document.getElementById("qte_vine_meter").value = qte_vine_cur_status;
-            if (qte_vine_cur_status === 100) {
+            if (qte_vine_cur_status >= 100) {
                 clearInterval(countdownInterval); // Stop the interval when count reaches 5
 
                 document.getElementById("qte_vine_snare_text").innerHTML = "You escaped the vine snare trap!";
@@ -1478,34 +1482,64 @@ function sudden_darkness(conditional) {
         document.getElementById("door2").classList.replace('dark_brown', 'brown');
 
         qte_sud_drk = 0;
+        score += 400;
         World();
     }
 }
 
 function Banquet(callout) {
     if(callout == 0) {
-
+        document.getElementById("qte_banquet_text").innerHTML = "You've come across a banquet table! Looks like some table scraps are still left over...";
+        document.getElementById("qte_banquet_dice_button").style.display = "block";
+        document.getElementById("qte_banquet_cont_button").style.display = "none";
     }
 
     if(callout == 1) {
-        const diceDisplay = document.getElementById('dice-display');
-        const rollBtn = document.getElementById('roll-btn');
-
-        // 2. Define the roll function
-        function rollDice() {
-            // Generate random number 1-6
-            const roll = Math.floor(Math.random() * 6) + 1;
-
-            // 3. Calculate Unicode code point
-            // Face-1 (⚀) starts at U+2680 (decimal 9856)
-            // Use String.fromCodePoint for modern 2026 JS standards
-            const unicodePoint = 0x267F + roll; 
-            
-            // 4. Update the DOM
-            diceDisplay.textContent = String.fromCodePoint(unicodePoint);
+        if(trap_tripped == 1) {
+            trap_1d[room] = 1;
         }
+        if(trap_tripped == 2) {
+            trap_2d[room] = 1;
+        }
+        if(trap_tripped == 3) {
+            trap_3d[room] = 1;
+        }
+        if(trap_tripped == 4) {
+            trap_4d[room] = 1;
+        }
+        
+        const diceDisplay = document.getElementById('dice-display');
+        const roll = Math.floor(Math.random() * 6) + 1;
+        const unicodePoint = 0x267F + roll; 
 
-        // 5. Attach event listener
-        rollBtn.addEventListener('click', rollDice);
+        diceDisplay.textContent = String.fromCodePoint(unicodePoint);
+
+        document.getElementById("qte_banquet_dice_button").style.display = "none";
+        document.getElementById("qte_banquet_cont_button").style.display = "block";
+
+        if(roll == 1) {
+            document.getElementById("qte_banquet_text").innerHTML = "you rolled a 1";
+            score += 20;
+        }
+        if(roll == 2) {
+            document.getElementById("qte_banquet_text").innerHTML = "you rolled a 2";
+            score += 40;
+        }
+        if(roll == 3) {
+            document.getElementById("qte_banquet_text").innerHTML = "you rolled a 3";
+            score += 80;
+        }
+        if(roll == 4) {
+            document.getElementById("qte_banquet_text").innerHTML = "you rolled a 4";
+            score += 160;
+        }
+        if(roll == 5) {
+            document.getElementById("qte_banquet_text").innerHTML = "you rolled a 5";
+            score += 200;
+        }
+        if(roll == 6) {
+            document.getElementById("qte_banquet_text").innerHTML = "you rolled a 6";
+            score += 240;
+        }
     }
 }

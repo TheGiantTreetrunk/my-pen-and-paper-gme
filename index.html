@@ -10,9 +10,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='style.css?v=4.42' rel='stylesheet'>
-        <link href='game_style.css?v=4.42' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.61"></script>
+        <link href='style.css?v=4.47' rel='stylesheet'>
+        <link href='game_style.css?v=4.47' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.68"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -381,7 +381,7 @@
                      \   \  /     \  /   /
                       \   \/   _   \/   /
                        \      / \      /
-                   _____)    (   )    (_____
+                   _____)    (   )    (_____)
                   (____       \ /       ____)
                        \      / \      /
                         \    /   \    /
@@ -435,7 +435,7 @@
             /  _   _    _   _ \
            |  (o) (o)  (o) (o) |
             \    ___    ___   /
-             '.  \__\  /__/  .'
+             '.  \__/  /__/  .'
                '-.________.-'
                    _|||_
                   (_|_|_)
@@ -482,13 +482,13 @@
         </div>
 
         <div id="qte_banquet_table">
-            <h3 style="text-align: center;">The Banquet Table</h3>
-            <hr>
-            <p id="qte_banquet_text" style="text-align: center;">You've come across a banquet table! Looks like some table scraps are still left over...</p>
-            <div id="dice-display">⚀</div>
             <div class="banquet-container">
+                <h3 class="sticky-title">The Banquet Table</h3>
                 
+                <div class="glass-overlay"></div>
                 
+                <div id="dice-display">⚄</div>
+        
                 <pre class="banquet_table">
                     _________________________________________________
                    /                                                 \
@@ -503,51 +503,37 @@
           /      ( )   |  RO  |   ( )     | |     ( )   | AST  |   ( )        \
          /      __|_   |______|   _|_     | |     _|_   |______|   _|_         \
         /      |____|            |___|    |_|    |___|            |____|        \
-       /_________________________________________________________________________\
-       ||                                                                       ||
-       ||         _|_                     _|_                     _|_           ||
-       ||        |   |                   |   |                   |   |          ||
-       ||        |   |                   |   |                   |   |          ||
-       ||        |___|                   |___|                   |___|          ||
-       ||_______________________________________________________________________||
+        /_________________________________________________________________________\
+        ||                                                                       ||
+        ||         _|_                     _|_                     _|_           ||
+        ||        |   |                   |   |                   |   |          ||
+        ||        |   |                   |   |                   |   |          ||
+        ||        |___|                   |___|                   |___|          ||
+        ||_______________________________________________________________________||
                 |   |                                               |   |
                 |   |                                               |   |
                 |___|                                               |___|
-         </pre>
-        </div>
-        <hr>
-        <table id="banquet_table_roll_chart">
-            <tr>
-                <td>Rolls 6</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>Rolls 5</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>Rolls 4</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>Rolls 3</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>Rolls 2</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>Rolls 1</td>
-                <td>2</td>
-            </tr>
-        </table>
-        <hr>
-        <br><br>
-
-                <button id="qte_banquet_dice_button" onclick="">Roll Dice</button>
-                <button id="qte_banquet_cont_button" onclick="">Ok, Got It.</button>
-        <br><br>
+                </pre>
+            </div>
+        
+            <div class="qte-scroll-content">
+                <hr>
+                <p id="qte_banquet_text" style="text-align: center;">You've come across a banquet table! Looks like some table scraps are still left over...</p>
+                <button id="qte_banquet_dice_button" onclick="Banquet(1)">Roll Dice</button>
+                <button id="qte_banquet_cont_button" onclick="hud(20)">Ok, Got It.</button>
+                <hr>
+                <table id="banquet_table_roll_chart">
+                    <tr><td>Rolls 6</td><td>Rare Steak</td></tr>
+                    <tr><td>Rolls 5</td><td>Old Bread</td></tr>
+                    <tr><td>Rolls 4</td><td>Mystery Soup</td></tr>
+                    <tr><td>Rolls 3</td><td>Empty Plate</td></tr>
+                    <tr><td>Rolls 2</td><td>Apple Core</td></tr>
+                    <tr><td>Rolls 1</td><td>Rat Droppings</td></tr>
+                </table>
+                <hr>
+                <br><br><br>
+                
+            </div>
         </div>
 
         <div id="qte_the_armoury">

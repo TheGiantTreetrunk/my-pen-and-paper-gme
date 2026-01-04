@@ -911,55 +911,96 @@ pre {
 
 #qte_banquet_table {
     position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 80%;
-	height: 80%;
-	border: 3px solid #ffffff;
-	background-color: #000;
-	overflow-y: scroll;
-    box-shadow: 10px 10px var(--shadow-color, #ffffff);
-    color:#fff;
-    padding: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border: 3px solid #ffffff;
+    background-color: #000;
+    overflow-y: auto; 
+    box-shadow: 10px 10px #ffffff;
+    color: #fff;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-#qte_banquet_table button {
-    padding: 14px 0px;
-    width: 100%;
-}
-
+/* The Sticky Header Area */
 .banquet-container {
-    color: #ffffff; /* Ashy Grey */
-    line-height: 1.1;
+    position: sticky;
+    top: 0;
+    z-index: 1; 
     text-align: center;
+    background-color: #000;
+    /* Height is determined by the content (Art + Title) */
+    padding-bottom: 10px;
+}
+
+/* THE FROSTED EFFECT - Reduced blur to 2px */
+.glass-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05); /* Lighter tint */
+    backdrop-filter: blur(2px);            /* Less blurry as requested */
+    -webkit-backdrop-filter: blur(2px);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Title and Dice are now both z-index 3 to sit on top of the glass */
+.sticky-title {
+    position: relative;
+    z-index: 3;
+    margin: 0;
+    padding: 15px 0 5px 0;
+    background: transparent;
 }
 
 #dice-display {
-    font-size: 72px;
-    text-align: center;
+    position: absolute;
+    top: 60%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    z-index: 3; 
+    text-shadow: 0 0 15px rgba(0,0,0,0.9);
 }
 
 .banquet_table {
     font-size: 8px;
+    margin: 0 auto;
+    display: inline-block;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1; /* Under the glass */
+}
+
+/* The Scrolling Content */
+.qte-scroll-content {
+    background-color: #000000;
+    position: relative;
+    z-index: 10; 
+    padding: 20px;
+}
+
+.qte-scroll-content button {
+    padding: 14px 0px;
+	width: 100%;
 }
 
 #banquet_table_roll_chart {
-    font-family: 'main';
+    font-family: "main";
     border-collapse: collapse;
     width: 100%;
-  }
+}
   
-#banquet_table_roll_chart td, th {
-    padding: 8px;
-  }
+#banquet_table_roll_chart td {
+    padding: 12px;
+    border: 1px solid #444;
+}
   
-#banquet_table_roll_chart tr:nth-child(even){background-color: #212626;}
-  
-#banquet_table_roll_chart th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
-  }
+#banquet_table_roll_chart tr:nth-child(even){background-color: #1a1a1a;}
