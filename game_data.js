@@ -500,6 +500,18 @@ function hud(callout){
         document.getElementById("qte_banquet_table").style.display = "none";
         document.getElementById("game").style.display = "block";
     }
+
+    if(callout == 21) {
+        document.getElementById("qte_the_armoury").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
+
+    if(callout == 22) {
+        document.getElementById("qte_the_armoury").style.display = "none";
+        document.getElementById("game").style.display = "block";
+        //hud 13 callout
+        data_output(9);
+    }
 }
 
 function class_selection(class_num, button_element) {
@@ -663,7 +675,7 @@ function Generation(conditional) {
             }
             
             trap_1[0] = "Nothing";
-            trap_2[0] = "Banquet";
+            trap_2[0] = "Mint";
             trap_1d.push(0);
             trap_2d.push(0);
             trap_3d.push(0);
@@ -1248,8 +1260,8 @@ function Encounter() {
     }
 
     if(trap_triggered_type == "Armoury"){
-        //document.getElementById("qte_the_armoury").style.display = "block";
-        //document.getElementById("game").style.display = "none";
+        document.getElementById("qte_the_armoury").style.display = "block";
+        document.getElementById("game").style.display = "none";
     }
 
     if(trap_triggered_type == "Cake"){
@@ -1258,8 +1270,8 @@ function Encounter() {
     }
 
     if(trap_triggered_type == "Mint"){
-        //document.getElementById("qte_the_mint").style.display = "block";
-        //document.getElementById("game").style.display = "none";
+        document.getElementById("qte_the_mint").style.display = "block";
+        document.getElementById("game").style.display = "none";
     }
 }
 
@@ -1520,7 +1532,7 @@ function Banquet(callout) {
         if(roll == 1) {
             document.getElementById("qte_banquet_text").innerHTML = "you rolled a 1";
             score += 20;
-            player.health -= 4;
+            player.health -= 2;
         }
         if(roll == 2) {
             document.getElementById("qte_banquet_text").innerHTML = "you rolled a 2";
@@ -1546,6 +1558,71 @@ function Banquet(callout) {
             score += 240;
             player.food += 10;
             player.water += 5;
+        }
+    }
+}
+
+function Armoury(callout) {
+    if(callout == 0) {
+        document.getElementById("qte_banquet_text").innerHTML = "You've come across a banquet table! Looks like some table scraps are still left over...";
+        document.getElementById("qte_armoury_dice_button").style.display = "block";
+        document.getElementById("qte_armoury_cont_button").style.display = "none";
+    }
+
+    if(callout == 1) {
+        if(trap_tripped == 1) {
+            trap_1d[room] = 1;
+        }
+        if(trap_tripped == 2) {
+            trap_2d[room] = 1;
+        }
+        if(trap_tripped == 3) {
+            trap_3d[room] = 1;
+        }
+        if(trap_tripped == 4) {
+            trap_4d[room] = 1;
+        }
+        
+        const diceDisplay = document.getElementById('dice-display1');
+        const roll = Math.floor(Math.random() * 6) + 1;
+        const unicodePoint = 0x267F + roll; 
+
+        diceDisplay.textContent = String.fromCodePoint(unicodePoint);
+
+        document.getElementById("qte_armoury_dice_button").style.display = "none";
+        document.getElementById("qte_armoury_cont_button").style.display = "block";
+
+        if(roll == 1) {
+            document.getElementById("qte_armoury_text").innerHTML = "you rolled a 1";
+            score += 40;
+            player.health -= 3;
+        }
+        if(roll == 2) {
+            document.getElementById("qte_armoury_text").innerHTML = "you rolled a 2";
+            score += 50;
+        }
+        if(roll == 3) {
+            document.getElementById("qte_armoury_text").innerHTML = "you rolled a 3";
+            score += 100;
+            player.arrows += 5;
+            player.bullets += 5;
+        }
+        if(roll == 4) {
+            document.getElementById("qte_armoury_text").innerHTML = "you rolled a 4";
+            score += 180;
+            player.arrows += 10;
+        }
+        if(roll == 5) {
+            document.getElementById("qte_armoury_text").innerHTML = "you rolled a 5";
+            score += 240;
+            player.bullets += 10;
+        }
+        if(roll == 6) {
+            document.getElementById("qte_armoury_text").innerHTML = "you rolled a 6";
+            score += 300;
+            //hide the button to continue and show a transition for the new weapon discovery!
+            document.getElementById("qte_armoury_lucky_button").style.display = "block";
+            document.getElementById("qte_armoury_cont_button").style.display = "none";
         }
     }
 }

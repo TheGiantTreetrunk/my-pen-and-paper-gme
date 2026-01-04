@@ -919,6 +919,7 @@ pre {
     border: 3px solid #ffffff;
     background-color: #000;
     overflow-y: auto; 
+    overflow-x: hidden;
     box-shadow: 10px 10px var(--shadow-color, #ffffff);
     color: #fff;
     padding: 0;
@@ -1004,3 +1005,201 @@ pre {
 }
   
 #banquet_table_roll_chart tr:nth-child(even){background-color: #1a1a1a;}
+
+
+
+#qte_the_armoury {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border: 3px solid #ffffff;
+    background-color: #000;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    box-shadow: 10px 10px var(--shadow-color, #ffffff);
+    color: #fff;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The Sticky Header Area */
+.armoury-container {
+    position: sticky;
+    top: 0;
+    z-index: 1; 
+    text-align: center;
+    background-color: #000;
+    /* Height is determined by the content (Art + Title) */
+    padding-bottom: 10px;
+}
+
+/* THE FROSTED EFFECT - Reduced blur to 2px */
+.glass-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05); /* Lighter tint */
+    backdrop-filter: blur(2px);            /* Less blurry as requested */
+    -webkit-backdrop-filter: blur(2px);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Title and Dice are now both z-index 3 to sit on top of the glass */
+.sticky-title {
+    position: relative;
+    z-index: 3;
+    margin: 0;
+    padding: 15px 0 5px 0;
+    background: transparent;
+}
+
+#dice-display1 {
+    position: absolute;
+    top: 60%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    z-index: 3; 
+    text-shadow: 0 0 15px rgba(0,0,0,0.9);
+}
+
+.armoury_table {
+    font-size: 8px;
+    margin: 0 auto;
+    display: inline-block;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1; /* Under the glass */
+}
+
+/* The Scrolling Content */
+.qte-scroll-content {
+    background-color: #000000;
+    position: relative;
+    z-index: 10; 
+    padding: 20px;
+}
+
+.qte-scroll-content button {
+    padding: 14px 0px;
+	width: 100%;
+}
+
+#armoury_table_roll_chart {
+    font-family: "main";
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+#armoury_table_roll_chart td {
+    padding: 12px;
+    border: 1px solid #444;
+}
+  
+#armoury_table_roll_chart tr:nth-child(even){background-color: #1a1a1a;}
+
+
+
+#qte_the_mint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border: 3px solid #ffffff;
+    background-color: #000;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    box-shadow: 10px 10px var(--shadow-color, #ffffff);
+    color: #fff;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The Sticky Header Area */
+.mint-container {
+    position: sticky;
+    top: 0;
+    z-index: 1; 
+    text-align: center;
+    background-color: #000;
+    /* Height is determined by the content (Art + Title) */
+    padding-bottom: 10px;
+}
+
+/* THE FROSTED EFFECT - Reduced blur to 2px */
+.glass-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05); /* Lighter tint */
+    backdrop-filter: blur(2px);            /* Less blurry as requested */
+    -webkit-backdrop-filter: blur(2px);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Title and Dice are now both z-index 3 to sit on top of the glass */
+.sticky-title {
+    position: relative;
+    z-index: 3;
+    margin: 0;
+    padding: 15px 0 5px 0;
+    background: transparent;
+}
+
+#dice-display2 {
+    position: absolute;
+    top: 60%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    z-index: 3; 
+    text-shadow: 0 0 15px rgba(0,0,0,0.9);
+}
+
+.mint_table {
+    font-size: 8px;
+    margin: 0 auto;
+    display: inline-block;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1; /* Under the glass */
+}
+
+/* The Scrolling Content */
+.qte-scroll-content {
+    background-color: #000000;
+    position: relative;
+    z-index: 10; 
+    padding: 20px;
+}
+
+.qte-scroll-content button {
+    padding: 14px 0px;
+	width: 100%;
+}
+
+#mint_table_roll_chart {
+    font-family: "main";
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+#mint_table_roll_chart td {
+    padding: 12px;
+    border: 1px solid #444;
+}
+  
+#mint_table_roll_chart tr:nth-child(even){background-color: #1a1a1a;}

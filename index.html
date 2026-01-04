@@ -10,9 +10,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='style.css?v=4.48' rel='stylesheet'>
-        <link href='game_style.css?v=4.48' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.68"></script>
+        <link href='style.css?v=4.72' rel='stylesheet'>
+        <link href='game_style.css?v=4.72' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.72"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -528,7 +528,7 @@
                     <tr><td>Rolls 4</td><td>+1 Water</td></tr>
                     <tr><td>Rolls 3</td><td>+1 Food</td></tr>
                     <tr><td>Rolls 2</td><td>Nothing</td></tr>
-                    <tr><td>Rolls 1</td><td>-4 Health</td></tr>
+                    <tr><td>Rolls 1</td><td>-2 Health</td></tr>
                 </table>
                 <hr>
                 <br><br><br>
@@ -537,15 +537,57 @@
         </div>
 
         <div id="qte_the_armoury">
-            <h3 style="text-align: center;">The Armoury</h3>
-            <hr>
-            <p id="qte_armoury_text" style="text-align: center;"></p>
             <div class="armoury-container">
-                <pre>
-
+                <h3 class="sticky-title">The Armoury Room</h3>
+                
+                <div class="glass-overlay"></div>
+                
+                <div id="dice-display1">⚄</div>
+        
+                <pre class="armoury_table">
+                    _______________________________________________________________
+                    |                                                               |
+                    |   _________________________        _________        _______   |
+                    |  |             |           |      /         \      |       |  |
+                    |  |   /|   |\   |    _      |     |   _   _   |     |  [X]  |  |
+                    |  |  /_|___|_\  |   / \     |     |  | |_| |  |     |  / \  |  |
+                    |  |    |   |    |   | |     |       \ \_ _ / /      |  | |  |  |
+                    |  |    |   |    |   \_/     |        |      |       |  \_/  |  |
+                    |  |    |   |    |    |      |       /|   _  |\      |   |   |  |
+                    |  |    |   |    |    |      |      | |  / \ | |     |   |   |  |
+                    |  |____|___|____|____|______|      |_|  |_|  |_|    |___|___|  |
+                    |  [  WEAPON RACK - SWORDS  ]     [ FULL PLATE ]    [ SPEARS ]  |
+                    |_______________________________________________________________|
+                    |                                                               |
+                    |        ________                                     ______    |
+                    |       /        \        _______________            /     /|   |
+                    |      /__________\      |   _________   |          /_____/ |   |
+                    |      |          |      |  |         |  |          |     | |   |
+                    |      |  ANVIL   |      |  |  CHEST  |  |          | BOX | /   |
+                    |______|__________|______|__|_________|__|__________|_____|/____|
                 </pre>
-                </div>
-                <button onclick="">Ok, Got It.</button>
+            </div>
+        
+            <div class="qte-scroll-content">
+                <hr>
+                <p id="qte_armoury_text" style="text-align: center;"></p>
+                <button id="qte_armoury_dice_button" onclick="">Roll Dice</button>
+                <button id="qte_armoury_cont_button" onclick="hud(21)">Ok, Got It.</button>
+                
+                <button id="qte_armoury_lucky_button" onclick="hud(22)">Sweet!</button>
+                <hr>
+                <table id="armoury_table_roll_chart">
+                    <tr><td>Rolls 6</td><td>New Weapon</td></tr>
+                    <tr><td>Rolls 5</td><td>+10 Bullets</td></tr>
+                    <tr><td>Rolls 4</td><td>+10 Arrows</td></tr>
+                    <tr><td>Rolls 3</td><td>+5 Arrows +5 Bullets</td></tr>
+                    <tr><td>Rolls 2</td><td>Nothing</td></tr>
+                    <tr><td>Rolls 1</td><td>-3 Health</td></tr>
+                </table>
+                <hr>
+                <br><br><br>
+                
+            </div>
         </div>
 
         <div id="qte_the_cake">
@@ -561,15 +603,56 @@
         </div>
 
         <div id="qte_the_mint">
-            <h3 style="text-align: center;">The Mint</h3>
-            <hr>
-            <p id="qte_mint_text" style="text-align: center;"></p>
             <div class="mint-container">
-                <pre>
-
+                <h3 class="sticky-title">The Mint Room</h3>
+                
+                <div class="glass-overlay"></div>
+                
+                <div id="dice-display2">⚄</div>
+        
+                <pre class="mint_table">
+                     _______________________________________________________________
+                    |                                                               |
+                    |    ( MELTING )          ( STAMPING )           ( STORAGE )    |
+                    |      _______               _____                _________     |
+                    |     |  ___  |             |_   _|              |         |    |
+                    |     | |   | |    _          | |                |  _____  |    |
+                    |     | |___| |   | |         | |                | |     | |    |
+                    |     |  _ _  |   | |        /   \               | | $ $ | |    |
+                    |     | |/ \| |   | |       |     |              | |_____| |    |
+                    |    _|_|___|_|___|_|_______|_____|______________|_________|__  |
+                    |   |                         | |                             | |
+                    |   |    /        \           | |            (O) (O) (O)      | |
+                    |   |   |  FORGE   |        --[---]--         (O) (O) (O)     | |
+                    |   |    \________/          /_____\           Stacks of      | |
+                    |   |      [ Crucible ]      [ Die ]             Gold         | |
+                    |___|_________________________________________________________|_|
+                    |                                                               |
+                    |             "By Command of the King - Year 1402"              |
+                    |_______________________________________________________________|  
                 </pre>
-                </div>
-                <button onclick="">Ok, Got It.</button>
+            </div>
+        
+            <div class="qte-scroll-content">
+                <hr>
+                <p id="qte_mint_text" style="text-align: center;"></p>
+                <button id="qte_mint_dice_button" onclick="">Roll Dice</button>
+                <button id="qte_mint_cont_button" onclick="hud(21)">Ok, Got It.</button>
+                
+                <button id="qte_mint_lucky_button" onclick="hud(22)">Sweet!</button>
+                <hr>
+                <table id="mint_table_roll_chart">
+                    <tr><td>Rolls 6</td><td>New Weapon</td></tr>
+                    <tr><td>Rolls 5</td><td>+10 Bullets</td></tr>
+                    <tr><td>Rolls 4</td><td>+10 Arrows</td></tr>
+                    <tr><td>Rolls 3</td><td>+5 Arrows +5 Bullets</td></tr>
+                    <tr><td>Rolls 2</td><td>Nothing</td></tr>
+                    <tr><td>Rolls 1</td><td>-3 Health</td></tr>
+                </table>
+                <hr>
+                <br><br><br>
+                
+            </div>
         </div>
 
         <script>
