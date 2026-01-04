@@ -1520,6 +1520,7 @@ function Banquet(callout) {
         if(roll == 1) {
             document.getElementById("qte_banquet_text").innerHTML = "you rolled a 1";
             score += 20;
+            player.health -= 4;
         }
         if(roll == 2) {
             document.getElementById("qte_banquet_text").innerHTML = "you rolled a 2";
@@ -1528,18 +1529,23 @@ function Banquet(callout) {
         if(roll == 3) {
             document.getElementById("qte_banquet_text").innerHTML = "you rolled a 3";
             score += 80;
+            player.food += 1;
         }
         if(roll == 4) {
             document.getElementById("qte_banquet_text").innerHTML = "you rolled a 4";
             score += 160;
+            player.water += 1;
         }
         if(roll == 5) {
             document.getElementById("qte_banquet_text").innerHTML = "you rolled a 5";
             score += 200;
+            player.food += 5;
         }
         if(roll == 6) {
             document.getElementById("qte_banquet_text").innerHTML = "you rolled a 6";
             score += 240;
+            player.food += 10;
+            player.water += 5;
         }
     }
 }
