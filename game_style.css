@@ -919,7 +919,7 @@ pre {
     border: 3px solid #ffffff;
     background-color: #000;
     overflow-y: auto; 
-    box-shadow: 10px 10px #ffffff;
+    box-shadow: 10px 10px var(--shadow-color, #ffffff);
     color: #fff;
     padding: 0;
     display: flex;
