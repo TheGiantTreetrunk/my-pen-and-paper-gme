@@ -1579,6 +1579,8 @@ function Armoury(callout) {
         document.getElementById("qte_armoury_text").innerHTML = "You have discovered a armoury depot! Maybe you can get some new gear in here...";
         document.getElementById("qte_armoury_dice_button").style.display = "block";
         document.getElementById("qte_armoury_cont_button").style.display = "none";
+        
+        document.getElementById("qte_armoury_lucky_button").style.display = "none";
     }
 
     if(callout == 1) {
