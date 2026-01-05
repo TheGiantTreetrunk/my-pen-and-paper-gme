@@ -512,6 +512,16 @@ function hud(callout){
         //hud 13 callout
         data_output(9);
     }
+
+    if(callout == 23) {
+        document.getElementById("qte_the_mint").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
+
+    if(callout == 24) {
+        document.getElementById("qte_the_cake").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
 }
 
 function class_selection(class_num, button_element) {
@@ -675,7 +685,7 @@ function Generation(conditional) {
             }
             
             trap_1[0] = "Nothing";
-            trap_2[0] = "Mint";
+            trap_2[0] = "Cake";
             trap_1d.push(0);
             trap_2d.push(0);
             trap_3d.push(0);
@@ -1262,16 +1272,18 @@ function Encounter() {
     if(trap_triggered_type == "Armoury"){
         document.getElementById("qte_the_armoury").style.display = "block";
         document.getElementById("game").style.display = "none";
+        Armoury(0);
     }
 
     if(trap_triggered_type == "Cake"){
-        //document.getElementById("qte_the_cake").style.display = "block";
-        //document.getElementById("game").style.display = "none";
+        document.getElementById("qte_the_cake").style.display = "block";
+        document.getElementById("game").style.display = "none";
     }
 
     if(trap_triggered_type == "Mint"){
         document.getElementById("qte_the_mint").style.display = "block";
         document.getElementById("game").style.display = "none";
+        Mint(0);
     }
 }
 
@@ -1564,7 +1576,7 @@ function Banquet(callout) {
 
 function Armoury(callout) {
     if(callout == 0) {
-        document.getElementById("qte_banquet_text").innerHTML = "You've come across a banquet table! Looks like some table scraps are still left over...";
+        document.getElementById("qte_armoury_text").innerHTML = "You have discovered a armoury depot! Maybe you can get some new gear in here...";
         document.getElementById("qte_armoury_dice_button").style.display = "block";
         document.getElementById("qte_armoury_cont_button").style.display = "none";
     }
@@ -1623,6 +1635,68 @@ function Armoury(callout) {
             //hide the button to continue and show a transition for the new weapon discovery!
             document.getElementById("qte_armoury_lucky_button").style.display = "block";
             document.getElementById("qte_armoury_cont_button").style.display = "none";
+        }
+    }
+}
+
+
+function Mint(callout) {
+    if(callout == 0) {
+        document.getElementById("qte_mint_text").innerHTML = "You've discovered an abandoned mint room. You wonder if there is anything left over from empires past...";
+        document.getElementById("qte_mint_dice_button").style.display = "block";
+        document.getElementById("qte_mint_cont_button").style.display = "none";
+    }
+
+    if(callout == 1) {
+        if(trap_tripped == 1) {
+            trap_1d[room] = 1;
+        }
+        if(trap_tripped == 2) {
+            trap_2d[room] = 1;
+        }
+        if(trap_tripped == 3) {
+            trap_3d[room] = 1;
+        }
+        if(trap_tripped == 4) {
+            trap_4d[room] = 1;
+        }
+        
+        const diceDisplay = document.getElementById('dice-display2');
+        const roll = Math.floor(Math.random() * 6) + 1;
+        const unicodePoint = 0x267F + roll; 
+
+        diceDisplay.textContent = String.fromCodePoint(unicodePoint);
+
+        document.getElementById("qte_mint_dice_button").style.display = "none";
+        document.getElementById("qte_mint_cont_button").style.display = "block";
+
+        if(roll == 1) {
+            document.getElementById("qte_mint_text").innerHTML = "you rolled a 1";
+            score += 10;
+        }
+        if(roll == 2) {
+            document.getElementById("qte_mint_text").innerHTML = "you rolled a 2";
+            score += 10;
+        }
+        if(roll == 3) {
+            document.getElementById("qte_mint_text").innerHTML = "you rolled a 3";
+            score += 100;
+            player.gold += 3;
+        }
+        if(roll == 4) {
+            document.getElementById("qte_mint_text").innerHTML = "you rolled a 4";
+            score += 180;
+            player.gold += 10;
+        }
+        if(roll == 5) {
+            document.getElementById("qte_mint_text").innerHTML = "you rolled a 5";
+            score += 240;
+            player.gold += 20;
+        }
+        if(roll == 6) {
+            document.getElementById("qte_mint_text").innerHTML = "you rolled a 6";
+            score += 300;
+            player.gold += 50;
         }
     }
 }

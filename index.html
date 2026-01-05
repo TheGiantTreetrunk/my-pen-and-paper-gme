@@ -10,9 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='style.css?v=4.72' rel='stylesheet'>
-        <link href='game_style.css?v=4.72' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.72"></script>
+        <link href='game_style.css?v=4.73' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.73"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -593,13 +592,35 @@
         <div id="qte_the_cake">
             <h3 style="text-align: center;">EVERYTHING IS CAKE!</h3>
             <hr>
-            <p id="qte_cake_text" style="text-align: center;"></p>
+            <p id="qte_cake_text" style="text-align: center;">A cake is waiting for you...</p>
             <div class="cake-container">
                 <pre>
-
+                    ||      ||      ||
+                    ||      ||      ||
+                   [@@]    [@@]    [@@]
+                    ||      ||      ||
+                 ________________________
+                |                        |
+                |                        |
+         _______|________________________|_______
+        |                                        |
+        |                                        |
+        |                                        |
+        |________________________________________|
+       |                                          |
+       |                                          |
+       |                                          |
+       |                                          |
+       |__________________________________________|
+      /                                            \
+     /______________________________________________\
+    |                                                |
+    |                                                |
+    |                                                |
+    |________________________________________________|
                 </pre>
                 </div>
-                <button onclick="">Ok, Got It.</button>
+                <button onclick="hud(24)">Ok, Got It.</button>
         </div>
 
         <div id="qte_the_mint">
@@ -636,18 +657,16 @@
             <div class="qte-scroll-content">
                 <hr>
                 <p id="qte_mint_text" style="text-align: center;"></p>
-                <button id="qte_mint_dice_button" onclick="">Roll Dice</button>
-                <button id="qte_mint_cont_button" onclick="hud(21)">Ok, Got It.</button>
-                
-                <button id="qte_mint_lucky_button" onclick="hud(22)">Sweet!</button>
+                <button id="qte_mint_dice_button" onclick="Armoury(1)">Roll Dice</button>
+                <button id="qte_mint_cont_button" onclick="hud(23)">Ok, Got It.</button>
                 <hr>
                 <table id="mint_table_roll_chart">
-                    <tr><td>Rolls 6</td><td>New Weapon</td></tr>
-                    <tr><td>Rolls 5</td><td>+10 Bullets</td></tr>
-                    <tr><td>Rolls 4</td><td>+10 Arrows</td></tr>
-                    <tr><td>Rolls 3</td><td>+5 Arrows +5 Bullets</td></tr>
+                    <tr><td>Rolls 6</td><td>+50 Gold!</td></tr>
+                    <tr><td>Rolls 5</td><td>+20 Gold</td></tr>
+                    <tr><td>Rolls 4</td><td>+10 Gold</td></tr>
+                    <tr><td>Rolls 3</td><td>+3 Gold</td></tr>
                     <tr><td>Rolls 2</td><td>Nothing</td></tr>
-                    <tr><td>Rolls 1</td><td>-3 Health</td></tr>
+                    <tr><td>Rolls 1</td><td>Nothing</td></tr>
                 </table>
                 <hr>
                 <br><br><br>
