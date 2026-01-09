@@ -1,6 +1,9 @@
 /* Add styles here */
 :root {
     --shadow-color: #000000;
+    --card-color: #2f3031;
+    --match-color: #707070;
+    --mismatch-color: #000000;
 }
 
 @font-face {
@@ -1684,3 +1687,197 @@ pre {
     line-height: 1.1;
     font-weight: bold;
 }
+
+
+#qte_the_keypad {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border: 3px solid #ffffff;
+    background-color: #000;
+    overflow: hidden; /* Changed to hidden since we're centering */
+    box-shadow: 10px 10px var(--shadow-color);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* MAIN CONTAINER - Handles the "True Center" logic */
+.chapel-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 2; /* Sits above the glass */
+    padding: 20px;
+}
+
+/* GAME BOARD - Changed from absolute to grid for true centering */
+#chapel-display {
+    display: grid;
+    grid-template-columns: repeat(4, 64px); /* 4 columns across */
+    grid-gap: 15px;
+    perspective: 1000px;
+    margin-top: 20px;
+}
+
+.sticky-title {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.5rem;
+}
+
+/* Card Styling */
+.card {
+    width: 64px;
+    height: 64px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    cursor: pointer;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.card-front {
+    background-color: var(--card-color);
+    color: white;
+}
+
+.card-back {
+    background-color: #fff;
+    transform: rotateY(180deg);
+    color: #000;
+}
+
+.card.matched .card-back {
+    background-color: var(--match-color);
+    color: white;
+}
+
+#keypad_button {
+    padding: 14px 0px;
+    width: 100%;
+}
+
+
+#qte_rps {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border: 3px solid #ffffff;
+    background-color: #000;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    box-shadow: 10px 10px var(--shadow-color, #ffffff);
+    color: #fff;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The Sticky Header Area */
+.rps-container {
+    position: sticky;
+    top: 0;
+    z-index: 1; 
+    text-align: center;
+    background-color: #000;
+    /* Height is determined by the content (Art + Title) */
+    padding-bottom: 10px;
+}
+
+/* THE FROSTED EFFECT - Reduced blur to 2px */
+.glass-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05); /* Lighter tint */
+    backdrop-filter: blur(2px);            /* Less blurry as requested */
+    -webkit-backdrop-filter: blur(2px);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Title and Dice are now both z-index 3 to sit on top of the glass */
+.sticky-title {
+    position: relative;
+    z-index: 3;
+    margin: 0;
+    padding: 15px 0 5px 0;
+    background: transparent;
+}
+
+#dice-display69 {
+    position: absolute;
+    top: 60%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    z-index: 3; 
+    text-shadow: 0 0 15px rgba(0,0,0,0.9);
+}
+
+.rps_table {
+    font-size: 8px;
+    margin: 0 auto;
+    display: inline-block;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1; /* Under the glass */
+}
+
+/* The Scrolling Content */
+.qte-scroll-content {
+    background-color: #000000;
+    position: relative;
+    z-index: 10; 
+    padding: 20px;
+}
+
+.qte-scroll-content button {
+    padding: 14px 0px;
+	width: 100%;
+}
+
+#rps_table_roll_chart {
+    font-family: "main";
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+#rps_table_roll_chart td {
+    padding: 12px;
+    border: 1px solid #444;
+    text-align: center;
+}
+  
+#rps_table_roll_chart tr:nth-child(even){background-color: #1a1a1a;}

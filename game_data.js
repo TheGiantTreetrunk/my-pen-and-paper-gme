@@ -235,6 +235,7 @@ function Start() {
     document.getElementById("qte_the_armoury").style.display = "none";
     document.getElementById("qte_the_cake").style.display = "none";
     document.getElementById("qte_the_mint").style.display = "none";
+    document.getElementById("qte_the_keypad").style.display = "none";
 
     //motto_funny
     var mottox = Math.floor((Math.random() * mottos.length));
@@ -522,6 +523,11 @@ function hud(callout){
         document.getElementById("qte_the_cake").style.display = "none";
         document.getElementById("game").style.display = "block";
     }
+
+    if(callout == 25) {
+        document.getElementById("qte_the_keypad").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
 }
 
 function class_selection(class_num, button_element) {
@@ -685,7 +691,7 @@ function Generation(conditional) {
             }
             
             trap_1[0] = "Nothing";
-            trap_2[0] = "Cake";
+            trap_2[0] = "keypad";
             trap_1d.push(0);
             trap_2d.push(0);
             trap_3d.push(0);
@@ -1285,6 +1291,13 @@ function Encounter() {
         document.getElementById("game").style.display = "none";
         Mint(0);
     }
+
+    if(trap_triggered_type == "keypad"){
+        document.getElementById("qte_the_keypad").style.display = "block";
+        document.getElementById("game").style.display = "none";
+        initGame();
+        
+    }
 }
 
 var qte_book_cur_status = 0;
@@ -1702,3 +1715,177 @@ function Mint(callout) {
         }
     }
 }
+
+
+
+
+/*The Rock Paper Scizzors mechanic */
+let playerScore = 0;
+let computerScore = 0;
+
+    function play(playerChoice) {
+        const choices = ['Shield', 'Sword', 'Musket'];
+        const computerChoice = choices[Math.floor(Math.random() * 3)];
+        let result = "";
+
+        if (playerChoice === computerChoice) {
+            result = "It's a tie!";
+        } else if (
+            (playerChoice === 'Shield' && computerChoice === 'Musket') ||
+            (playerChoice === 'Sword' && computerChoice === 'Shield') ||
+            (playerChoice === 'Musket' && computerChoice === 'Sword')
+        ) {
+            result = "You win this round!";
+            playerScore++;
+        } else {
+            result = "Computer wins this round!";
+            computerScore++;
+        }
+
+        // Update UI
+        document.getElementById('message').innerText = 
+            `You chose ${playerChoice}, Computer chose ${computerChoice}. ${result}`;
+        document.getElementById('score').innerText = 
+            `Player: ${playerScore} | Computer: ${computerScore}`;
+
+        // Check for game over
+        if (playerScore === 5 || computerScore === 5) {
+            const winner = playerScore === 5 ? "You" : "The Computer";
+            alert(`${winner} won the game!`);
+            playerScore = 0;
+            computerScore = 0;
+        }
+    }
+
+    function qte_rps(callout) {
+        if(callout == 0) {
+            document.getElementById("qte_rps_text").innerHTML = "You've encountered a demon with a gambling addiction and challenges you to Shield, Swords, and Muskets!";
+            document.getElementById("qte_rps_shield_button").style.display = "block";
+            document.getElementById("qte_rps_sword_button").style.display = "block";
+            document.getElementById("qte_rps_musket_button").style.display = "block";
+            document.getElementById("rps_table_roll_chart").style.display = "block";
+
+            document.getElementById("qte_rps_lucky_button").style.display = "none";
+            document.getElementById("qte_rps_unlucky_button").style.display = "none";
+        }
+
+        if(callout == 1) {
+            document.getElementById("qte_rps_text").innerHTML = "You won against the Demon!";
+            document.getElementById("qte_rps_shield_button").style.display = "none";
+            document.getElementById("qte_rps_sword_button").style.display = "none";
+            document.getElementById("qte_rps_musket_button").style.display = "none";
+            document.getElementById("rps_table_roll_chart").style.display = "none";
+
+            document.getElementById("qte_rps_lucky_button").style.display = "block";
+            document.getElementById("qte_rps_unlucky_button").style.display = "none";
+        }
+
+        if(callout == 2) {
+            document.getElementById("qte_rps_text").innerHTML = "The Demon won. Better luck next time...";
+            document.getElementById("qte_rps_shield_button").style.display = "none";
+            document.getElementById("qte_rps_sword_button").style.display = "none";
+            document.getElementById("qte_rps_musket_button").style.display = "none";
+            document.getElementById("rps_table_roll_chart").style.display = "none";
+
+            document.getElementById("qte_rps_lucky_button").style.display = "none";
+            document.getElementById("qte_rps_unlucky_button").style.display = "block";
+        }
+
+
+    }
+
+
+
+
+/*QTE FOR MEMORY CARD GAME */
+const board = document.getElementById('chapel-display');
+// Card symbols (pairs)
+const symbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+let cards = [...symbols, ...symbols];
+let flippedCards = [];
+let matchedCount = 0;
+let lockBoard = false;
+
+function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+function createCard(symbol) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `
+        <div class="card-face card-front">?</div>
+        <div class="card-face card-back">${symbol}</div>
+    `;
+    card.addEventListener('click', flipCard);
+    return card;
+}
+
+function flipCard() {
+    if (lockBoard || this.classList.contains('flipped')) return;
+
+    this.classList.add('flipped');
+    flippedCards.push(this);
+
+    if (flippedCards.length === 2) {
+        checkMatch();
+    }
+}
+
+function checkMatch() {
+    lockBoard = true;
+    const [card1, card2] = flippedCards;
+    const isMatch = card1.innerHTML === card2.innerHTML;
+
+    if (isMatch) {
+        card1.classList.add('matched');
+        card2.classList.add('matched');
+        resetTurn();
+        matchedCount += 2;
+        if (matchedCount === cards.length) setTimeout(() => keypad_cleared(), 500);
+    } else {
+        setTimeout(() => {
+            card1.classList.remove('flipped');
+            card2.classList.remove('flipped');
+            resetTurn();
+        }, 1000);
+    }
+}
+
+function resetTurn() {
+    flippedCards = [];
+    lockBoard = false;
+}
+
+function initGame() {
+    document.getElementById("keypad_button").style.display = "none";
+    board.innerHTML = '';
+    matchedCount = 0;
+    const shuffledCards = shuffle(cards);
+    shuffledCards.forEach(symbol => {
+        board.appendChild(createCard(symbol));
+    });
+}
+
+function keypad_cleared() {
+    document.getElementById("qte_keypad_text").innerHTML = "You've unlocked the door."
+    document.getElementById("keypad_button").style.display = "block";
+    document.getElementById("chapel-display").innerHTML = "";
+
+    if(trap_tripped == 1) {
+        trap_1d[room] = 1;
+    }
+    if(trap_tripped == 2) {
+        trap_2d[room] = 1;
+    }
+    if(trap_tripped == 3) {
+        trap_3d[room] = 1;
+    }
+    if(trap_tripped == 4) {
+        trap_4d[room] = 1;
+    }
+}
+// Start the game on load
+//initGame();
+
+//whack a mole style qte challenge!

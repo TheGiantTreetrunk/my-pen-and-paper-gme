@@ -10,8 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='game_style.css?v=4.73' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.73"></script>
+        <link href='game_style.css?v=4.82' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.80"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -667,6 +667,61 @@
                     <tr><td>Rolls 3</td><td>+3 Gold</td></tr>
                     <tr><td>Rolls 2</td><td>Nothing</td></tr>
                     <tr><td>Rolls 1</td><td>Nothing</td></tr>
+                </table>
+                <hr>
+                <br><br><br>
+                
+            </div>
+        </div>
+
+
+        <div id="qte_the_keypad">
+            <div class="chapel-container">
+                <h3 class="sticky-title">A wierd keypad</h3>
+                <p id="qte_keypad_text" style="text-align: center">Match the corresponding symbols to access the next room.</p>
+                <button id='keypad_button' onclick='hud(25)'>Continue</button>
+                <div class="chapel-foreground">
+                    
+                    <div id="chapel-display">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="qte_rps">
+            <div class="rps-container">
+                <h3 class="sticky-title">A gambling Demon...</h3>
+                
+                <div class="glass-overlay"></div>
+                
+                <div id="rps-display69">
+                    First to 5 wins!
+                        <p id="message_rps">Choose your weapon to start!</p>
+                        <p id="score_rps">You: 0 | Demon: 0</p>
+                </div>
+        
+                <pre class="rps_table">
+                </pre>
+            </div>
+        
+            <div class="qte-scroll-content">
+                <hr>
+                <p id="qte_rps_text" style="text-align: center;">You've encountered a demon with a gambling addiction and challenges you to Shield, Swords, and Muskets!</p>
+                
+                <button id="qte_rps_shield_button" onclick="play('Shield')">Pick Shield</button>
+                <button id="qte_rps_sword_button" onclick="play('Sword')">Pick Sword</button>
+                <button id="qte_rps_musket_button" onclick="play('Musket')">Pick Musket</button>
+
+
+
+                <button id="qte_rps_lucky_button" onclick="hud(21)">Ok, Got It.</button>
+                <button id="qte_rps_unlucky_button" onclick="hud(22)">Dangers!</button>
+                <hr>
+                <table id="rps_table_roll_chart">
+                    <tr><td>Shield</td><td>Beats</td><td>Musket</td></tr>
+                    <tr><td>Sword</td><td>Beats</td><td>Shield</td></tr>
+                    <tr><td>Musket</td><td>Beats</td><td>Sword</td></tr>
                 </table>
                 <hr>
                 <br><br><br>
