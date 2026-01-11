@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase DB Test</title>
+</head>
+<body>
+    <h1>Testing Firestore Connection</h1>
+    <p>Attempting to write to Firestore... Check the console and alerts for status.</p>
+
+    <script type="module">
+        console.log("Script execution started..."); // <-- Simple log to check if JS is running
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAB-HTTSt2MziITzzi9PUlLAK7J8OvVkoM",
+            authDomain: "rage-n-riches.firebaseapp.com",
+            projectId: "rage-n-riches",
+            storageBucket: "rage-n-riches.firebasestorage.app",
+            messagingSenderId: "809289464798",
+            appId: "1:809289464798:web:0abff20ca2629d29927b4f",
+            measurementId: "G-HE4CTRS5DW"
+        };
+
+        // Initialize Firebase
+        try {
+            console.log("Initializing Firebase...");
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+            console.log("Firebase initialized successfully.");
+
+            // Function to test Firestore write
+            async function testFirestoreWrite() {
+                try {
+                    console.log("Attempting to write to Firestore...");
+                    const docRef = doc(db, "test-collection", "test-document");
+                    await setDoc(docRef, {
+                        message: "Hello from db_test.html!",
+                        timestamp: new Date()
+                    });
+                    alert("Firestore write successful!");
+                    console.log("Document written successfully!");
+                } catch (e) {
+                    alert("Error writing to Firestore. Check the console for details.");
+                    console.error("Error writing document: ", e);
+                }
+            }
+
+            // Run the test
+            testFirestoreWrite();
+        } catch (e) {
+            console.error("Critical error during Firebase initialization: ", e);
+            alert("A critical error occurred. Check the console.");
+        }
+    </script>
+</body>
+</html>
