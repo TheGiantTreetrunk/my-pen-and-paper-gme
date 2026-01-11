@@ -10,8 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='game_style.css?v=4.82' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.80"></script>
+        <link href='game_style.css?v=4.88' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.89"></script>
     </head>
     <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
         <div id="splash" onclick="hud(0)">
@@ -657,7 +657,7 @@
             <div class="qte-scroll-content">
                 <hr>
                 <p id="qte_mint_text" style="text-align: center;"></p>
-                <button id="qte_mint_dice_button" onclick="Armoury(1)">Roll Dice</button>
+                <button id="qte_mint_dice_button" onclick="Mint(1)">Roll Dice</button>
                 <button id="qte_mint_cont_button" onclick="hud(23)">Ok, Got It.</button>
                 <hr>
                 <table id="mint_table_roll_chart">
@@ -715,8 +715,8 @@
 
 
 
-                <button id="qte_rps_lucky_button" onclick="hud(21)">Ok, Got It.</button>
-                <button id="qte_rps_unlucky_button" onclick="hud(22)">Dangers!</button>
+                <button id="qte_rps_lucky_button" onclick="hud(26)">Ok, Got It.</button>
+                <button id="qte_rps_unlucky_button" onclick="hud(26)">Dangers!</button>
                 <hr>
                 <table id="rps_table_roll_chart">
                     <tr><td>Shield</td><td>Beats</td><td>Musket</td></tr>
@@ -728,6 +728,26 @@
                 
             </div>
         </div>
+
+        <div id="qte_wack">
+          <div class="game-info">
+            <div id="qte_whack_score">Score: 0</div>
+            <div id="qte_whack_timer">Time: 60s</div>
+        </div>
+        <button id="qte_whack_startButton" onclick="qte_whack_startGame()">Start Game</button>
+        <button id="qte_whack_endButton" onclick="qte_whack_endGame()" disabled>End Game</button>
+        <div class="game-container">
+            <div class="hole" id="qte_whack_hole1"></div>
+            <div class="hole" id="qte_whack_hole2"></div>
+            <div class="hole" id="qte_whack_hole3"></div>
+            <div class="hole" id="qte_whack_hole4"></div>
+            <div class="hole" id="qte_whack_hole5"></div>
+            <div class="hole" id="qte_whack_hole6"></div>
+            <div class="hole" id="qte_whack_hole7"></div>
+            <div class="hole" id="qte_whack_hole8"></div>
+            <div class="hole" id="qte_whack_hole9"></div>
+        </div>
+      </div>
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {

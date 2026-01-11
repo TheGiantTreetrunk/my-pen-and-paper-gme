@@ -88,7 +88,7 @@ var obj_4a = [];
 var trap_tripped = 0;
 var trap_triggered_type = "Nothing";
 var trap_roll = [0,1,0,0,0,0,1,0,1,0];
-var traps = ["Bookshelf","Vine Snare","Chest","Clown Box","Sudden Darkness","Banquet","Armoury","Cake","Mint"];
+var traps = ["Bookshelf","Vine Snare","Chest","Clown Box","Sudden Darkness","Banquet","Armoury","Cake","Mint","RPS"];
 var trap_1 = [];
 var trap_2 = [];
 var trap_3 = [];
@@ -236,6 +236,8 @@ function Start() {
     document.getElementById("qte_the_cake").style.display = "none";
     document.getElementById("qte_the_mint").style.display = "none";
     document.getElementById("qte_the_keypad").style.display = "none";
+    document.getElementById("qte_rps").style.display = "none";
+    document.getElementById("qte_wack").style.display = "none";
 
     //motto_funny
     var mottox = Math.floor((Math.random() * mottos.length));
@@ -528,6 +530,16 @@ function hud(callout){
         document.getElementById("qte_the_keypad").style.display = "none";
         document.getElementById("game").style.display = "block";
     }
+
+    if(callout == 26) {
+        document.getElementById("qte_rps").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
+
+    if(callout == 27) {
+        document.getElementById("qte_wack").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
 }
 
 function class_selection(class_num, button_element) {
@@ -691,7 +703,6 @@ function Generation(conditional) {
             }
             
             trap_1[0] = "Nothing";
-            trap_2[0] = "keypad";
             trap_1d.push(0);
             trap_2d.push(0);
             trap_3d.push(0);
@@ -1298,6 +1309,13 @@ function Encounter() {
         initGame();
         
     }
+
+    if(trap_triggered_type == "RPS"){
+        document.getElementById("qte_rps").style.display = "block";
+        document.getElementById("game").style.display = "none";
+        qte_rps(0);
+        
+    }
 }
 
 var qte_book_cur_status = 0;
@@ -1720,8 +1738,8 @@ function Mint(callout) {
 
 
 /*The Rock Paper Scizzors mechanic */
-let playerScore = 0;
-let computerScore = 0;
+var playerScore = 0;
+var computerScore = 0;
 
     function play(playerChoice) {
         const choices = ['Shield', 'Sword', 'Musket'];
@@ -1743,17 +1761,26 @@ let computerScore = 0;
         }
 
         // Update UI
-        document.getElementById('message').innerText = 
+        document.getElementById('message_rps').innerText = 
             `You chose ${playerChoice}, Computer chose ${computerChoice}. ${result}`;
-        document.getElementById('score').innerText = 
+        document.getElementById('score_rps').innerText = 
             `Player: ${playerScore} | Computer: ${computerScore}`;
 
         // Check for game over
         if (playerScore === 5 || computerScore === 5) {
-            const winner = playerScore === 5 ? "You" : "The Computer";
-            alert(`${winner} won the game!`);
-            playerScore = 0;
-            computerScore = 0;
+            
+
+            if(playerScore == 5) {
+                qte_rps(1);
+                playerScore = 0;
+                computerScore = 0;
+            }
+
+            if(computerScore == 5) {
+                qte_rps(2);
+                playerScore = 0;
+                computerScore = 0;
+            }
         }
     }
 
@@ -1778,6 +1805,19 @@ let computerScore = 0;
 
             document.getElementById("qte_rps_lucky_button").style.display = "block";
             document.getElementById("qte_rps_unlucky_button").style.display = "none";
+
+            if(trap_tripped == 1) {
+                trap_1d[room] = 1;
+            }
+            if(trap_tripped == 2) {
+                trap_2d[room] = 1;
+            }
+            if(trap_tripped == 3) {
+                trap_3d[room] = 1;
+            }
+            if(trap_tripped == 4) {
+                trap_4d[room] = 1;
+            }
         }
 
         if(callout == 2) {
@@ -1789,6 +1829,19 @@ let computerScore = 0;
 
             document.getElementById("qte_rps_lucky_button").style.display = "none";
             document.getElementById("qte_rps_unlucky_button").style.display = "block";
+
+            if(trap_tripped == 1) {
+                trap_1d[room] = 1;
+            }
+            if(trap_tripped == 2) {
+                trap_2d[room] = 1;
+            }
+            if(trap_tripped == 3) {
+                trap_3d[room] = 1;
+            }
+            if(trap_tripped == 4) {
+                trap_4d[room] = 1;
+            }
         }
 
 
@@ -1889,3 +1942,82 @@ function keypad_cleared() {
 //initGame();
 
 //whack a mole style qte challenge!
+
+const qte_whack_holes = document.querySelectorAll(".hole");
+        const qte_whack_startButton = document.getElementById("qte_whack_startButton");
+        const qte_whack_endButton = document.getElementById("qte_whack_endButton");
+        const qte_whack_scoreDisplay = document.getElementById("qte_whack_score");
+        const qte_whack_timerDisplay = document.getElementById("qte_whack_timer");
+
+        let qte_whack_timer_val;
+        let qte_whack_score_val = 0;
+        let qte_whack_countdown;
+        let qte_whack_moleInterval;
+
+        // Set the initial state to game over
+        let qte_whack_gameOver = true;
+
+        function qte_whack_comeout() {
+            qte_whack_holes.forEach(qte_whack_hole => {
+                qte_whack_hole.classList.remove('target');
+                qte_whack_hole.removeEventListener('click', qte_whack_handleMoleClick);
+            });
+
+            let qte_whack_random = qte_whack_holes[Math.floor(Math.random() * 9)];
+
+            qte_whack_random.classList.add('target');
+            qte_whack_random.addEventListener('click', qte_whack_handleMoleClick);
+        }
+
+        function qte_whack_handleMoleClick() {
+            if (!qte_whack_gameOver) {
+                qte_whack_score_val++;
+                qte_whack_scoreDisplay.textContent = `Score: ${qte_whack_score_val}`;
+            }
+            this.classList.remove('target');
+        }
+
+        function qte_whack_startGame() {
+            if (!qte_whack_gameOver) {
+                return;
+            }
+
+            qte_whack_gameOver = false;
+            qte_whack_score_val = 0;
+            qte_whack_scoreDisplay.textContent = `Score: ${qte_whack_score_val}`;
+            qte_whack_timer_val = 60;
+            qte_whack_timerDisplay.textContent = `Time: ${qte_whack_timer_val}s`;
+
+            qte_whack_startButton.disabled = true;
+            qte_whack_endButton.disabled = false;
+
+            qte_whack_countdown = setInterval(() => {
+                qte_whack_timer_val--;
+                qte_whack_timerDisplay.textContent = `Time: ${qte_whack_timer_val}s`;
+
+                if (qte_whack_timer_val <= 0) {
+                    clearInterval(qte_whack_countdown);
+                    qte_whack_gameOver = true;
+                    alert(`Game Over!\nYour final score: ${qte_whack_score_val}`);
+                    qte_whack_startButton.disabled = false;
+                    qte_whack_endButton.disabled = true;
+                }
+            }, 1000);
+
+            qte_whack_moleInterval = setInterval(() => {
+                if (!qte_whack_gameOver) qte_whack_comeout();
+            }, 1000);
+        }
+
+        function qte_whack_endGame() {
+            clearInterval(qte_whack_countdown);
+            clearInterval(qte_whack_moleInterval);
+            qte_whack_gameOver = true;
+            alert(`Game Ended!\nYour final score: ${qte_whack_score_val}`);
+            qte_whack_score_val = 0;
+            qte_whack_timer_val = 60;
+            qte_whack_scoreDisplay.textContent = `Score: ${qte_whack_score_val}`;
+            qte_whack_timerDisplay.textContent = `Time: ${qte_whack_timer_val}s`;
+            qte_whack_startButton.disabled = false;
+            qte_whack_endButton.disabled = true;
+        }

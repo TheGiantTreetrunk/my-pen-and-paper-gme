@@ -1836,12 +1836,12 @@ pre {
     background: transparent;
 }
 
-#dice-display69 {
-    position: absolute;
+#rps-display69 {
+    position: relative;
     top: 60%; 
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 80px;
+    font-size: 16px;
     z-index: 3; 
     text-shadow: 0 0 15px rgba(0,0,0,0.9);
 }
@@ -1881,3 +1881,53 @@ pre {
 }
   
 #rps_table_roll_chart tr:nth-child(even){background-color: #1a1a1a;}
+
+
+#qte_wack {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border: 3px solid #ffffff;
+    background-color: #000;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    box-shadow: 10px 10px var(--shadow-color, #ffffff);
+    color: #fff;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.game-container {
+    background-color: #212626;
+    display: grid;
+    grid-template-columns: repeat(3, 160px);
+    gap: 10px;
+    border: 2px solid rgb(216, 216, 216);
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+}
+
+.hole {
+    width: 64px;
+    height: 64px;
+    background: #000000;
+    cursor: pointer;
+}
+
+.target {
+    background-size: 150px;
+    background-color: #ffffff;
+}
