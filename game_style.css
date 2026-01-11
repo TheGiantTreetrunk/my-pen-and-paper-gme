@@ -1931,3 +1931,14 @@ pre {
     background-size: 150px;
     background-color: #ffffff;
 }
+
+
+#login_button {
+    padding: 14px 0px;
+	width: 100%;
+}
+
+#offline_mode_button {
+    padding: 14px 0px;
+	width: 100%;
+}
