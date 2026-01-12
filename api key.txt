@@ -1,9 +1,0 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyAB-HTTSt2MziITzzi9PUlLAK7J8OvVkoM",
-  authDomain: "rage-n-riches.firebaseapp.com",
-  projectId: "rage-n-riches",
-  storageBucket: "rage-n-riches.firebasestorage.app",
-  messagingSenderId: "809289464798",
-  appId: "1:809289464798:web:0abff20ca2629d29927b4f",
-  measurementId: "G-HE4CTRS5DW"
-};
