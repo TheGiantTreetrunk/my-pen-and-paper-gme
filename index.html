@@ -10,8 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='game_style.css?v=4.90' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?v=4.92"></script>
+        <link href='game_style.css?v=4.92' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?v=4.93"></script>
 
 
     </head>
@@ -21,85 +21,104 @@
             <h1 id="game_menu_title">Rage 'n' Riches</h1>
             <div id="center_stuff">
                 <div id="tap_to_play">
-                    <p>Tap to Play</p>
+                    <button id="tap_to_play_button" onclick="UIX(0)">Tap to Play</button>
                 </div>
                 <div id="MM">
                     <button id="login_button" onclick="hud(0)">Play Now</button>
                     <br>
-                    <button id="offline_mode_button" onclick="">How to Play</button>
+                    <button id="offline_mode_button" onclick="UIX(1)">How to Play</button>
                     <br>
                     <button id="offline_mode_button" onclick="">Support</button>
                 </div>
 
-                <div id="How_To_Play">
-                    <div class="message-container">
-                        <!-- Message -->
-                        <center>
-                          <h1 id="message">Try out the controls below on a keyboard!</h1>
-                          <p>
-                            *If on a mobile device we have touch controls automativally enabled.*
-                            <br>
-                            Controller support coming soon!
-                          </p>
-                        </center>
-                      </div>
-                
-                      <div class="keyboard">
-                        <!-- Top Row -->
-                        <div class="top-row">
-                          <!-- Key -->
-                          <div data-key="87" class="key">
-                            <!-- Character -->
-                            <p>W</p>
-                          </div>
-                        </div>
-                        <!-- Bottom Row -->
-                        <div class="bottom-row">
-                          <!-- Key -->
-                          <div data-key="65" class="key">
-                            <!-- Character -->
-                            <p>A</p>
-                          </div>
-                          <!-- Key -->
-                          <div data-key="83" class="key">
-                            <!-- Character -->
-                            <p>S</p>
-                          </div>
-                          <!-- Key -->
-                          <div data-key="68" class="key">
-                            <!-- Character -->
-                            <p>D</p>
-                          </div>
-                        </div>
-                        <center>
-                        <!-- Bottom Row -->
-                        <div class="bottom-row">
-                          <div data-key="75" class="key">
-                            <!-- Character -->
-                            <p>K</p>
-                          </div>
-                
-                          <div data-key="79" class="key">
-                            <!-- Character -->
-                            <p>O</p>
-                          </div>
-                        </div>
-                        </center>
-                
-                      </div>
-                      
-                      <center>
-                      <button onclick="UIX(4)">
-                        Back
-                      </button>
-                      </center>
-                
+                <div id="how_to_sub">
+                    <button id="login_button" onclick="UIX(4)">Gameplay</button>
+                    <br>
+                    <button id="offline_mode_button" onclick="UIX(2)">Controls</button>
+                    <br>
+                    <button id="offline_mode_button" onclick="UIX(5)">Back</button>
                 </div>
 
                 <div id="support_mm">
                     <h3>Support</h3>
 
                 </div>
+            </div>
+
+            <div id="How_To_Play_Guide">
+                
+                  
+                  <center>
+                  <button id="UIX_BACK" onclick="UIX(6)">
+                    Back
+                  </button>
+                  </center>
+            
+            </div>
+
+            <div id="How_To_Play">
+                <div class="message-container">
+                    <!-- Message -->
+                    <center>
+                      <h2 id="message">Try out the controls below on a keyboard!</h2>
+                      <p>
+                        *If on a mobile device we have touch controls automativally enabled.*
+                        <br>
+                        Controller support coming soon!
+                      </p>
+                    </center>
+                  </div>
+            
+                  <div class="keyboard">
+                    <!-- Top Row -->
+                    <div class="top-row">
+                      <!-- Key -->
+                      <div data-key="87" class="key">
+                        <!-- Character -->
+                        <p>W</p>
+                      </div>
+                    </div>
+                    <!-- Bottom Row -->
+                    <div class="bottom-row">
+                      <!-- Key -->
+                      <div data-key="65" class="key">
+                        <!-- Character -->
+                        <p>A</p>
+                      </div>
+                      <!-- Key -->
+                      <div data-key="83" class="key">
+                        <!-- Character -->
+                        <p>S</p>
+                      </div>
+                      <!-- Key -->
+                      <div data-key="68" class="key">
+                        <!-- Character -->
+                        <p>D</p>
+                      </div>
+                    </div>
+                    <center>
+                    <!-- Bottom Row -->
+                    <div class="bottom-row">
+                      <div data-key="75" class="key">
+                        <!-- Character -->
+                        <p>K</p>
+                      </div>
+            
+                      <div data-key="79" class="key">
+                        <!-- Character -->
+                        <p>O</p>
+                      </div>
+                    </div>
+                    </center>
+            
+                  </div>
+                  
+                  <center>
+                  <button id="UIX_BACK" onclick="UIX(3)">
+                    Back
+                  </button>
+                  </center>
+            
             </div>
             </div>
             <p id="motto_funny">motto goes here</p>

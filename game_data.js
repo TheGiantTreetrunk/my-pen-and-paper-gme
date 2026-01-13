@@ -243,10 +243,42 @@ function Start() {
     document.getElementById("qte_the_keypad").style.display = "none";
     document.getElementById("qte_rps").style.display = "none";
     document.getElementById("qte_wack").style.display = "none";
+    document.getElementById("MM").style.display = "none";
+    document.getElementById("How_To_Play").style.display = "none";
+    document.getElementById("support_mm").style.display = "none";
+    document.getElementById("How_To_Play_Guide").style.display = "none";
+    document.getElementById("how_to_sub").style.display = "none";
 
     //motto_funny
     var mottox = Math.floor((Math.random() * mottos.length));
     document.getElementById("motto_funny").innerHTML = mottos[mottox];
+}
+
+function UIX(callout) {//how_to_sub
+    if(callout == 0) {
+        document.getElementById("tap_to_play").style.display = "none";
+        document.getElementById("MM").style.display = "block";
+    }
+
+    if(callout == 1) {
+        document.getElementById("MM").style.display = "none";
+        document.getElementById("how_to_sub").style.display = "block";
+        //document.getElementById("motto_funny").style.display = "none";
+    }
+
+    if(callout == 2) {
+        document.getElementById("how_to_sub").style.display = "none";
+        document.getElementById("How_To_Play").style.display = "block";
+        document.getElementById("motto_funny").style.display = "none";
+    }
+
+    if(callout == 3) {
+        document.getElementById("how_to_sub").style.display = "block";
+        document.getElementById("How_To_Play").style.display = "none";
+        document.getElementById("motto_funny").style.display = "block";
+    }
+
+
 }
 
 function hud(callout){

@@ -1943,6 +1943,35 @@ pre {
 	width: 100%;
 }
 
+#tap_to_play_button {
+    padding: 14px 0px;
+	width: 100%;
+    border: none;
+}
+
+#How_To_Play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border: 3px solid #ffffff;
+    background-color: #000;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    box-shadow: 10px 10px #212626;
+    color: #fff;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+}
+
+#UIX_BACK {
+    padding: 14px 0px;
+	width: 95%;
+}
 
 /* Keyboard style */
 .keyboard {
@@ -1965,10 +1994,11 @@ pre {
   /* Style for each Key */
   .key {
     background-color: #353943;
-    border: 1px solid #834426;
-    box-shadow: 5px 5px #c2b7ab;
+    border: 1px solid #ffffff;
+    box-shadow: 5px 5px #ffffff;
     color: #ffffff;
-    width: 100px;
+    width: 64px;
+    height: 64px;
     margin: 15px;
     text-align: center;
     top: 0;
