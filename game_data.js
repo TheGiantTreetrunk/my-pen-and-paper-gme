@@ -2140,3 +2140,44 @@ let textArray = [
   keys.forEach(key => key.addEventListener("transitionend", removeActiveClass));
   // Listens to users and when key is pressed calls keyPressed
   window.addEventListener("keydown", keyPressed);
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////
+
+  function trackLogin() {
+    const displayElement = document.getElementById('login-info');
+    const awayElement = document.getElementById('time-away');
+    
+    // 1. Get current time in milliseconds
+    const now = Date.now(); 
+
+    // 2. Retrieve the previous login (stored as a number string)
+    const lastLoginMillis = localStorage.getItem('lastLoginMillis');
+
+    if (lastLoginMillis) {
+        const lastDate = new Date(parseInt(lastLoginMillis));
+        displayElement.innerHTML = `Last login: <b>${lastDate.toLocaleString()}</b>`;
+
+        // 3. Calculate the difference
+        const diffInMs = now - parseInt(lastLoginMillis);
+        awayElement.innerText = `You were away for: ${formatTime(diffInMs)}`;
+    } else {
+        displayElement.innerHTML = "Welcome! This is your <b>first visit</b>.";
+    }
+
+    // 4. Update localStorage with the current time for next time
+    localStorage.setItem('lastLoginMillis', now);
+}
+
+// Helper function to turn milliseconds into a readable string
+function formatTime(ms) {
+    let seconds = Math.floor(ms / 1000);
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+    let days = Math.floor(hours / 24);
+
+    if (days > 0) return `${days}d ${hours % 24}h ${minutes % 60}m ago`;
+    if (hours > 0) return `${hours}h ${minutes % 60}m ${seconds % 60}s ago`;
+    if (minutes > 0) return `${minutes}m ${seconds % 60}s ago`;
+    return `${seconds}s ago`;
+}
