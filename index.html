@@ -10,8 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='game_style.css' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js"></script>
+        <link href='game_style.css?=v1.3' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?=v1.3"></script>
 
 
     </head>
@@ -28,7 +28,7 @@
                     <br>
                     <button id="offline_mode_button" onclick="UIX(1)">How to Play</button>
                     <br>
-                    <button id="offline_mode_button" onclick="">Support</button>
+                    <button id="offline_mode_button" onclick="UIX(7)">Support</button>
                 </div>
 
                 <div id="how_to_sub">
@@ -39,21 +39,75 @@
                     <button id="offline_mode_button" onclick="UIX(5)">Back</button>
                 </div>
 
-                <div id="support_mm">
-                    <h3>Support</h3>
-					
-					<div class="card">
-						<h2>Welcome Back!</h2>
-						<div id="login-info">Checking history...</div>
-						<div id="time-away" class="time-diff"></div>
-					</div>
+            </div>
 
-                </div>
+            <div id="support_mm">
+                <h3>Support</h3>
+                
+                    <h2>Welcome Back!</h2>
+                    <p id="login-info">Checking history...</p>
+                    <p id="time-away" class="time-diff"></p>
+
+                    <br><br><br><br><br>
+
+                    <button id="UIX_BACK" onclick="UIX(8)">
+                        Donation page coming soon!
+                    </button>
+
+                    <button id="UIX_BACK" onclick="window.location.href='https://forms.gle/ubqrwKKQkquxkbXMA'">
+                        Bug Reporting Page!
+                    </button>
+
+                    <br><br>
+
+                <center>
+                    <button id="UIX_BACK" onclick="UIX(8)">
+                        Back
+                    </button>
+                </center>
+
             </div>
 
             <div id="How_To_Play_Guide">
+
+                <h2>How to Play</h2>
+                <p>
+                    Welcome to Rage 'n' Riches! A game where you explore an ever changing dungeon filled with challenges, loot, and enemies.
+                </p>
+                <h3>You, the HERO!</h3>
+                <p class="icns">@</p>
+                <p>
+                    Your objective is to survive as long as you can. The farther you get the better the loot and the more dangerous the challenges await you!
+                    There are nine classes total, each with different stats and play styles.
+                </p>
+                <h3>The Dungeon</h3>
+                <p>
+                    This dungeon is large; infinitely large to be specific. No matter how many times you visit it will always be different. Always expect the unexpected...
+                </p>
+                <h3>Equipment</h3>
+                <p>
+                    You will always start with your trusty long sword. Very durable and usable you will nevertheless find better weapons, shields and armor as you progress. 
+                    BUT REMEMBER! Certain items require certain equipment to be used. Always choose wisely as it can make or even break your run...
+                </p>
+                <h3>Traps and Challenges</h3>
+                <p>
+                    Throughout your run you will encounter many situations whether its traps that you've accidentially triggered or a challenge. This dungeon is ruthless and not for the weak...
+                </p>
+                <h3>Combat</h3>
+                <p>
+                    No matter how you cut it with your kit you will be able to test your grit against all sorts of monsters throughout the dungeon some more powerful than others.
+                    <br><br>
+                    White = Common
+                    <br>
+                    <a class='green'>Green</a> = Uncommon
+                    <br>
+                    <a class="red">Red</a> = Dangerous
+                    <br>
+                    <a class='purple'>Purple</a> = Extremely Dangerous
+                    <br>
+                    <br>
+                </p>
                 
-                  
                   <center>
                   <button id="UIX_BACK" onclick="UIX(6)">
                     Back

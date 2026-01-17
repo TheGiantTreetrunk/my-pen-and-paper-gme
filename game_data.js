@@ -278,6 +278,36 @@ function UIX(callout) {//how_to_sub
         document.getElementById("motto_funny").style.display = "block";
     }
 
+    if(callout == 4) {
+        document.getElementById("How_To_Play_Guide").style.display = "block";
+        document.getElementById("how_to_sub").style.display = "none";
+        document.getElementById("motto_funny").style.display = "none";
+    }
+
+    if(callout == 5) {
+        document.getElementById("MM").style.display = "block";
+        document.getElementById("how_to_sub").style.display = "none";
+        document.getElementById("motto_funny").style.display = "block";
+    }
+
+    if(callout == 6) {
+        document.getElementById("how_to_sub").style.display = "block";
+        document.getElementById("How_To_Play_Guide").style.display = "none";
+        document.getElementById("motto_funny").style.display = "block";
+    }
+
+    if(callout == 7) {
+        document.getElementById("support_mm").style.display = "block";
+        document.getElementById("MM").style.display = "none";
+        document.getElementById("motto_funny").style.display = "none";
+    }
+
+    if(callout == 8) {
+        document.getElementById("MM").style.display = "block";
+        document.getElementById("support_mm").style.display = "none";
+        document.getElementById("motto_funny").style.display = "block";
+    }
+
 
 }
 
@@ -784,7 +814,7 @@ function World(){
     "<a id='plyr_sp3'>_</a><a id='itm_sp3'>1</a>" + 
     "<a id='plyr_sp4'>_</a><a id='itm_sp4'>1</a>" + 
     "<a id='door2' class='brown'>:</a>" + 
-    "<br>" + "AAAAAEFG##";
+    "<br>" + "##########";
 
     if(players_pos == 0) {
         document.getElementById("plyr_sp1").innerHTML = "<a class='" + player_colors[player.class] + "'>@</a>";
