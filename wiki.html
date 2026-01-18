@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RAGE 'N' RICHES</title>
+    <style>
+        /* Pixel-style fonts and borders */
+        body {
+            background-color: #000000;
+            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+            background-size: 20px 20px; /* Subtle grid background */
+            color: #FFFFFF;
+            font-family: "Courier New", Courier, monospace;
+            padding: 20px;
+        }
+
+        .pixel-border {
+            border: 4px solid #FFFFFF;
+            outline: 4px solid #808080;
+            box-shadow: 0 0 0 8px #000000;
+            margin: 20px;
+            background-color: #121212;
+        }
+
+        h1, h2, h3 {
+            text-transform: uppercase;
+            background-color: #FFFFFF;
+            color: #000000;
+            display: inline-block;
+            padding: 5px 10px;
+        }
+
+        a { color: #808080; text-decoration: none; }
+        a:hover { color: #FFFFFF; text-decoration: underline; }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        @font-face {
+    font-family: 'Game_Icns'; /* Choose a name for your font */
+    font-weight: normal;
+    src: url('game/test.ttf?v=5.00') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'main'; /* Choose a name for your font */
+    font-weight: normal;
+    src: url('game/font.otf');
+    font-style: normal;
+}
+
+body {
+	font-family: 'main';
+}
+    </style>
+</head>
+<body>
+
+    <center>
+        <h1>- Rage 'n' Riches -</h1>
+        <br>
+        <marquee scrollamount="2" width="50%">[ SYSTEM STATUS: ONLINE ] [ VERSION: 0.1 ALPHA ] [ BUILD: STABLE ]</marquee>
+    </center>
+
+    <div class="pixel-border">
+        <table width="100%" border="0" cellpadding="20">
+            <tr>
+                <td width="25%" valign="top" style="border-right: 4px solid #808080;">
+                    <h3>MENU</h3>
+                    <p>> <a href="index.html">HOME</a></p>
+                    <p>> <a href="game/index.html">PLAY NOW</a></p>
+                    <p>> <a href="wiki.html">WIKI</a></p>
+                    <p>> <a href="donate.html">DONATE</a></p>
+                    <br><br>
+					</td>
+
+                <td width="75%" valign="top">
+                    <h2>Official Wiki</h2>
+                    <p>The Wiki is currently under development check back later when its complete!</p>
+                    
+                    <hr>
+                    <center>
+                        <p> [ Does hath thou what it takes? ] </p>
+						<h1>@</h1>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <center>
+        <p>Check out the project on <a href="https://github.com/TheGiantTreetrunk/my-pen-and-paper-gme">Github!</a></p>
+        <p>&copy; 2026 Created by Austin Elke</p>
+    </center>
+
+    <div class="scanline"></div>
+</body>
+</html>
