@@ -10,8 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='game_style.css?=v1.3' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?=v1.3"></script>
+        <link href='game_style.css?=v1.5' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?=v1.6"></script>
 
 
     </head>
@@ -231,7 +231,7 @@
                 <h2 id="player_game_score">Score 1000</h2>
                 <p id="game_special_items_checklist">test</p>
                 <div id="game_view">
-                    <p id="game_sene" class="icns " style="line-height: 1.15; letter-spacing: 0px;">
+                    <p id="game_sene" class="icns fog-tgt" style="line-height: 1.15; letter-spacing: 0px;">
                         ##########
                         <br>
                         _@________
@@ -260,7 +260,7 @@
         
                 <div class="action-buttons">
                     <button id="b-btn" class="action-btn b-btn" onclick="Game_Command(4)">B</button>
-                    <button id="c-btn" class="action-btn c-btn" onclick="Game_Command(5)">C</button>
+                    <button id="c-btn" class="action-btn c-btn" onclick="Game_Command(5)" style="display: none;">C</button>
                     <button id="a-btn" class="action-btn a-btn" onclick="Game_Command(3)">A</button>
                 </div>
                 

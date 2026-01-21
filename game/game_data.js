@@ -797,6 +797,9 @@ function Generation(conditional) {
         }
 }
 
+function tgFog(id,t=2000){const e=document.getElementById(id);if(!e)return;e.classList.add('fog-shk');setTimeout(()=>{e.classList.remove('fog-shk');e.classList.add('fog-on');setTimeout(()=>e.classList.remove('fog-on'),t)},250)}
+
+
 function World(){
     document.getElementById("game_special_items_checklist").innerHTML = "<a id='game_has_key_icon' class='white icns'>-</a><a id='game_has_life_up' class='yellow icns'>/</a>";
     document.getElementById("player_game_score").innerHTML = "Score " + score;
@@ -1009,9 +1012,12 @@ function Game_Command(command) {
             players_pos -= 1;
             World();
         } else if(room != 0) {
-            room -= 1;
-            players_pos = 3;
-			World();
+            tgFog('game_view');
+            setTimeout(() => {
+                room -= 1;
+                players_pos = 3;
+                World();
+            }, 2000);
         }
     }
     if(command == 2) {
@@ -1020,9 +1026,12 @@ function Game_Command(command) {
             World();
         } else if(players_pos == 3) {
             if(room != 9) {
-                room += 1;
-                players_pos = 0;
-                World();
+                tgFog('game_view');
+                setTimeout(() => {
+                    room += 1;
+                    players_pos = 0;
+                    World();
+                  }, 2000);
             }
         }
     }
@@ -1362,6 +1371,8 @@ function Encounter() {
     if(trap_triggered_type == "Cake"){
         document.getElementById("qte_the_cake").style.display = "block";
         document.getElementById("game").style.display = "none";
+
+        qte_CAKE();
     }
 
     if(trap_triggered_type == "Mint"){
@@ -2087,6 +2098,23 @@ const qte_whack_holes = document.querySelectorAll(".hole");
             qte_whack_timerDisplay.textContent = `Time: ${qte_whack_timer_val}s`;
             qte_whack_startButton.disabled = false;
             qte_whack_endButton.disabled = true;
+        }
+
+
+        function qte_CAKE() {
+            
+            if(trap_tripped == 1) {
+                trap_1d[room] = 1;
+            }
+            if(trap_tripped == 2) {
+                trap_2d[room] = 1;
+            }
+            if(trap_tripped == 3) {
+                trap_3d[room] = 1;
+            }
+            if(trap_tripped == 4) {
+                trap_4d[room] = 1;
+            }
         }
 
 
