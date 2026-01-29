@@ -1,128 +1,1030 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <title>RAGE 'N' RICHES</title>
-    <style>
-        /* Pixel-style fonts and borders */
-        body {
-            background-color: #000000;
-            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
-            background-size: 20px 20px; /* Subtle grid background */
-            color: #FFFFFF;
-            font-family: "Courier New", Courier, monospace;
-            padding: 20px;
-        }
+    <head>
+        <title>Rage 'n' Riches</title>
+        <meta charset="UTF-8">
+        <meta name="MobileOptimized" content="480"/>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <meta name="keywords" content="Adventure">
+        <meta name="description" content="A Game">
+        <meta name="author" content="Austin Elke">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="HandheldFriendly" content="true"/>
 
-        .pixel-border {
-            border: 4px solid #FFFFFF;
-            outline: 4px solid #808080;
-            box-shadow: 0 0 0 8px #000000;
-            margin: 20px;
-            background-color: #121212;
-        }
+        <link href='game_style.css?=v2.5' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?=v2.7"></script>
 
-        h1, h2, h3 {
-            text-transform: uppercase;
-            background-color: #FFFFFF;
-            color: #000000;
-            display: inline-block;
-            padding: 5px 10px;
-        }
 
-        a { color: #808080; text-decoration: none; }
-        a:hover { color: #FFFFFF; text-decoration: underline; }
+    </head>
+    <body onload="Start()" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
+        
+        <div id="splash">
+            <h1 id="game_menu_title">Rage 'n' Riches</h1>
+            <div id="center_stuff">
+                <div id="tap_to_play">
+                    <button id="tap_to_play_button" onclick="UIX(0)">Tap to Play</button>
+                </div>
+                <div id="MM">
+                    <button id="login_button" onclick="UIX(9)">Play Now</button>
+                    <br>
+                    <button id="offline_mode_button" onclick="UIX(1)">How to Play</button>
+                    <br>
+                    <button id="offline_mode_button" onclick="UIX(7)">Support</button>
+                </div>
 
-        .scanline {
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-            position: fixed;
-            top: 0;
-            z-index: 999;
-            pointer-events: none;
-        }
+                <div id="how_to_sub">
+                    <button id="login_button" onclick="UIX(4)">Gameplay</button>
+                    <br>
+                    <button id="offline_mode_button" onclick="UIX(2)">Controls</button>
+                    <br>
+                    <button id="offline_mode_button" onclick="UIX(5)">Back</button>
+                </div>
 
-        @font-face {
-    font-family: 'Game_Icns'; /* Choose a name for your font */
-    font-weight: normal;
-    src: url('game/test.ttf?v=5.00') format('truetype');
-    font-style: normal;
-}
+                <div id="dungeon_menu">
+                    <button id="login_button" onclick="hud(0)">Enter the Dungeon</button>
+                    <br>
+                    <button id="offline_mode_button" onclick="UIX(10)">Merchant</button>
+                    <br>
+                    <button id="offline_mode_button" onclick="UIX(11)">Quest Board</button>
+                </div>
 
-@font-face {
-    font-family: 'main'; /* Choose a name for your font */
-    font-weight: normal;
-    src: url('game/font.otf');
-    font-style: normal;
-}
+            </div>
 
-.icns{
-    font-family: 'Game_Icns';
-}
+            <div id="support_mm">
+                <h3>Support</h3>
+                
+                    <h2>Welcome Back!</h2>
+                    <p id="login-info">Checking history...</p>
+                    <p id="time-away" class="time-diff"></p>
 
-body {
-	font-family: 'main';
-}
-    </style>
-</head>
-<body>
+                    <br><br><br><br><br>
 
-    <center>
-        <h1>- Rage 'n' Riches -</h1>
-        <br>
-        <marquee scrollamount="2" width="50%">[ SYSTEM STATUS: ONLINE ] [ VERSION: 0.1 ALPHA ] [ BUILD: STABLE ]</marquee>
-    </center>
+                    <button id="UIX_BACK" onclick="UIX(8)">
+                        Donation page coming soon!
+                    </button>
 
-    <div class="pixel-border">
-        <table width="100%" border="0" cellpadding="20">
-            <tr>
-                <td width="25%" valign="top" style="border-right: 4px solid #808080;">
-                    <h3>MENU</h3>
-                    <p>> <a href="index.html">HOME</a></p>
-                    <p>> <a href="game/index.html">PLAY NOW</a></p>
-                    <p>> <a href="wiki.html">WIKI</a></p>
-                    <p>> <a href="donate.html">DONATE</a></p>
+                    <button id="UIX_BACK" onclick="window.location.href='https://forms.gle/ubqrwKKQkquxkbXMA'">
+                        Bug Reporting Page!
+                    </button>
+
                     <br><br>
-					</td>
 
-                <td width="75%" valign="top">
-                    <h2>Welcome to my project!</h2>
-                    <p>The year is 1402, and the King, in his infinite wisdom (and a desperate need for more gold), has issued a royal decree. All able-bodied adventurers are to delve into the depths of the Mad Mage's dungeon, a place as notorious for its riches as it is for its utter absurdity.
-					<br><br>
-					They say the dungeon itself is alive, a mischievous and malevolent entity that delights in subverting expectations. Heroes expecting to find simple booby traps will instead find themselves apologizing to insulted portraits that have stepped out of their frames. A simple supply closet might contain a self-conscious skeleton, and a healing herb might just summon its entire, very angry, floral family to defend it.
-					<br><br>
-					Within these ever-shifting walls, brave (or foolish) souls can find armories stocked with the finest plate and steel, and forges capable of creating legendary equipment. But beware the sentient forge that might have its own opinion on what it wants to create, or the treasure chest that's actually a very grumpy, and very toothy, mimic.
-					<br><br>
-					The King's command is simple: brave the dungeon, retrieve its treasures, and try not to get eaten by the architecture.</p>
-                    
-                    <p><b>Game Features:</b></p>
-                    <ul>
-                        <li>Character RPG Classes and Item Customization</li>
-                        <li>Quests and Challenges</li>
-                        <li>An ever shifting dungeon...</li>
-						<li>Countless enemies to best!</li>
-						<li>A rich and extensive item system.</li>
-						<li>In-depth crafting and professions.</li>
-						<li>Player housing and guilds.</li>
-						<li>A very hungry dungeon.</li>
-						<li>A sassy and omnipotent dungeon master.</li>
-                    </ul>
+                <center>
+                    <button id="UIX_BACK" onclick="UIX(8)">
+                        Back
+                    </button>
+                </center>
 
-                    <hr>
+            </div>
+
+            <div id="How_To_Play_Guide">
+
+                <h2>How to Play</h2>
+                <p>
+                    Welcome to Rage 'n' Riches! A game where you explore an ever changing dungeon filled with challenges, loot, and enemies.
+                </p>
+                <h3>You, the HERO!</h3>
+                <p class="icns">@</p>
+                <p>
+                    Your objective is to survive as long as you can. The farther you get the better the loot and the more dangerous the challenges await you!
+                    There are nine classes total, each with different stats and play styles.
+                </p>
+                <h3>The Dungeon</h3>
+                <p>
+                    This dungeon is large; infinitely large to be specific. No matter how many times you visit it will always be different. Always expect the unexpected...
+                </p>
+                <h3>Equipment</h3>
+                <p>
+                    You will always start with your trusty long sword. Very durable and usable you will nevertheless find better weapons, shields and armor as you progress. 
+                    BUT REMEMBER! Certain items require certain equipment to be used. Always choose wisely as it can make or even break your run...
+                </p>
+                <h3>Traps and Challenges</h3>
+                <p>
+                    Throughout your run you will encounter many situations whether its traps that you've accidentially triggered or a challenge. This dungeon is ruthless and not for the weak...
+                </p>
+                <h3>Combat</h3>
+                <p>
+                    No matter how you cut it with your kit you will be able to test your grit against all sorts of monsters throughout the dungeon some more powerful than others.
+                    <br><br>
+                    White = Common
+                    <br>
+                    <a class='green'>Green</a> = Uncommon
+                    <br>
+                    <a class="red">Red</a> = Dangerous
+                    <br>
+                    <a class='purple'>Purple</a> = Extremely Dangerous
+                    <br>
+                    <br>
+                </p>
+                
+                  <center>
+                  <button id="UIX_BACK" onclick="UIX(6)">
+                    Back
+                  </button>
+                  </center>
+            
+            </div>
+
+            <div id="How_To_Play">
+                <div class="message-container">
+                    <!-- Message -->
                     <center>
-                        <p> [ Does hath thou what it takes? ] </p>
-						<h1 class="icns">@</h1>
+                      <h2 id="message">Try out the controls below on a keyboard!</h2>
+                      <p>
+                        *If on a mobile device we have touch controls automativally enabled.*
+                        <br>
+                        Controller support coming soon!
+                      </p>
                     </center>
-                </td>
+                  </div>
+            
+                  <div class="keyboard">
+                    <!-- Top Row -->
+                    <div class="top-row">
+                      <!-- Key -->
+                      <div data-key="87" class="key">
+                        <!-- Character -->
+                        <p>W</p>
+                      </div>
+                    </div>
+                    <!-- Bottom Row -->
+                    <div class="bottom-row">
+                      <!-- Key -->
+                      <div data-key="65" class="key">
+                        <!-- Character -->
+                        <p>A</p>
+                      </div>
+                      <!-- Key -->
+                      <div data-key="83" class="key">
+                        <!-- Character -->
+                        <p>S</p>
+                      </div>
+                      <!-- Key -->
+                      <div data-key="68" class="key">
+                        <!-- Character -->
+                        <p>D</p>
+                      </div>
+                    </div>
+                    <center>
+                    <!-- Bottom Row -->
+                    <div class="bottom-row">
+                      <div data-key="75" class="key">
+                        <!-- Character -->
+                        <p>K</p>
+                      </div>
+            
+                      <div data-key="79" class="key">
+                        <!-- Character -->
+                        <p>O</p>
+                      </div>
+                    </div>
+                    </center>
+            
+                  </div>
+                  
+                  <center>
+                  <button id="UIX_BACK" onclick="UIX(3)">
+                    Back
+                  </button>
+                  </center>
+            
+            </div>
+            </div>
+            <p id="motto_funny">motto goes here</p>
+        </div>
+
+        <div id="Merchant_shoppe">
+            <h3>The Merchant Shoppe</h3>
+            <button>Back</button>
+        </div>
+
+        <div id="Quest_Board">
+            <h3>Adventurers Guild</h3>
+            <p>Guild Level: 1</p>
+            <progress id="guild_prog_bar" value="75" max="100"></progress>
+            <br>
+            <h3>- A Letter from the King -</h3>
+            <hr>
+            <center>
+            <h4>Quest Board</h4>
+            </center>
+            <ul class="quest-list">
+                <li class="quest-item">
+                    <div>
+                        <span class="status"></span>
+                        <span class="quest-title">Slay 5 Slimes</span>
+                    </div>
+                    <span class="reward">50G</span>
+                </li>
+    
+                <li class="quest-item completed">
+                    <div>
+                        <span class="status"></span>
+                        <span class="quest-title">Find Magic Herb</span>
+                    </div>
+                    <span class="reward">100G</span>
+                </li>
+    
+                <li class="quest-item">
+                    <div>
+                        <span class="status"></span>
+                        <span class="quest-title">Rescue the Prince</span>
+                    </div>
+                    <span class="reward">500G</span>
+                </li>
+            </ul>
+            <br><hr>
+            <br>
+            <button>Back</button>
+        </div>
+
+        <div id="quest_0_letter">
+            <h1>A Royal Summons (of Questionable Safety)</h1>
+            <p><strong>Date:</strong> The Year of our King, 1402</p>
+            <p><strong>To:</strong> The Brave, the Bold, and the Highly Expendable</p>
+
+            <hr>
+
+            <section>
+                <h2>The King’s Decree</h2>
+                <p>
+                    By the Grace of the Crown and the pressing emptiness of the Royal Treasury, you are hereby "invited" to provide your services to the Realm. His Majesty has noted—with great interest and a small amount of impatience—that the <strong>Dungeon of the Mad Mage</strong> remains offensively full of gold while the palace wine cellar is looking dreadfully thin.
+                </p>
+            </section>
+
+            <section>
+                <h3>Your Royal Mandate</h3>
+                <ul>
+                    <li><strong>Extract the Shiny:</strong> Any gold, gems, or artifacts not bolted to the floor (and some that are) must be recovered for "safekeeping."</li>
+                    <li><strong>Survive the Decor:</strong> Please refrain from offending the portraits. The last hero we sent spent three hours listening to a Duke’s oil painting complain about the humidity. It was... unproductive.</li>
+                    <li><strong>Appease the Forge:</strong> Should you find the sentient forge, try to agree with its creative choices. If it wants to turn your sword into a very sharp ladle, show some gratitude.</li>
+                    <li><strong>Mind the Architecture:</strong> Try your best not to be digested by the masonry, wardrobes, or any chests that appear to have teeth.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Official Liability Waiver</h3>
+                <blockquote>
+                    "Brave the dungeon, retrieve the treasures, and for the love of the gods, try not to get eaten by the floorboards."
+                </blockquote>
+                <p>
+                    Be advised: the Crown shall not be held liable for any bruises, existential crises, or accidental kidnappings by vengeful floral families. Report to the dungeon entrance at dawn. Bring your own bandages; the King is currently using the royal supply to patch a drafty window in the throne room.
+                </p>
+            </section>
+
+            <p><em>For the Glory of the Realm (and the King’s Pocketbook),</em></p>
+            <p><strong>Lord Pendergast</strong><br>
+            High Scribe and Master of "Voluntary" Recruitment</p>
+
+            <br><br><br>
+            <button>Back</button>
+        </div>
+
+        <div id="menu">
+
+            <h1 style="text-align: center">Class Select</h1> 
+            <h3 id="name_of_class" style="text-align: center">class name</h3>
+            <p id="class_description" style="text-align: center">'class description'</p>
+            <p id="class_icon" class="icns" style="text-align: center">@</p>
+            <p id="class_stats" style="text-align: center">1,0,0,1</p>
+            <table style="margin: auto; text-align: center;">
+                <tr>
+                    <td><button data-class-num="1" class="class_select"><a class="icns red">@</a></button></td>
+                    <td><button data-class-num="2" class="class_select"><a class="icns blue">@</a></button></td>
+                    <td><button data-class-num="3" class="class_select"><a class="icns white">@</a></button></td>
+                </tr>
+                <tr>
+                    <td><button data-class-num="4" class="class_select"><a class="icns green">@</a></button></td>
+                    <td><button data-class-num="5" class="class_select"><a class="icns yellow">@</a></button></td>
+                    <td><button data-class-num="6" class="class_select"><a class="icns purple">@</a></button></td>
+                </tr>
+                <tr>
+                    <td><button data-class-num="7" class="class_select"><a class="icns lime">@</a></button></td>
+                    <td><button data-class-num="8" class="class_select"><a class="icns cyan">@</a></button></td>
+                    <td><button data-class-num="9" class="class_select"><a class="icns magenta">@</a></button></td>
+                </tr>
+            </table>
+
+            <br>
+
+            <div style="text-align: center">
+                <button class="play_bttn" onclick="hud(1)">Play!</button>
+            </div>
+        </div>
+
+        <div id="loading_scene">
+            <p>Section 1</p>
+            <div style="text-align: center" id="myLoadingBar1" class="loading-container">
+                <div class="loading-text">LOADING...</div>
+                <div class="loading-bar-border">
+                    <div class="loading-bar" id="myLoadingBar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="game">
+            <div id="game-canvas-container">
+                <h2 id="player_game_score">Score 1000</h2>
+                <p id="game_special_items_checklist"><a id='game_has_key_icon' class='white icns'>-</a><a id='game_has_life_up' class='yellow icns'>/</a></p>
+                <div id="game_view">
+                    <p id="game_sene" class="icns fog-tgt" style="line-height: 1.15; letter-spacing: 0px;">
+                        ##########
+                        <br>
+                        _@________
+                        <br>
+                        AAAA######
+                    </p>
+                </div>
+                <p id="ingame_notification_on_loot"></p>
+                
+                <p id="game_player_stats_ui">
+                    <a class='red icns'>~</a>
+                    <a class='white icns'> }</a>
+                    <a class='yellow icns'>|</a>
+                    <a class='purple icns'>{</a>
+                </p>
+            </div>
+
+            <div class="controls-container">
+                <div id="dpad" class="dpad-container">
+                    <button id="up" class="dpad-btn up"></button>
+                    <button id="left" class="dpad-btn left" onclick="Game_Command(1)"></button>
+                    <button id="right" class="dpad-btn right" onclick="Game_Command(2)"></button>
+                    <button id="down" class="dpad-btn down"></button>
+                    <div class="dpad-center"></div>
+                </div>
+        
+                <div class="action-buttons">
+                    <button id="b-btn" class="action-btn b-btn" onclick="Game_Command(4)">B</button>
+                    <button id="c-btn" class="action-btn c-btn" onclick="Game_Command(5)" style="display: none;">C</button>
+                    <button id="a-btn" class="action-btn a-btn" onclick="Game_Command(3)">A</button>
+                </div>
+                
+                <div class="start-select">
+                    <button id="select-btn" class="ss-btn" onclick="hud(5)">Select</button>
+                    <button id="start-btn" class="ss-btn" onclick="hud(3)">Start</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="ra-pixel-canvas"></div>
+
+        <div id="battle">
+            <h2 style="text-align: center">Battle</h2>
+            <hr>
+            <div id="battle_center_ui_content">
+                <h4 style="text-align: center" id="encounter_battle_test"></h3>
+                <table id="battle_combat_table">
+                    <tr>
+                        <td style="text-align: center" id="player_status">1</td>
+                        <td style="text-align: center" id="enemy_status">2</td>
+                    </tr>
+                    <tr>
+                        <td><br></td>
+                        <td><br></td>
+                    </tr>
+                    <tr>
+                        <td class="icns" style="text-align: center;"><a id="player_battle_icon">@</a></td>
+                        <td class="icns" style="text-align: center;"><a id="enemy_battle_icon">&</a></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><a class='red icns battle_ui_hud_icns'>~</a><a id="player_battle_health">10/10</a></td>
+                        <td style="text-align: center;"><a class='red icns battle_ui_hud_icns'>~</a><a id="enemy_battle_health">10/10</a></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><a class='blue icns battle_ui_hud_icns'>%</a><a id="player_battle_armor">10/10</a></td>
+                        <td style="text-align: center;"><a class='blue icns battle_ui_hud_icns'>%</a><a id="enemy_battle_armor">10/10</a></td>
+                    </tr>
+                    <tr>
+                        <td><br></td>
+                        <td><br></td>
+                    </tr>
+                    <tr id="cell_core_battle_1">
+                        <td><button id="primary_weapon" class="battle_combat_button_actions" onclick="Battle_System(2)">Sword</button></td>
+                        <td><button id="secondary_weapon" class="battle_combat_button_actions" onclick="Battle_System(3)">Punch</button></td>
+                    </tr>
+                    <tr id="cell_core_battle_2">
+                        <td><button id="shields_assist" class="battle_combat_button_actions" onclick="Battle_System(4)">Shield Up</button></td>
+                        <td><button id="health_assist" class="battle_combat_button_actions" onclick="Battle_System(5)">+10hp (food: 3)</button></td>
+                    </tr>
+                </table>
+                
+                <center>
+                    <button id="battle_encounter_button" onclick="Battle_System(9)">Continue</button>
+                    <button id="battle_encounter_button_victory">Continue</button>
+                </center>
+            </div>
+            
+        </div>
+
+        <div id="stage_cleared">
+            <h2 style="text-align: center">Stage Cleared</h2>
+            <hr>
+            <center>
+                <p id="stage_cleared_text">test</p>
+            </center>
+            <table id="cleared_table">
+                <tr>
+                    <td>Enemies Defeated</td>
+                    <td id="cleared_enemies_defeated">x 0</td>
+                </tr>
+                <tr>
+                    <td>Items Opened</td>
+                    <td id="cleared_items_opened">x 0</td>
+                </tr>
+                <tr>
+                    <td>Items Smashed</td>
+                    <td id="cleared_items_smashed">x 0</td>
+                </tr>
+                <tr>
+                    <td>Gold Earned</td>
+                    <td id="cleared_gold_earned">x 0</td>
+                </tr>
+                <tr>
+                    <td>Total Score</td>
+                    <td id="cleared_total_score">10000</td>
+                </tr>
+            </table>
+            <br><br><br>
+            <center>
+                <button onclick="hud(12)">Continue</button>
+                <br>
+                <button onclick="hud(0)">Main Menu</button>
+            </center>
+        </div>
+
+        <div id="defeat">
+            <h2 style="text-align: center">Defeat</h2>
+            <hr>
+            <br>
+            <center>
+            <p id="defeat_text">Another hero lost to the history books....</p>
+            
+            <h3 id="defeat_score">Final Score 10000</h3>
+            </center>
+            <br><br><br>
+            <center>
+                <button onclick="hud(0)">Main Menu</button>
+            </center>
+        </div>
+
+        <div id="pause">
+          <h2 style="text-align: center">Game Paused</h2>
+          <hr>
+
+          <br><br><br>
+          <center>
+            <button onclick="hud(4)">Resume</button>
+            <br>
+            <button onclick="hud(0)">Menu</button>
+          </center>
+        </div>
+
+        <div id="inventory">
+          <h2 style="text-align: center">Inventory</h2>
+          <hr>
+          <p id="plyr_inv_class_name" style="text-align: center">'class name'</p>
+          <p id="plyr_cls_icn" style="text-align: center; font-size: 24px;"><a class="icns red">@</a></p>
+          
+          <table id="inventory_table">
+            <tr>
+              <td>Weapon</td>
+              <td id="plyr_weapon_name">Sword</td>
             </tr>
-        </table>
-    </div>
+            <tr>
+              <td>Armor</td>
+              <td id="plyr_armor_name">Plate (Full)</td>
+            </tr>
+            <tr>
+              <td>Shield</td>
+              <td id="plyr_shield_name">None</td>
+            </tr>
+            <tr>
+              <td>Gold</td>
+              <td id="plyr_gold_count"></td>
+            </tr>
+            <tr>
+              <td>Food</td>
+              <td id="plyr_food_count"></td>
+            </tr>
+            <tr>
+                <td>Water</td>
+                <td id="plyr_water_count"></td>
+              </tr>
+            <tr>
+              <td>Potions</td>
+              <td id="plyr_potion_count"></td>
+            </tr>
+            <tr>
+              <td>Arrows</td>
+              <td id="plyr_arrow_count"></td>
+            </tr>
+            <tr>
+              <td>Bullets</td>
+              <td id="plyr_bullet_count"></td>
+            </tr>
+            <tr>
+              <td>Scrolls</td>
+              <td id="plyr_scroll_count"></td>
+            </tr>
+          </table>
+          <br><br><br><br><br>
 
-    <center>
-        <p>Check out the project on <a href="https://github.com/TheGiantTreetrunk/my-pen-and-paper-gme">Github!</a></p>
-        <p>&copy; 2026 Created by Austin Elke</p>
-    </center>
+          <div id="inventory_bot_hud">
+            <button onclick="hud(6)">Back</button>
+          </div>
+        </div>
 
-    <div class="scanline"></div>
-</body>
+        <div id="attention_class_select">
+            <h2 style="text-align: center">Attention!</h2>
+            <hr>
+            <p>Its too dangerous to go in here! Please select a class.</p>
+            <button onclick="hud(7)">Ok, fine.</button>
+        </div>
+
+        <div id="attention_early_development">
+            <h2 style="text-align: center">Attention!</h2>
+            <hr>
+            <h3>Early Development</h3>
+            <p>This game is still in early development. All features are subject to change, and are not final. 
+                Some mechanics may not work as intended or are still under development. All bugs please report to the developer. 
+                Please use at your own risk.</p>
+            <button onclick="hud(8)">Ok, Thanks.</button>
+        </div>
+
+        <div id="notification_new_weapon_or_shield">
+            <h2 style="text-align: center" id="notification_new_gear_title">New Gear!</h2>
+            <hr>
+            <p id="notification_new_gear_text" style="text-align: center">You Hav Discovered a new 'Item'! </p>
+            <table id="new_item_draft_table">
+                <tr>
+                    <td>Old</td>
+                    <td>vs.</td>
+                    <td>New</td>
+                </tr>
+                <tr>
+                    <td id="old_item">1</td>
+                    <td></td>
+                    <td id="new_item">2</td>
+                </tr>
+                <tr>
+                    <td id="old_item_dmg">Sword</td>
+                    <td id="modifier_1">Damage</td>
+                    <td id="new_item_dmg">Shield</td>
+                </tr>
+                <tr>
+                    <td id="old_item_dmg_ty"></td>
+                    <td id="modifier_2">Damage Type</td>
+                    <td id="new_item_dmg_ty"></td>
+                </tr>
+                <tr>
+                    <td id="old_item_handling"></td>
+                    <td id="modifier_3">Handling</td>
+                    <td id="new_item_handling"></td>
+                </tr>
+            </table>
+            <br><br>
+            <button onclick="accept_new_item()">Take Item</button>
+            <br>
+            <button onclick="hud(16)">Discard</button>
+            <br><br>
+        </div>
+
+        <div id="qte_bookshelf">
+            <h3 style="text-align: center;">Falling Bookshelf</h3>
+            <hr>
+            <p id="qte_bookshelf_text" style="text-align: center;">An old bookshelf comes falling down towards you!</p>
+            <div id="bookshelf" class="bookshelf-container">
+                <pre>
+        ________________________________________________
+       /                                                \
+      |    __________________________________________    |
+      |   |                                          |   |
+      |   |  [||||]  &lt;-~-&gt;  __________   _________   |   |
+      |   |  [||||]   | |  |          | |      #  |  |   |
+      |   |  [||||]   | |  |  History | |  {*} #  |  |   |
+      |   |  [||||]   |_|  |__________| |______#__|  |   |
+      |   |__________________________________________|   |
+      |   |                                          |   |
+      |   |   ______    __    ______    ______       |   |
+      |   |  |      |  |  |  |      |  |      |  /|  |   |
+      |   |  |  Sp  |  |  |  |  Lo  |  |  Ma  | / |  |   |
+      |   |  |  el  |  |  |  |  re  |  |  gic |/  |  |   |
+      |   |  |__ls__|  |__|  |______|  |______|   |  |   |
+      |   |__________________________________________|   |
+      |   |             __                           |   |
+      |   |     _      /  \        [ ]    _______    |   |
+      |   |    | |    | P  |      |   |  |   |   |   |   |
+      |   |    | |    |  o |      |   |  |   |   |   |   |
+      |   |    |_|     \__/       |___|  |___|___|   |   |
+      |   |__________________________________________|   |
+      |                                                  |
+      \__________________________________________________/
+              ||                                  ||
+              ||                                  ||
+                </pre>
+                </div>
+                <progress id="qte_bookshelf_meter" value="75" max="100"></progress>
+                <button id="qte_book_push_button" onclick="qte_book_increase()">Push</button>
+                <button id="qte_book_cont_button" onclick="hud(17)">Continue</button>
+        </div>
+
+        <div id="qte_vine_snare">
+            <h3 style="text-align: center;">Vine Snare</h3>
+            <hr>
+            <p id="qte_vine_snare_text" style="text-align: center;">You get caught in a old vine snare trap!</p>
+            <div id="snare" class="snare-container">
+                <pre>
+                            __   __
+                           /  \ /  \
+                     __    \   V   /    __
+                    /  \    \     /    /  \
+                    \   \    )   (    /   /
+                     \   \  /     \  /   /
+                      \   \/   _   \/   /
+                       \      / \      /
+                   _____)    (   )    (_____)
+                  (____       \ /       ____)
+                       \      / \      /
+                        \    /   \    /
+                         )  /     \  (
+                        /  /       \  \
+                       /  /         \  \
+                      /__/           \__\
+                      
+                </pre>
+                </div>
+                <progress id="qte_vine_meter" value="75" max="100"></progress>
+                <button id="qte_vine_push_button" onclick="qte_vine_increase()">Tear!</button>
+                <button id="qte_vine_cont_button" onclick="hud(18)">Continue</button>
+        </div>
+
+        <div id="qte_chest_of_knowledge">
+            <h3 style="text-align: center;">The Chest of Knowledge</h3>
+            <hr>
+            <p id="qte_know_chest_text" style="text-align: center;">You've discovered the chest that reads a book almost every day...</p>
+            <div class="chest-art">
+                <pre>
+                    __________
+                 .-"          "-.
+                /                \
+               |__________________|
+               | [][][][][][][][] |
+               | [][][][][][][][] |
+               |      ______      |
+               |     |      |     |
+               |     | (  ) |     |
+               |     |  \/  |     |
+               |     |______|     |
+               |                _ |
+               |_________________||
+               '------------------'
+                </pre>
+                </div>
+                <progress value="20" max="100"></progress>
+                <button>Push</button>
+        </div>
+
+        <div id="qte_clown_box">
+            <h3 style="text-align: center;">A funny looking box...</h3>
+            <hr>
+            <p id="qte_clown_box_text" style="text-align: center;">You have a sneaking suspicion your gonna get a jump scare... but you wanna open it, dont ya?</p>
+            <div class="clown-box">
+                <pre >
+                    ___
+               _.-''   ''-._
+             .'             '.
+            /  _   _    _   _ \
+           |  (o) (o)  (o) (o) |
+            \    ___    ___   /
+             '.  \__/  /__/  .'
+               '-.________.-'
+                   _|||_
+                  (_|_|_)
+               ___|_____|___
+             /             /|
+            /_____________/_|
+           |             |  |   _
+           |    _  _     |  |  ( )
+           |   ( )( )    |  |___|
+           |    _||_     | /   /
+           |___|____|____|/   /_
+         </pre>
+                </div>
+                <progress value="20" max="100"></progress>
+                <button>Open the Box</button>
+                <button>Walk Away</button>
+        </div>
+
+        <div id="qte_sudden_darkness">
+            <h3 style="text-align: center;">Sudden Darkness</h3>
+            <hr>
+            <p id="qte_sud_darkness_text" style="text-align: center;">Your torch has gone out suddenly! Find a light source before more monsters show up!</p>
+            <div class="torch-container">
+                <pre>
+(      )
+(      )
+)   (
+| \      / |
+|  '----'  |
+| {}{}{}{} |
+|          |
+|__________|
+\        /
+\      /
+|    |
+|    |
+|    |
+|    |
+|    |
+|____|
+                </pre>
+                </div>
+                <button onclick="hud(19)">Ok, Got It.</button>
+        </div>
+
+        <div id="qte_banquet_table">
+            <div class="banquet-container">
+                <h3 class="sticky-title">The Banquet Table</h3>
+                
+                <div class="glass-overlay"></div>
+                
+                <div id="dice-display">⚄</div>
+        
+                <pre class="banquet_table">
+                    _________________________________________________
+                   /                                                 \
+                  /      (  )           _______           (  )        \
+                 /      __||__         |   _   |         __||__        \
+                /      |      |        |  ( )  |        |      |        \
+               /       | BANQ |        |_______|        | UET  |         \
+              /        |______|          _|_|_          |______|          \
+             /                          (_____)                            \
+            /            ____             ___             ____              \
+           /      _     /    \     _     (   )     _     /    \     _        \
+          /      ( )   |  RO  |   ( )     | |     ( )   | AST  |   ( )        \
+         /      __|_   |______|   _|_     | |     _|_   |______|   _|_         \
+        /      |____|            |___|    |_|    |___|            |____|        \
+        /_________________________________________________________________________\
+        ||                                                                       ||
+        ||         _|_                     _|_                     _|_           ||
+        ||        |   |                   |   |                   |   |          ||
+        ||        |   |                   |   |                   |   |          ||
+        ||        |___|                   |___|                   |___|          ||
+        ||_______________________________________________________________________||
+                |   |                                               |   |
+                |   |                                               |   |
+                |___|                                               |___|
+                </pre>
+            </div>
+        
+            <div class="qte-scroll-content">
+                <hr>
+                <p id="qte_banquet_text" style="text-align: center;">You've come across a banquet table! Looks like some table scraps are still left over...</p>
+                <button id="qte_banquet_dice_button" onclick="Banquet(1)">Roll Dice</button>
+                <button id="qte_banquet_cont_button" onclick="hud(20)">Ok, Got It.</button>
+                <hr>
+                <table id="banquet_table_roll_chart">
+                    <tr><td>Rolls 6</td><td>+10 Food +5 Water</td></tr>
+                    <tr><td>Rolls 5</td><td>+5 Food</td></tr>
+                    <tr><td>Rolls 4</td><td>+1 Water</td></tr>
+                    <tr><td>Rolls 3</td><td>+1 Food</td></tr>
+                    <tr><td>Rolls 2</td><td>Nothing</td></tr>
+                    <tr><td>Rolls 1</td><td>-2 Health</td></tr>
+                </table>
+                <hr>
+                <br><br><br>
+                
+            </div>
+        </div>
+
+        <div id="qte_the_armoury">
+            <div class="armoury-container">
+                <h3 class="sticky-title">The Armoury Room</h3>
+                
+                <div class="glass-overlay"></div>
+                
+                <div id="dice-display1">⚄</div>
+        
+                <pre class="armoury_table">
+                    _______________________________________________________________
+                    |                                                               |
+                    |   _________________________        _________        _______   |
+                    |  |             |           |      /         \      |       |  |
+                    |  |   /|   |\   |    _      |     |   _   _   |     |  [X]  |  |
+                    |  |  /_|___|_\  |   / \     |     |  | |_| |  |     |  / \  |  |
+                    |  |    |   |    |   | |     |       \ \_ _ / /      |  | |  |  |
+                    |  |    |   |    |   \_/     |        |      |       |  \_/  |  |
+                    |  |    |   |    |    |      |       /|   _  |\      |   |   |  |
+                    |  |    |   |    |    |      |      | |  / \ | |     |   |   |  |
+                    |  |____|___|____|____|______|      |_|  |_|  |_|    |___|___|  |
+                    |  [  WEAPON RACK - SWORDS  ]     [ FULL PLATE ]    [ SPEARS ]  |
+                    |_______________________________________________________________|
+                    |                                                               |
+                    |        ________                                     ______    |
+                    |       /        \        _______________            /     /|   |
+                    |      /__________\      |   _________   |          /_____/ |   |
+                    |      |          |      |  |         |  |          |     | |   |
+                    |      |  ANVIL   |      |  |  CHEST  |  |          | BOX | /   |
+                    |______|__________|______|__|_________|__|__________|_____|/____|
+                </pre>
+            </div>
+        
+            <div class="qte-scroll-content">
+                <hr>
+                <p id="qte_armoury_text" style="text-align: center;"></p>
+                <button id="qte_armoury_dice_button" onclick="Armoury(1)">Roll Dice</button>
+                <button id="qte_armoury_cont_button" onclick="hud(21)">Ok, Got It.</button>
+                
+                <button id="qte_armoury_lucky_button" onclick="hud(22)">Sweet!</button>
+                <hr>
+                <table id="armoury_table_roll_chart">
+                    <tr><td>Rolls 6</td><td>New Weapon</td></tr>
+                    <tr><td>Rolls 5</td><td>+10 Bullets</td></tr>
+                    <tr><td>Rolls 4</td><td>+10 Arrows</td></tr>
+                    <tr><td>Rolls 3</td><td>+5 Arrows +5 Bullets</td></tr>
+                    <tr><td>Rolls 2</td><td>Nothing</td></tr>
+                    <tr><td>Rolls 1</td><td>-3 Health</td></tr>
+                </table>
+                <hr>
+                <br><br><br>
+                
+            </div>
+        </div>
+
+        <div id="qte_the_cake">
+            <h3 style="text-align: center;">EVERYTHING IS CAKE!</h3>
+            <hr>
+            <p id="qte_cake_text" style="text-align: center;">A cake is waiting for you...</p>
+            <div class="cake-container">
+                <pre>
+                    ||      ||      ||
+                    ||      ||      ||
+                   [@@]    [@@]    [@@]
+                    ||      ||      ||
+                 ________________________
+                |                        |
+                |                        |
+         _______|________________________|_______
+        |                                        |
+        |                                        |
+        |                                        |
+        |________________________________________|
+       |                                          |
+       |                                          |
+       |                                          |
+       |                                          |
+       |__________________________________________|
+      /                                            \
+     /______________________________________________\
+    |                                                |
+    |                                                |
+    |                                                |
+    |________________________________________________|
+                </pre>
+                </div>
+                <button onclick="hud(24)">Ok, Got It.</button>
+        </div>
+
+        <div id="qte_the_mint">
+            <div class="mint-container">
+                <h3 class="sticky-title">The Mint Room</h3>
+                
+                <div class="glass-overlay"></div>
+                
+                <div id="dice-display2">⚄</div>
+        
+                <pre class="mint_table">
+                     _______________________________________________________________
+                    |                                                               |
+                    |    ( MELTING )          ( STAMPING )           ( STORAGE )    |
+                    |      _______               _____                _________     |
+                    |     |  ___  |             |_   _|              |         |    |
+                    |     | |   | |    _          | |                |  _____  |    |
+                    |     | |___| |   | |         | |                | |     | |    |
+                    |     |  _ _  |   | |        /   \               | | $ $ | |    |
+                    |     | |/ \| |   | |       |     |              | |_____| |    |
+                    |    _|_|___|_|___|_|_______|_____|______________|_________|__  |
+                    |   |                         | |                             | |
+                    |   |    /        \           | |            (O) (O) (O)      | |
+                    |   |   |  FORGE   |        --[---]--         (O) (O) (O)     | |
+                    |   |    \________/          /_____\           Stacks of      | |
+                    |   |      [ Crucible ]      [ Die ]             Gold         | |
+                    |___|_________________________________________________________|_|
+                    |                                                               |
+                    |             "By Command of the King - Year 1402"              |
+                    |_______________________________________________________________|  
+                </pre>
+            </div>
+        
+            <div class="qte-scroll-content">
+                <hr>
+                <p id="qte_mint_text" style="text-align: center;"></p>
+                <button id="qte_mint_dice_button" onclick="Mint(1)">Roll Dice</button>
+                <button id="qte_mint_cont_button" onclick="hud(23)">Ok, Got It.</button>
+                <hr>
+                <table id="mint_table_roll_chart">
+                    <tr><td>Rolls 6</td><td>+50 Gold!</td></tr>
+                    <tr><td>Rolls 5</td><td>+20 Gold</td></tr>
+                    <tr><td>Rolls 4</td><td>+10 Gold</td></tr>
+                    <tr><td>Rolls 3</td><td>+3 Gold</td></tr>
+                    <tr><td>Rolls 2</td><td>Nothing</td></tr>
+                    <tr><td>Rolls 1</td><td>Nothing</td></tr>
+                </table>
+                <hr>
+                <br><br><br>
+                
+            </div>
+        </div>
+
+
+        <div id="qte_the_keypad">
+            <div class="chapel-container">
+                <h3 class="sticky-title">A wierd keypad</h3>
+                <p id="qte_keypad_text" style="text-align: center">Match the corresponding symbols to access the next room.</p>
+                <button id='keypad_button' onclick='hud(25)'>Continue</button>
+                <div class="chapel-foreground">
+                    
+                    <div id="chapel-display">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="qte_rps">
+            <div class="rps-container">
+                <h3 class="sticky-title">A gambling Demon...</h3>
+                
+                <div class="glass-overlay"></div>
+                
+                <div id="rps-display69">
+                    First to 5 wins!
+                        <p id="message_rps">Choose your weapon to start!</p>
+                        <p id="score_rps">You: 0 | Demon: 0</p>
+                </div>
+        
+                <pre class="rps_table">
+                </pre>
+            </div>
+        
+            <div class="qte-scroll-content">
+                <hr>
+                <p id="qte_rps_text" style="text-align: center;">You've encountered a demon with a gambling addiction and challenges you to Shield, Swords, and Muskets!</p>
+                
+                <button id="qte_rps_shield_button" onclick="play('Shield')">Pick Shield</button>
+                <button id="qte_rps_sword_button" onclick="play('Sword')">Pick Sword</button>
+                <button id="qte_rps_musket_button" onclick="play('Musket')">Pick Musket</button>
+
+
+
+                <button id="qte_rps_lucky_button" onclick="hud(26)">Ok, Got It.</button>
+                <button id="qte_rps_unlucky_button" onclick="hud(26)">Dangers!</button>
+                <hr>
+                <table id="rps_table_roll_chart">
+                    <tr><td>Shield</td><td>Beats</td><td>Musket</td></tr>
+                    <tr><td>Sword</td><td>Beats</td><td>Shield</td></tr>
+                    <tr><td>Musket</td><td>Beats</td><td>Sword</td></tr>
+                </table>
+                <hr>
+                <br><br><br>
+                
+            </div>
+        </div>
+
+        <div id="qte_wack">
+          <div class="game-info">
+            <div id="qte_whack_score">Score: 0</div>
+            <div id="qte_whack_timer">Time: 60s</div>
+        </div>
+        <button id="qte_whack_startButton" onclick="qte_whack_startGame()">Start Game</button>
+        <button id="qte_whack_endButton" onclick="qte_whack_endGame()" disabled>End Game</button>
+        <div class="game-container">
+            <div class="hole" id="qte_whack_hole1"></div>
+            <div class="hole" id="qte_whack_hole2"></div>
+            <div class="hole" id="qte_whack_hole3"></div>
+            <div class="hole" id="qte_whack_hole4"></div>
+            <div class="hole" id="qte_whack_hole5"></div>
+            <div class="hole" id="qte_whack_hole6"></div>
+            <div class="hole" id="qte_whack_hole7"></div>
+            <div class="hole" id="qte_whack_hole8"></div>
+            <div class="hole" id="qte_whack_hole9"></div>
+        </div>
+      </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const classButtons = document.querySelectorAll('.class_select');
+                classButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const classNum = button.dataset.classNum;
+                        if (classNum) {
+                            if (typeof class_selection === 'function') {
+                                class_selection(parseInt(classNum, 10), button);
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
 </html>
