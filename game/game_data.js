@@ -134,7 +134,9 @@ var player = {
     arrows: 0,
     bullets: 0,
     scrolls: 0,
-    water: 0
+    water: 0,
+    key: 0,
+    lifeup: 0
 };
 
 
@@ -213,10 +215,11 @@ var weapon_roll = 0;
 var armor_roll = 0;
 var shield_roll = 0;
 
-var enemy_nme = ["Ghost","Glarb"];
-var enemy_hth = [5,8];
-var enemy_dmg = [1,2];
-var enemy_icn = ["&","$"];
+var enemy_nme = ["Ghost","Glarb","Serpant","Golem","Skeleton","Toad","Blob","Ember","Goblin"];
+var enemy_hth = [3,4,3,8,4,2,2,2,4];
+var enemy_dmg = [3,4,4,6,3,2,4,4,3];
+var enemy_arm = [1,2,2,3,1,1,2,1,2];
+var enemy_icn = ["&","?","!",".",",","+",";","=","\x5C"];
 var enemy_clr = [0,0];
 
 function Start() {
@@ -248,6 +251,10 @@ function Start() {
     document.getElementById("support_mm").style.display = "none";
     document.getElementById("How_To_Play_Guide").style.display = "none";
     document.getElementById("how_to_sub").style.display = "none";
+    document.getElementById("dungeon_menu").style.display = "none";
+    document.getElementById("Merchant_shoppe").style.display = "none";
+    document.getElementById("Quest_Board").style.display = "none";
+    document.getElementById("quest_0_letter").style.display = "none";
 
     //motto_funny
     var mottox = Math.floor((Math.random() * mottos.length));
@@ -308,6 +315,29 @@ function UIX(callout) {//how_to_sub
         document.getElementById("motto_funny").style.display = "block";
     }
 
+    if(callout == 9) {
+        document.getElementById("dungeon_menu").style.display = "block";
+        document.getElementById("MM").style.display = "none";
+        document.getElementById("motto_funny").style.display = "block";
+    }
+
+    if(callout == 10){
+        document.getElementById("Merchant_shoppe").style.display = "block";
+        document.getElementById("splash").style.display = "none";
+        document.getElementById("motto_funny").style.display = "none";
+    }
+
+    if(callout == 11){
+        document.getElementById("Quest_Board").style.display = "block";
+        document.getElementById("splash").style.display = "none";
+        document.getElementById("motto_funny").style.display = "none";
+    }
+
+    if(callout == 11){
+        document.getElementById("quest_0_letter").style.display = "block";
+        document.getElementById("Quest_Board").style.display = "none";
+        document.getElementById("motto_funny").style.display = "none";
+    }
 
 }
 
@@ -326,6 +356,8 @@ function hud(callout){
 		document.getElementById("class_description").innerHTML = "its too dangerous to go in without a class";
 		document.getElementById("class_icon").innerHTML = "@";
 		document.getElementById("class_stats").innerHTML = "Look so many to choose from";
+
+        document.getElementById("motto_funny").style.display = "none";
         
     }
 
@@ -395,9 +427,15 @@ function hud(callout){
     }
 
     if(callout == 9) {//Game Encounter!!!!!
-        document.getElementById("menu").style.display = "none";
-        document.getElementById("battle").style.display = "block";
-        document.getElementById("game").style.display = "none";
+        
+        Overlay.trigger();
+        setTimeout(() => {
+            document.getElementById("menu").style.display = "none";
+            document.getElementById("battle").style.display = "block";
+            document.getElementById("game").style.display = "none";
+            Battle_System(0);
+          }, 1000);
+        
     
     }
 
@@ -657,7 +695,7 @@ function startLoading(conditional) {
         document.getElementById("myLoadingBar1").style.display = "none";
         World()
         hud(2);
-    }, 1000);
+    }, 4500);
 
 
     setTimeout(() => {
@@ -818,6 +856,18 @@ function World(){
     "<a id='plyr_sp4'>_</a><a id='itm_sp4'>1</a>" + 
     "<a id='door2' class='brown'>:</a>" + 
     "<br>" + "##########";
+
+    if(player.key == 1) {
+        document.getElementById("game_has_key_icon").innerHTML = "-";
+    } else {
+        document.getElementById("game_has_key_icon").innerHTML = "";
+    }
+
+    if(player.lifeup == 1) {
+        document.getElementById("game_has_life_up").innerHTML = "/";
+    } else {
+        document.getElementById("game_has_life_up").innerHTML = "";
+    }
 
     if(players_pos == 0) {
         document.getElementById("plyr_sp1").innerHTML = "<a class='" + player_colors[player.class] + "'>@</a>";
@@ -1032,6 +1082,12 @@ function Game_Command(command) {
                     players_pos = 0;
                     World();
                   }, 2000);
+            } else if(room == 9) {
+                if(player.key == 1) {
+                    console.log("checkpoint!");
+                } else {
+                    //
+                }
             }
         }
     }
@@ -1265,6 +1321,7 @@ function data_output(infor) {
     if(infor == 8) {
         //key
         document.getElementById("ingame_notification_on_loot").innerHTML = "You found the Key!";
+        player.key = 1;
     }
     if(infor == 9) {
         //weapon
@@ -2238,4 +2295,427 @@ function formatTime(ms) {
     if (hours > 0) return `${hours}h ${minutes % 60}m ${seconds % 60}s ago`;
     if (minutes > 0) return `${minutes}m ${seconds % 60}s ago`;
     return `${seconds}s ago`;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+var section_boss = 0;
+var player_thp = 0;
+var player_stress = 0;
+var enemy_thp = 0;
+var enemy_stress = 0;
+
+var shields_timeout = 0;
+var heal_timeout = 0;
+var enemy_shields_timeout = 0;
+var enemy_heal_timeout = 0;
+
+var enemy_damage = 0;
+var player_damage = 0;
+
+var enemy_absorbed = 0;
+var player_absorbed = 0;
+
+var encounter_text = 0;
+var enemy_type = 0;
+
+var enemy = {
+    health: 10,
+    armor: 0
+}
+
+function Battle_System(callout) {
+    if(callout == 0) {
+        //declare the battle
+        if(section_boss == 0) {
+            //check if it isnt the boss battle
+            //roll what the player will encounter....
+            /*
+                var enemy_nme = ["Ghost","Glarb"];
+                var enemy_hth = [5,8];
+                var enemy_dmg = [1,2];
+                var enemy_arm = [10,12];
+                var enemy_arm_max = [10,12];
+                var enemy_icn = ["&","$"];
+                var enemy_clr = [0,0];
+
+                var armor_thp = [0,1,2,3,3,4,5,6];
+                var armor_stv = [1,2,4,6,6,8,10,12];
+
+                primary_weapon
+                seondary_weapon
+                shields_assist
+                health_assist
+
+                .disabled = true; 
+                
+            */
+            enemy_type = Math.floor((Math.random() * enemy_nme.length));
+            encounter_text = Math.floor((Math.random() * encounter_sentence.length));
+
+            player_thp = armor_thp[player.armor] + shield_thp[player.shield];
+            enemy_thp = enemy_arm[enemy_type];
+
+            enemy.health = enemy_hth[enemy_type];
+            enemy.armor = enemy_thp; 
+
+            i_typewriter = 0;
+            document.getElementById("encounter_battle_test").innerHTML = "";
+            txt_typewriter = "A " + enemy_nme[enemy_type] + " blocks your path...";
+            typeWriter();
+
+            Battle_System(1);
+
+
+        }
+    }
+
+    if(callout == 1) {
+        //update the UI
+            document.getElementById("enemy_battle_icon").innerHTML = enemy_icn[enemy_type];
+
+            i_typewriter = 0;
+            document.getElementById("encounter_battle_test").innerHTML = "";
+            txt_typewriter = "Select your next move...";
+            typeWriter();
+
+            document.getElementById("player_status").innerHTML = "";
+            document.getElementById("enemy_status").innerHTML = "";
+
+            document.getElementById("player_battle_health").innerHTML = player.health;
+            document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
+
+            document.getElementById("player_battle_armor").innerHTML = player_thp;
+            document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
+
+            document.getElementById("battle_encounter_button").style.display = "block";
+            document.getElementById("battle_encounter_button_victory").style.display = "none";
+
+            document.getElementById("cell_core_battle_1").style.display = "none";
+            document.getElementById("cell_core_battle_2").style.display = "none";
+
+            document.getElementById("health_assist").innerHTML = "+10hp (food: " + player.food + ")";
+
+            document.getElementById("primary_weapon").disabled = false;
+            document.getElementById("secondary_weapon").disabled = false;
+            
+            if(shields_timeout <= 0) {
+                document.getElementById("shields_assist").disabled = false;
+            } else {
+                document.getElementById("shields_assist").disabled = true;
+            }
+            if(heal_timeout <= 0) {
+                if(player.food >= 1) {
+                document.getElementById("health_assist").disabled = false;
+                } else {
+                    document.getElementById("health_assist").disabled = true;
+                }
+            } else {
+                document.getElementById("health_assist").disabled = true;
+            }
+
+
+
+            if(player.health <= 0) {
+                //player defeat
+                Battle_System(8);
+
+            }
+
+            if(enemy.health <= 0) {
+                //enemy defeated.
+                Battle_System(7);
+            }
+    }
+
+    if(callout == 2) {
+        //player main attack
+        document.getElementById("primary_weapon").disabled = true;
+        document.getElementById("secondary_weapon").disabled = true;
+        document.getElementById("shields_assist").disabled = true;
+        document.getElementById("health_assist").disabled = true;
+        
+        //if above board just straight up attack the player...
+            //when all else fails attack!
+            i_typewriter = 0;
+            document.getElementById("encounter_battle_test").innerHTML = "";
+            txt_typewriter = "You used your " + weapon_nme[player.weapon] + " on the enemy!";
+            typeWriter();
+            setTimeout(() => {
+                player_damage = Math.floor((Math.random() * weapon_dmg[player.weapon])) + 1;
+
+                if (player_damage <= enemy.armor) {
+                    // Case 1: Armor is strong enough to take the whole hit
+                    enemy.armor -= player_damage;
+                } else {
+                    // Case 2: Armor breaks!
+                    let leftoverDamage = player_damage - enemy.armor;
+                    enemy.armor = 0; // Armor is wiped out
+                    enemy.health -= leftoverDamage; // The rest hits the health
+                }
+                document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
+                document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
+
+                if(enemy.health <= 0) {
+                    //enemy defeated.
+                    Battle_System(7);
+                } else {
+                    Battle_System(6);
+                }
+                
+            }, 1000);
+    }
+
+    if(callout == 3) {
+        //player punch
+        document.getElementById("primary_weapon").disabled = true;
+        document.getElementById("secondary_weapon").disabled = true;
+        document.getElementById("shields_assist").disabled = true;
+        document.getElementById("health_assist").disabled = true;
+        
+        i_typewriter = 0;
+        document.getElementById("encounter_battle_test").innerHTML = "";
+        txt_typewriter = "You punch the " + enemy_nme[enemy_type] + "!";
+        typeWriter();
+        
+        setTimeout(() => {
+            enemy.health -= 1;
+            document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
+            if(enemy.health <= 0) {
+                //enemy defeated.
+                Battle_System(7);
+            } else {
+                Battle_System(6);
+            }
+        }, 1000);
+    }
+
+    if(callout == 4) {
+        //player shields up
+        document.getElementById("primary_weapon").disabled = true;
+        document.getElementById("secondary_weapon").disabled = true;
+        document.getElementById("shields_assist").disabled = true;
+        document.getElementById("health_assist").disabled = true;
+
+        if(shields_timeout <= 0) {
+            i_typewriter = 0;
+            document.getElementById("encounter_battle_test").innerHTML = "";
+            txt_typewriter = "You use Shields Up to increase your armor!";
+            typeWriter();
+
+            setTimeout(() => {
+                player_thp = armor_thp[player.armor] + shield_thp[player.shield];
+                
+                if(player_stress >= 1) {
+                    document.getElementById("player_status").innerHTML = "Stressed!";
+                    player_stress += 1;
+                } else {
+                    player_stress += 1;
+                }
+
+                shields_timeout == 3;
+                Battle_System(6);
+            }, 1000);
+        }
+        
+    }
+
+    if(callout == 5) {
+        //player health up
+        document.getElementById("primary_weapon").disabled = true;
+        document.getElementById("secondary_weapon").disabled = true;
+        document.getElementById("shields_assist").disabled = true;
+        document.getElementById("health_assist").disabled = true;
+
+        if(heal_timeout <= 0) {
+            if(player.food >= 1) {
+
+                i_typewriter = 0;
+                document.getElementById("encounter_battle_test").innerHTML = "";
+                txt_typewriter = "You eat some food and heal up!";
+                typeWriter();
+
+                setTimeout(() => {
+                    player.food -= 1;
+                    player.health += 10;
+                    heal_timeout = 3;
+                    document.getElementById("health_assist").innerHTML = "+10hp (food: " + player.food + ")";
+                    Battle_System(6);
+                }, 1000);   
+            }
+        } 
+    }
+
+    if(callout == 6) {
+        //the enemy attacks
+
+        //check health 
+        if(enemy.health <= (enemy_hth[enemy_type] / 2)) {
+            if(enemy_heal_timeout == 0) {
+                //see if one can heal
+                setTimeout(() => {
+                    i_typewriter = 0;
+                    document.getElementById("encounter_battle_test").innerHTML = "";
+                    txt_typewriter = "The " + enemy_nme[enemy_type] + " heals up!";
+                    typeWriter();
+                    var xxy = Math.floor((Math.random() * 4)) +1;
+                    enemy.health += xxy;
+                    enemy_heal_timeout = 3;
+                    document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
+                    document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
+                }, 2500);
+            } else {
+                if(enemy_shields_timeout == 0) {
+                    //see if one can armor up
+                    setTimeout(() => {
+                        i_typewriter = 0;
+                        document.getElementById("encounter_battle_test").innerHTML = "";
+                        txt_typewriter = "The " + enemy_nme[enemy_type] + " reinforced their shields!";
+                        typeWriter();
+                        enemy.armor = enemy_thp[enemy_type];
+                        enemy_shields_timeout = 3;
+                        document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
+                        document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
+                    }, 2500);
+                } else {
+                    //when all else fails attack!
+                    setTimeout(() => {
+                        i_typewriter = 0;
+                        document.getElementById("encounter_battle_test").innerHTML = "";
+                        txt_typewriter = "The " + enemy_nme[enemy_type] + " attacks the player!";
+                        typeWriter();
+                        // 1. Roll the damage
+                        enemy_damage = Math.floor((Math.random() * enemy_dmg[enemy_type])) + 1;
+
+                        // 2. The Logic: Check armor first
+                        if (enemy_damage <= player.armor) {
+                            // Armor absorbs everything
+                            player.armor -= enemy_damage;
+                        } else {
+                            // Armor breaks, calculate the leftover "piercing" damage
+                            let leftover = enemy_damage - player.armor;
+                            player.armor = 0; // Armor is now empty
+                            player.health -= leftover; // Only the leftover hits the health
+                        }
+
+                        document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
+                        document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
+                        document.getElementById("player_battle_health").innerHTML = player.health;
+                        document.getElementById("player_battle_armor").innerHTML = player_thp;
+                    }, 2500);
+                }
+            }
+        } else {
+            //if above board just straight up attack the player...
+            //when all else fails attack!
+            setTimeout(() => {
+                i_typewriter = 0;
+                document.getElementById("encounter_battle_test").innerHTML = "";
+                txt_typewriter = "The " + enemy_nme[enemy_type] + " attacks the player!";
+                typeWriter();
+                // 1. Roll the damage
+                enemy_damage = Math.floor((Math.random() * enemy_dmg[enemy_type])) + 1;
+
+                // 2. The Logic: Check armor first
+                if (enemy_damage <= player.armor) {
+                    // Armor absorbs everything
+                    player.armor -= enemy_damage;
+                } else {
+                    // Armor breaks, calculate the leftover "piercing" damage
+                    let leftover = enemy_damage - player.armor;
+                    player.armor = 0; // Armor is now empty
+                    player.health -= leftover; // Only the leftover hits the health
+                }
+                document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
+                document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
+
+                document.getElementById("player_battle_health").innerHTML = player.health;
+                document.getElementById("player_battle_armor").innerHTML = player_thp;
+            }, 2500);
+        }
+        setTimeout(() => {   
+            Battle_System(1);
+        }, 4500);
+        
+    }
+
+    if(callout == 7) {
+        //enemy defeated
+        console.log("enemy defeated");
+    }
+
+    if(callout == 8) {
+        //player is defeated....
+        console.log("player defeated");
+    }
+
+    if(callout == 9) {
+        document.getElementById("battle_encounter_button").style.display = "none";
+        document.getElementById("battle_encounter_button_victory").style.display = "none";
+
+        document.getElementById("cell_core_battle_1").style.display = "table-row";
+        document.getElementById("cell_core_battle_2").style.display = "table-row";
+    }
+}
+
+
+class RetroOverlayModule {
+    constructor() {
+        this.body = document.body;
+        this.canvas = document.getElementById('ra-pixel-canvas');
+        this.module = document.getElementById('battle');
+        this.gridSize = 400; // 20x20
+        this.init();
+    }
+
+    init() {
+        // Generate the pixel elements
+        for (let i = 0; i < this.gridSize; i++) {
+            const pixel = document.createElement('div');
+            pixel.classList.add('ra-pixel');
+            // Random stagger for organic digital fill
+            pixel.style.transitionDelay = `${Math.random() * 0.4}s`;
+            this.canvas.appendChild(pixel);
+        }
+    }
+
+    trigger() {
+        // Step 1: Violent Shake
+        this.body.classList.add('ra-glitch-out');
+
+        // Step 2: Pixel Swarm after 400ms
+        setTimeout(() => {
+            this.body.classList.remove('ra-glitch-out');
+            this.body.classList.add('ra-show-pixels');
+
+            // Step 3: Show the Overlay Module
+            setTimeout(() => {
+                this.module.style.display = 'block';
+            }, 500);
+        }, 400);
+    }
+
+    close() {
+        // Hide module and retract pixels
+        this.module.style.display = 'none';
+        this.body.classList.remove('ra-show-pixels');
+    }
+}
+
+// Initialize the module
+const Overlay = new RetroOverlayModule();
+
+
+var i_typewriter = 0;
+var txt_typewriter = 'Lorem ipsum dummy text blabla.';
+var speed_typewriter = 40;
+
+function typeWriter() {
+
+  if (i_typewriter < txt_typewriter.length) {
+    document.getElementById("encounter_battle_test").innerHTML += txt_typewriter.charAt(i_typewriter);
+    i_typewriter++;
+    setTimeout(typeWriter, speed_typewriter);
+  }
 }

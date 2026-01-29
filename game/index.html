@@ -10,8 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="HandheldFriendly" content="true"/>
 
-        <link href='game_style.css?=v1.5' rel='stylesheet'>
-        <script defer type="text/javascript" src="game_data.js?=v1.6"></script>
+        <link href='game_style.css?=v2.4' rel='stylesheet'>
+        <script defer type="text/javascript" src="game_data.js?=v2.7"></script>
 
 
     </head>
@@ -24,7 +24,7 @@
                     <button id="tap_to_play_button" onclick="UIX(0)">Tap to Play</button>
                 </div>
                 <div id="MM">
-                    <button id="login_button" onclick="hud(0)">Play Now</button>
+                    <button id="login_button" onclick="UIX(9)">Play Now</button>
                     <br>
                     <button id="offline_mode_button" onclick="UIX(1)">How to Play</button>
                     <br>
@@ -37,6 +37,14 @@
                     <button id="offline_mode_button" onclick="UIX(2)">Controls</button>
                     <br>
                     <button id="offline_mode_button" onclick="UIX(5)">Back</button>
+                </div>
+
+                <div id="dungeon_menu">
+                    <button id="login_button" onclick="hud(0)">Enter the Dungeon</button>
+                    <br>
+                    <button id="offline_mode_button" onclick="UIX(10)">Merchant</button>
+                    <br>
+                    <button id="offline_mode_button" onclick="UIX(11)">Quest Board</button>
                 </div>
 
             </div>
@@ -184,6 +192,93 @@
             <p id="motto_funny">motto goes here</p>
         </div>
 
+        <div id="Merchant_shoppe">
+            <h3>The Merchant Shoppe</h3>
+            <button>Back</button>
+        </div>
+
+        <div id="Quest_Board">
+            <h3>Adventurers Guild</h3>
+            <p>Guild Level: 1</p>
+            <progress id="guild_prog_bar" value="75" max="100"></progress>
+            <br>
+            <h3>- A Letter from the King -</h3>
+            <hr>
+            <center>
+            <h4>Quest Board</h4>
+            </center>
+            <ul class="quest-list">
+                <li class="quest-item">
+                    <div>
+                        <span class="status"></span>
+                        <span class="quest-title">Slay 5 Slimes</span>
+                    </div>
+                    <span class="reward">50G</span>
+                </li>
+    
+                <li class="quest-item completed">
+                    <div>
+                        <span class="status"></span>
+                        <span class="quest-title">Find Magic Herb</span>
+                    </div>
+                    <span class="reward">100G</span>
+                </li>
+    
+                <li class="quest-item">
+                    <div>
+                        <span class="status"></span>
+                        <span class="quest-title">Rescue the Prince</span>
+                    </div>
+                    <span class="reward">500G</span>
+                </li>
+            </ul>
+            <br><hr>
+            <br>
+            <button>Back</button>
+        </div>
+
+        <div id="quest_0_letter">
+            <h1>A Royal Summons (of Questionable Safety)</h1>
+            <p><strong>Date:</strong> The Year of our King, 1402</p>
+            <p><strong>To:</strong> The Brave, the Bold, and the Highly Expendable</p>
+
+            <hr>
+
+            <section>
+                <h2>The King’s Decree</h2>
+                <p>
+                    By the Grace of the Crown and the pressing emptiness of the Royal Treasury, you are hereby "invited" to provide your services to the Realm. His Majesty has noted—with great interest and a small amount of impatience—that the <strong>Dungeon of the Mad Mage</strong> remains offensively full of gold while the palace wine cellar is looking dreadfully thin.
+                </p>
+            </section>
+
+            <section>
+                <h3>Your Royal Mandate</h3>
+                <ul>
+                    <li><strong>Extract the Shiny:</strong> Any gold, gems, or artifacts not bolted to the floor (and some that are) must be recovered for "safekeeping."</li>
+                    <li><strong>Survive the Decor:</strong> Please refrain from offending the portraits. The last hero we sent spent three hours listening to a Duke’s oil painting complain about the humidity. It was... unproductive.</li>
+                    <li><strong>Appease the Forge:</strong> Should you find the sentient forge, try to agree with its creative choices. If it wants to turn your sword into a very sharp ladle, show some gratitude.</li>
+                    <li><strong>Mind the Architecture:</strong> Try your best not to be digested by the masonry, wardrobes, or any chests that appear to have teeth.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Official Liability Waiver</h3>
+                <blockquote>
+                    "Brave the dungeon, retrieve the treasures, and for the love of the gods, try not to get eaten by the floorboards."
+                </blockquote>
+                <p>
+                    Be advised: the Crown shall not be held liable for any bruises, existential crises, or accidental kidnappings by vengeful floral families. Report to the dungeon entrance at dawn. Bring your own bandages; the King is currently using the royal supply to patch a drafty window in the throne room.
+                </p>
+            </section>
+
+            <p><em>For the Glory of the Realm (and the King’s Pocketbook),</em></p>
+            <p><strong>Lord Pendergast</strong><br>
+            High Scribe and Master of "Voluntary" Recruitment</p>
+
+            <br><br><br>
+            <button>Back</button>
+        </div>
+
         <div id="menu">
 
             <h1 style="text-align: center">Class Select</h1> 
@@ -229,7 +324,7 @@
         <div id="game">
             <div id="game-canvas-container">
                 <h2 id="player_game_score">Score 1000</h2>
-                <p id="game_special_items_checklist">test</p>
+                <p id="game_special_items_checklist"><a id='game_has_key_icon' class='white icns'>-</a><a id='game_has_life_up' class='yellow icns'>/</a></p>
                 <div id="game_view">
                     <p id="game_sene" class="icns fog-tgt" style="line-height: 1.15; letter-spacing: 0px;">
                         ##########
@@ -271,45 +366,52 @@
             </div>
         </div>
 
+        <div id="ra-pixel-canvas"></div>
+
         <div id="battle">
             <h2 style="text-align: center">Battle</h2>
             <hr>
             <div id="battle_center_ui_content">
-                <h4 style="text-align: center">'the encounter funny goes here'</h3>
+                <h4 style="text-align: center" id="encounter_battle_test"></h3>
                 <table id="battle_combat_table">
                     <tr>
-                        <td style="text-align: center">1</td>
-                        <td style="text-align: center">2</td>
+                        <td style="text-align: center" id="player_status">1</td>
+                        <td style="text-align: center" id="enemy_status">2</td>
                     </tr>
                     <tr>
                         <td><br></td>
                         <td><br></td>
                     </tr>
                     <tr>
-                        <td class="icns" style="text-align: center;">@</td>
-                        <td class="icns" style="text-align: center;">&</td>
+                        <td class="icns" style="text-align: center;"><a id="player_battle_icon">@</a></td>
+                        <td class="icns" style="text-align: center;"><a id="enemy_battle_icon">&</a></td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;"><a class='red icns battle_ui_hud_icns'>~</a>10/10</td>
-                        <td style="text-align: center;"><a class='red icns battle_ui_hud_icns'>~</a>12/12</td>
+                        <td style="text-align: center;"><a class='red icns battle_ui_hud_icns'>~</a><a id="player_battle_health">10/10</a></td>
+                        <td style="text-align: center;"><a class='red icns battle_ui_hud_icns'>~</a><a id="enemy_battle_health">10/10</a></td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;"><a class='blue icns battle_ui_hud_icns'>%</a>10/10</td>
-                        <td style="text-align: center;"><a class='blue icns battle_ui_hud_icns'>%</a>12/12</td>
+                        <td style="text-align: center;"><a class='blue icns battle_ui_hud_icns'>%</a><a id="player_battle_armor">10/10</a></td>
+                        <td style="text-align: center;"><a class='blue icns battle_ui_hud_icns'>%</a><a id="enemy_battle_armor">10/10</a></td>
                     </tr>
                     <tr>
                         <td><br></td>
                         <td><br></td>
                     </tr>
-                    <tr>
-                        <td><button id="primary_weapon" class="battle_combat_button_actions">Sword</button></td>
-                        <td><button id="secondary_weapon" class="battle_combat_button_actions">Punch</button></td>
+                    <tr id="cell_core_battle_1">
+                        <td><button id="primary_weapon" class="battle_combat_button_actions" onclick="Battle_System(2)">Sword</button></td>
+                        <td><button id="secondary_weapon" class="battle_combat_button_actions" onclick="Battle_System(3)">Punch</button></td>
                     </tr>
-                    <tr>
-                        <td><button id="shields_assist" class="battle_combat_button_actions">Shield Up</button></td>
-                        <td><button id="health_assist" class="battle_combat_button_actions">+10hp (food: 3)</button></td>
+                    <tr id="cell_core_battle_2">
+                        <td><button id="shields_assist" class="battle_combat_button_actions" onclick="Battle_System(4)">Shield Up</button></td>
+                        <td><button id="health_assist" class="battle_combat_button_actions" onclick="Battle_System(5)">+10hp (food: 3)</button></td>
                     </tr>
                 </table>
+                
+                <center>
+                    <button id="battle_encounter_button" onclick="Battle_System(9)">Continue</button>
+                    <button id="battle_encounter_button_victory">Continue</button>
+                </center>
             </div>
             
         </div>

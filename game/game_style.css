@@ -4,6 +4,15 @@
     --card-color: #2f3031;
     --match-color: #707070;
     --mismatch-color: #000000;
+    --ra-pixel-color: #222222; /* Dark Gray Transition Blocks */
+    --ra-bg-color: #000000;    /* Deep Black */
+    --ra-text-primary: #ffffff; /* Stark White */
+    --ra-text-secondary: #888888; /* Dim Gray */
+    --bg-color: #121212;
+    --border-color: #ffffff;
+    --highlight: #ff00ff; /* Neon Pink */
+    --accent: #00ffff;    /* Neon Cyan */
+    --text-color: #ffffff;
 }
 
 @font-face {
@@ -69,7 +78,6 @@ button:disabled {
 	pointer-events: none;
 	background-color: #555555;
 	color: white;
-	box-shadow: 10px 10px var(--shadow-color, #000000);
 
 }
 
@@ -1125,11 +1133,19 @@ progress[value]::-moz-progress-bar {
 }
 
 #battle {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 90%;
+	height: 90%;
+	border: 3px solid #ffffff;
+	background-color: #000;
+	overflow-y: scroll;
+    box-shadow: 10px 10px var(--shadow-color, #ffffff);
+    color:#fff;
+
+    z-index: 9999;
 }
 
 #battle_center_ui_content{
@@ -2064,3 +2080,198 @@ pre {
 .fog-shk{animation:f-shk .15s infinite}
 @keyframes f-dis{0%{opacity:0;transform:scale(1);filter:brightness(3)}20%{opacity:1;filter:brightness(1)}50%{background-size:12px 12px;transform:scale(1.1) rotate(2deg)}100%{opacity:0;background-size:30px 30px;transform:scale(1.5) rotate(-2deg)}}
 @keyframes f-shk{0%{transform:translate(0,0)}25%{transform:translate(3px,-3px)}50%{transform:translate(-3px,3px)}100%{transform:translate(0,0)}}
+
+
+/* 1. INITIAL SHAKE (No Flashing) */
+.ra-glitch-out {
+    /* !important ensures it overrides existing project styles during transition */
+    animation: ra-violent-shake 0.2s steps(3) infinite !important;
+}
+
+@keyframes ra-violent-shake {
+    0% { transform: translate(0, 0); }
+    15% { transform: translate(-10px, -6px); }
+    35% { transform: translate(10px, 8px); }
+    55% { transform: translate(-10px, 9px); }
+    75% { transform: translate(8px, -10px); }
+    95% { transform: translate(-4px, 6px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* 2. PIXEL GRID LAYER */
+#ra-pixel-canvas {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    z-index: 9998;
+    pointer-events: none;
+}
+
+.ra-pixel {
+    background: var(--ra-pixel-color);
+    transform: scale(0);
+    transition: transform 0.2s steps(3);
+}
+
+.ra-show-pixels .ra-pixel {
+    transform: scale(1.1);
+}
+
+/* 3. OVERLAY MODULE */
+#ra-overlay-module {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background: var(--ra-bg-color);
+    padding: 40px;
+    color: var(--ra-text-primary);
+    text-align: center;
+    border: 2px solid var(--ra-text-primary);
+    display: none;
+    min-width: 320px;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 0 0 40px rgba(0,0,0,1);
+}
+
+/* 4. SCANLINES (Always on top for texture) */
+.ra-scanlines {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.03) 50%, 
+        rgba(0, 0, 0, 0.1) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+#battle_encounter_button {
+    padding: 14px 0px;
+	width: 95%;
+}
+
+#battle_encounter_button_victory {
+    padding: 14px 0px;
+	width: 95%;
+}
+
+#player_battle_icon {
+    font-size: 24px;
+}
+
+#enemy_battle_icon {
+    font-size: 24px;
+}
+
+#Merchant_shoppe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border: 3px solid #ffffff;
+    background-color: #000;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    box-shadow: 10px 10px #212626;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+}
+
+#Quest_Board {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border: 3px solid #ffffff;
+    background-color: #000;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    box-shadow: 10px 10px #c3c3c3;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+}
+
+/* Quest Items */
+.quest-list {
+    list-style: none;
+    padding: 0;
+}
+
+.quest-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quest-item:hover {
+    border-color: var(--accent);
+    background: #2a2a2a;
+    transform: scale(1.02);
+}
+
+.quest-title {
+    font-size: 12px;
+}
+
+.reward {
+    font-size: 10px;
+    color: #ffff00; /* Gold */
+}
+
+/* Checkbox Styling */
+.status {
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--text-color);
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.completed .status {
+    background-color: var(--accent);
+    box-shadow: inset 2px 2px 0px #000;
+}
+
+.completed .quest-title {
+    text-decoration: line-through;
+    color: #666;
+}
+
+#quest_0_letter{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border: 3px solid #ffffff;
+    background-color: #000;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    box-shadow: 10px 10px #c3c3c3;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+}
