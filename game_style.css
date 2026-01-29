@@ -1182,8 +1182,8 @@ progress[value]::-moz-progress-bar {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 60%;
-	height: 60%;
+	width: 80%;
+	height: 80%;
 	border: 3px solid #ffffff;
 	background-color: #000;
 	overflow-y: scroll;
@@ -2275,3 +2275,41 @@ pre {
     flex-direction: column;
     z-index: 5;
 }
+
+/* Merchant Tab Container */
+.rosebud_merchant_tab_container {
+    overflow: hidden;
+    border: 1px solid #555;
+    background-color: #2e2e2e;
+    color: white;
+  }
+  
+  /* Merchant Tab Buttons */
+  .rosebud_merchant_tab_container button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    color: #ccc;
+  }
+  
+  .rosebud_merchant_tab_container button:hover {
+    background-color: #444;
+  }
+  
+  .rosebud_merchant_tab_container button.active {
+    background-color: #555;
+    color: #fff;
+  }
+  
+  /* Merchant Content Area */
+  .rosebud_merchant_content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #555;
+    border-top: none;
+  }

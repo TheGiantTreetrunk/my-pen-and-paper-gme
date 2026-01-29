@@ -333,9 +333,27 @@ function UIX(callout) {//how_to_sub
         document.getElementById("motto_funny").style.display = "none";
     }
 
-    if(callout == 11){
+    if(callout == 12){
         document.getElementById("quest_0_letter").style.display = "block";
         document.getElementById("Quest_Board").style.display = "none";
+        document.getElementById("motto_funny").style.display = "none";
+    }
+
+    if(callout == 13){
+        document.getElementById("quest_0_letter").style.display = "none";
+        document.getElementById("Quest_Board").style.display = "block";
+        document.getElementById("motto_funny").style.display = "none";
+    }
+
+    if(callout == 14){
+        document.getElementById("Quest_Board").style.display = "none";
+        document.getElementById("splash").style.display = "block";
+        document.getElementById("motto_funny").style.display = "none";
+    }
+
+    if(callout == 15){
+        document.getElementById("Merchant_shoppe").style.display = "none";
+        document.getElementById("splash").style.display = "block";
         document.getElementById("motto_funny").style.display = "none";
     }
 
@@ -2719,3 +2737,27 @@ function typeWriter() {
     setTimeout(typeWriter, speed_typewriter);
   }
 }
+
+
+function rosebud_merchant_open_tab(rosebud_merchant_evt, rosebud_merchant_category) {
+    var i, rosebud_merchant_list, rosebud_merchant_links;
+    
+    // Hide all tab content
+    rosebud_merchant_list = document.getElementsByClassName("rosebud_merchant_content");
+    for (i = 0; i < rosebud_merchant_list.length; i++) {
+      rosebud_merchant_list[i].style.display = "none";
+    }
+    
+    // Remove the active class from all buttons
+    rosebud_merchant_links = document.getElementsByClassName("rosebud_merchant_links");
+    for (i = 0; i < rosebud_merchant_links.length; i++) {
+      rosebud_merchant_links[i].className = rosebud_merchant_links[i].className.replace(" active", "");
+    }
+    
+    // Show the specific tab and add active class to the clicked button
+    document.getElementById(rosebud_merchant_category).style.display = "block";
+    rosebud_merchant_evt.currentTarget.className += " active";
+  }
+  
+  // Automatically open the default tab on load
+  document.getElementById("rosebud_merchant_default").click();
