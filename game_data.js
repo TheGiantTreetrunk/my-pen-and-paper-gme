@@ -1110,6 +1110,8 @@ function Game_Command(command) {
         }
     }
 	if(command == 3) {
+        rosebud_world_risk_calc.processAction();
+
 		if(players_pos == 0){
 			if(obj_1a[room] == 0) {
 				var itm_g = itm_1t[room];
@@ -1192,6 +1194,7 @@ function Game_Command(command) {
 		}
 	}
     if(command == 4) {
+        rosebud_world_risk_calc.processAction();
         if(players_pos == 0){
             if(obj_1a[room] == 0) {
                 if(Math.random() < 0.5){
@@ -2569,89 +2572,95 @@ function Battle_System(callout) {
         //the enemy attacks
 
         //check health 
-        if(enemy.health <= (enemy_hth[enemy_type] / 2)) {
-            if(enemy_heal_timeout == 0) {
-                //see if one can heal
+        if(enemy.health >= 1) {
+            if(enemy.health <= (enemy_hth[enemy_type] / 2)) {
+                if(enemy_heal_timeout == 0) {
+                    //see if one can heal
+                    setTimeout(() => {
+                        i_typewriter = 0;
+                        document.getElementById("encounter_battle_test").innerHTML = "";
+                        txt_typewriter = "The " + enemy_nme[enemy_type] + " heals up!";
+                        typeWriter();
+                        var xxy = Math.floor((Math.random() * 4)) +1;
+                        enemy.health += xxy;
+                        enemy_heal_timeout = 3;
+                        document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
+                        document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
+                    }, 2500);
+                } else {
+                    if(enemy_shields_timeout == 0) {
+                        //see if one can armor up
+                        setTimeout(() => {
+                            i_typewriter = 0;
+                            document.getElementById("encounter_battle_test").innerHTML = "";
+                            txt_typewriter = "The " + enemy_nme[enemy_type] + " reinforced their shields!";
+                            typeWriter();
+                            enemy.armor = enemy_thp[enemy_type];
+                            enemy_shields_timeout = 3;
+                            document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
+                            document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
+                        }, 2500);
+                    } else {
+                        //when all else fails attack!
+                        setTimeout(() => {
+                            i_typewriter = 0;
+                            document.getElementById("encounter_battle_test").innerHTML = "";
+                            txt_typewriter = "The " + enemy_nme[enemy_type] + " attacks the player!";
+                            typeWriter();
+                            // 1. Roll the damage
+                            enemy_damage = Math.floor((Math.random() * enemy_dmg[enemy_type])) + 1;
+
+                            // 2. The Logic: Check armor first
+                            if (enemy_damage <= player.armor) {
+                                // Armor absorbs everything
+                                player.armor -= enemy_damage;
+                            } else {
+                                // Armor breaks, calculate the leftover "piercing" damage
+                                let leftover = enemy_damage - player.armor;
+                                player.armor = 0; // Armor is now empty
+                                player.health -= leftover; // Only the leftover hits the health
+                            }
+
+                            document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
+                            document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
+                            document.getElementById("player_battle_health").innerHTML = player.health;
+                            document.getElementById("player_battle_armor").innerHTML = player_thp;
+                        }, 2500);
+                    }
+                }
+            } else {
+                //if above board just straight up attack the player...
+                //when all else fails attack!
                 setTimeout(() => {
                     i_typewriter = 0;
                     document.getElementById("encounter_battle_test").innerHTML = "";
-                    txt_typewriter = "The " + enemy_nme[enemy_type] + " heals up!";
+                    txt_typewriter = "The " + enemy_nme[enemy_type] + " attacks the player!";
                     typeWriter();
-                    var xxy = Math.floor((Math.random() * 4)) +1;
-                    enemy.health += xxy;
-                    enemy_heal_timeout = 3;
+                    // 1. Roll the damage
+                    enemy_damage = Math.floor((Math.random() * enemy_dmg[enemy_type])) + 1;
+
+                    // 2. The Logic: Check armor first
+                    if (enemy_damage <= player.armor) {
+                        // Armor absorbs everything
+                        player.armor -= enemy_damage;
+                    } else {
+                        // Armor breaks, calculate the leftover "piercing" damage
+                        let leftover = enemy_damage - player.armor;
+                        player.armor = 0; // Armor is now empty
+                        player.health -= leftover; // Only the leftover hits the health
+                    }
                     document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
                     document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
+
+                    document.getElementById("player_battle_health").innerHTML = player.health;
+                    document.getElementById("player_battle_armor").innerHTML = player_thp;
                 }, 2500);
-            } else {
-                if(enemy_shields_timeout == 0) {
-                    //see if one can armor up
-                    setTimeout(() => {
-                        i_typewriter = 0;
-                        document.getElementById("encounter_battle_test").innerHTML = "";
-                        txt_typewriter = "The " + enemy_nme[enemy_type] + " reinforced their shields!";
-                        typeWriter();
-                        enemy.armor = enemy_thp[enemy_type];
-                        enemy_shields_timeout = 3;
-                        document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
-                        document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
-                    }, 2500);
-                } else {
-                    //when all else fails attack!
-                    setTimeout(() => {
-                        i_typewriter = 0;
-                        document.getElementById("encounter_battle_test").innerHTML = "";
-                        txt_typewriter = "The " + enemy_nme[enemy_type] + " attacks the player!";
-                        typeWriter();
-                        // 1. Roll the damage
-                        enemy_damage = Math.floor((Math.random() * enemy_dmg[enemy_type])) + 1;
-
-                        // 2. The Logic: Check armor first
-                        if (enemy_damage <= player.armor) {
-                            // Armor absorbs everything
-                            player.armor -= enemy_damage;
-                        } else {
-                            // Armor breaks, calculate the leftover "piercing" damage
-                            let leftover = enemy_damage - player.armor;
-                            player.armor = 0; // Armor is now empty
-                            player.health -= leftover; // Only the leftover hits the health
-                        }
-
-                        document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
-                        document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
-                        document.getElementById("player_battle_health").innerHTML = player.health;
-                        document.getElementById("player_battle_armor").innerHTML = player_thp;
-                    }, 2500);
-                }
             }
-        } else {
-            //if above board just straight up attack the player...
-            //when all else fails attack!
-            setTimeout(() => {
-                i_typewriter = 0;
-                document.getElementById("encounter_battle_test").innerHTML = "";
-                txt_typewriter = "The " + enemy_nme[enemy_type] + " attacks the player!";
-                typeWriter();
-                // 1. Roll the damage
-                enemy_damage = Math.floor((Math.random() * enemy_dmg[enemy_type])) + 1;
-
-                // 2. The Logic: Check armor first
-                if (enemy_damage <= player.armor) {
-                    // Armor absorbs everything
-                    player.armor -= enemy_damage;
-                } else {
-                    // Armor breaks, calculate the leftover "piercing" damage
-                    let leftover = enemy_damage - player.armor;
-                    player.armor = 0; // Armor is now empty
-                    player.health -= leftover; // Only the leftover hits the health
-                }
-                document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
-                document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
-
-                document.getElementById("player_battle_health").innerHTML = player.health;
-                document.getElementById("player_battle_armor").innerHTML = player_thp;
-            }, 2500);
         }
+        else if(enemy.health <= 0){
+            Battle_System(7);
+        }
+
         setTimeout(() => {   
             Battle_System(1);
         }, 4500);
@@ -2660,6 +2669,18 @@ function Battle_System(callout) {
 
     if(callout == 7) {
         //enemy defeated
+        
+        setTimeout(() => {   
+        i_typewriter = 0;
+        document.getElementById("encounter_battle_test").innerHTML = "";
+        txt_typewriter = "The " + enemy_nme[enemy_type] + " has been defeated!";
+        typeWriter();
+
+        document.getElementById("battle_encounter_button_victory").style.display = "block";
+
+        document.getElementById("cell_core_battle_1").style.display = "none";
+        document.getElementById("cell_core_battle_2").style.display = "none";
+        }, 2500);
         console.log("enemy defeated");
     }
 
@@ -2674,6 +2695,22 @@ function Battle_System(callout) {
 
         document.getElementById("cell_core_battle_1").style.display = "table-row";
         document.getElementById("cell_core_battle_2").style.display = "table-row";
+    }
+
+    if(callout == 10) {
+        if(section_boss == 0) {
+            //we want to fade out and then go back to the world...
+            Overlay.close()
+            document.getElementById("battle").style.display = "none";
+            document.getElementById("game").style.display = "block";
+        }
+
+        if(section_boss == 1) {
+            //the player defeated the boss! and the section screen should pop up now...
+            Overlay.close()
+            document.getElementById("battle").style.display = "none";
+            document.getElementById("game").style.display = "block";
+        }
     }
 }
 
@@ -2761,3 +2798,56 @@ function rosebud_merchant_open_tab(rosebud_merchant_evt, rosebud_merchant_catego
   
   // Automatically open the default tab on load
   document.getElementById("rosebud_merchant_default").click();
+
+
+  // Encapsulated Wave Logic
+const rosebud_world_risk_calc = {
+    currentRisk: 0,          // Current percentage chance (0-100)
+    baseIncrement: 12,       // Risk added per action
+    pityThreshold: 5,        // Max actions allowed before a guaranteed wave
+    actionCountSinceWave: 0, // Counter for the pity timer
+    totalWavesTriggered: 0,
+
+    /**
+     * Call this function whenever the player performs an action 
+     * (opens a door, picks up an item, etc.)
+     */
+    processAction: function() {
+        this.actionCountSinceWave++;
+        
+        // 1. Calculate new risk
+        this.currentRisk += this.baseIncrement;
+        
+        // 2. Roll the dice (1 to 100)
+        const roll = Math.floor(Math.random() * 100) + 1;
+        
+        console.log(`[Rosebud Log] Action: ${this.actionCountSinceWave} | Risk: ${this.currentRisk}% | Roll: ${roll}`);
+
+        // 3. Check for Wave Trigger
+        // Trigger if roll is within risk OR if pity timer is hit
+        if (roll <= this.currentRisk || this.actionCountSinceWave >= this.pityThreshold) {
+            
+            const reason = (this.actionCountSinceWave >= this.pityThreshold) ? "PITY TIMER" : "RNG ROLL";
+            this.triggerWave(reason);
+            
+        } else {
+            console.log("Status: The dungeon remains silent...");
+        }
+    },
+
+    triggerWave: function(reason) {
+        this.totalWavesTriggered++;
+        
+        // Output for your use
+        //console.warn(`[Rosebud Event] !!! WAVE TRIGGERED via ${reason} !!!`);
+        //console.log(`Total Waves this run: ${this.totalWavesTriggered}`);
+
+        // 4. Reset state
+        this.currentRisk = 0;
+        this.actionCountSinceWave = 0;
+        hud(9);
+    }
+};
+
+// Example Usage:
+// rosebud_world_risk_calc.processAction();
