@@ -255,6 +255,7 @@ function Start() {
     document.getElementById("Merchant_shoppe").style.display = "none";
     document.getElementById("Quest_Board").style.display = "none";
     document.getElementById("quest_0_letter").style.display = "none";
+    document.getElementById("The_Locked_Door").style.display = "none";
 
     //motto_funny
     var mottox = Math.floor((Math.random() * mottos.length));
@@ -661,6 +662,16 @@ function hud(callout){
 
     if(callout == 27) {
         document.getElementById("qte_wack").style.display = "none";
+        document.getElementById("game").style.display = "block";
+    }
+
+    if(callout == 28) {
+        document.getElementById("The_Locked_Door").style.display = "block";
+        document.getElementById("game").style.display = "none";
+    }
+
+    if(callout == 29) {
+        document.getElementById("The_Locked_Door").style.display = "none";
         document.getElementById("game").style.display = "block";
     }
 }
@@ -1103,6 +1114,7 @@ function Game_Command(command) {
             } else if(room == 9) {
                 if(player.key == 1) {
                     console.log("checkpoint!");
+                    hud(28);
                 } else {
                     //
                 }
@@ -2345,51 +2357,77 @@ var enemy = {
     health: 10,
     armor: 0
 }
+function Boss_Battle () {
+    section_boss = 1;
+    Battle_System(0);
+}
 
 function Battle_System(callout) {
     if(callout == 0) {
-        //declare the battle
-        if(section_boss == 0) {
-            //check if it isnt the boss battle
-            //roll what the player will encounter....
-            /*
-                var enemy_nme = ["Ghost","Glarb"];
-                var enemy_hth = [5,8];
-                var enemy_dmg = [1,2];
-                var enemy_arm = [10,12];
-                var enemy_arm_max = [10,12];
-                var enemy_icn = ["&","$"];
-                var enemy_clr = [0,0];
+    
+        enemy_type = Math.floor((Math.random() * enemy_nme.length));
+        encounter_text = Math.floor((Math.random() * encounter_sentence.length));
 
-                var armor_thp = [0,1,2,3,3,4,5,6];
-                var armor_stv = [1,2,4,6,6,8,10,12];
+        player_thp = armor_thp[player.armor] + shield_thp[player.shield];
+        enemy_thp = enemy_arm[enemy_type];
+        
+        enemy.health = enemy_hth[enemy_type];
+        enemy.armor = enemy_thp; 
 
-                primary_weapon
-                seondary_weapon
-                shields_assist
-                health_assist
+        if(section_boss == 1) {
+            
+            document.getElementById("enemy_battle_icon").className = '';
+            enemy_clr = Math.floor(Math.random() * 4) + 1;
 
-                .disabled = true; 
-                
-            */
-            enemy_type = Math.floor((Math.random() * enemy_nme.length));
-            encounter_text = Math.floor((Math.random() * encounter_sentence.length));
+            if(enemy_clr == 1) {
+                i_typewriter = 0;
+                document.getElementById("encounter_battle_test").innerHTML = "";
+                txt_typewriter = "An strong " + enemy_nme[enemy_type] + " blocks your path...";
+                typeWriter();
+                document.getElementById("enemy_battle_icon").className = 'white';
+                enemy.health = enemy_hth[enemy_type] * 1;
+                enemy.armor = enemy_thp * 1; 
+            }
 
-            player_thp = armor_thp[player.armor] + shield_thp[player.shield];
-            enemy_thp = enemy_arm[enemy_type];
+            if(enemy_clr == 2) {
+                i_typewriter = 0;
+                document.getElementById("encounter_battle_test").innerHTML = "";
+                txt_typewriter = "A <a class='green'>dangerous</a> " + enemy_nme[enemy_type] + " blocks your path...";
+                typeWriter();
+                document.getElementById("enemy_battle_icon").className = 'green';
+                enemy.health = enemy_hth[enemy_type] * 1.5;
+                enemy.armor = enemy_thp * 1.5; 
+            }
 
-            enemy.health = enemy_hth[enemy_type];
-            enemy.armor = enemy_thp; 
+            if(enemy_clr == 3) {
+                i_typewriter = 0;
+                document.getElementById("encounter_battle_test").innerHTML = "";
+                txt_typewriter = "A <a class='red'>deadly</a> " + enemy_nme[enemy_type] + " blocks your path...";
+                typeWriter();
+                document.getElementById("enemy_battle_icon").className = 'red';
+                enemy.health = enemy_hth[enemy_type] * 2;
+                enemy.armor = enemy_thp * 2; 
+            }
 
+            if(enemy_clr == 4) {
+                i_typewriter = 0;
+                document.getElementById("encounter_battle_test").innerHTML = "";
+                txt_typewriter = "A <a class='purple'>super deadly</a> " + enemy_nme[enemy_type] + " blocks your path...";
+                typeWriter();
+                document.getElementById("enemy_battle_icon").className = 'purple';
+                enemy.health = enemy_hth[enemy_type] * 2.5;
+                enemy.armor = enemy_thp * 2.5; 
+            }
+
+        } else {
             i_typewriter = 0;
             document.getElementById("encounter_battle_test").innerHTML = "";
             txt_typewriter = "A " + enemy_nme[enemy_type] + " blocks your path...";
             typeWriter();
-
-            Battle_System(1);
-
-
+            document.getElementById("enemy_battle_icon").className = '';
         }
+        
+        Battle_System(1);
     }
 
     if(callout == 1) {
@@ -2709,7 +2747,7 @@ function Battle_System(callout) {
             //the player defeated the boss! and the section screen should pop up now...
             Overlay.close()
             document.getElementById("battle").style.display = "none";
-            document.getElementById("game").style.display = "block";
+            document.getElementById("stage_cleared").style.display = "block";
         }
     }
 }
