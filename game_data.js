@@ -2358,8 +2358,9 @@ var enemy = {
     armor: 0
 }
 function Boss_Battle () {
+    document.getElementById("The_Locked_Door").style.display = "none";
     section_boss = 1;
-    Battle_System(0);
+    hud(9);
 }
 
 function Battle_System(callout) {
@@ -2502,25 +2503,40 @@ function Battle_System(callout) {
             txt_typewriter = "You used your " + weapon_nme[player.weapon] + " on the enemy!";
             typeWriter();
             setTimeout(() => {
-                player_damage = Math.floor((Math.random() * weapon_dmg[player.weapon])) + 1;
-
+                // 1. Calculate damage with a fallback check
+                let rawDamage = Math.floor((Math.random() * weapon_dmg[player.weapon])) + 1;
+            
+                // 2. If it's NaN (maybe the weapon name was wrong?), force to 0 and call an alert
+                if (Number.isNaN(rawDamage)) {
+                    console.error("Combat Error: Weapon damage is NaN. Check weapon keys!");
+                    // Optional: Trigger a 'Miss' function here
+                    // playerMissedAction(); 
+                    player_damage = 0;
+                } else {
+                    player_damage = rawDamage;
+                }
+            
+                // --- Combat Logic ---
                 if (player_damage <= enemy.armor) {
-                    // Case 1: Armor is strong enough to take the whole hit
                     enemy.armor -= player_damage;
                 } else {
-                    // Case 2: Armor breaks!
                     let leftoverDamage = player_damage - enemy.armor;
-                    enemy.armor = 0; // Armor is wiped out
-                    enemy.health -= leftoverDamage; // The rest hits the health
+                    enemy.armor = 0;
+                    enemy.health -= leftoverDamage;
                 }
-                document.getElementById("enemy_battle_health").innerHTML = (enemy.health || 0);
-                document.getElementById("enemy_battle_armor").innerHTML = (enemy.armor || 0);
-
-                if(enemy.health <= 0) {
-                    //enemy defeated.
-                    Battle_System(7);
+            
+                // Ensure health/armor never display as negative or NaN
+                enemy.health = Math.max(0, enemy.health || 0);
+                enemy.armor = Math.max(0, enemy.armor || 0);
+            
+                // Update UI
+                document.getElementById("enemy_battle_health").innerHTML = enemy.health;
+                document.getElementById("enemy_battle_armor").innerHTML = enemy.armor;
+            
+                if (enemy.health <= 0) {
+                    Battle_System(7); // Enemy defeated
                 } else {
-                    Battle_System(6);
+                    Battle_System(6); // Continue battle
                 }
                 
             }, 1000);
@@ -2725,6 +2741,20 @@ function Battle_System(callout) {
     if(callout == 8) {
         //player is defeated....
         console.log("player defeated");
+
+        setTimeout(() => {   
+            i_typewriter = 0;
+            document.getElementById("encounter_battle_test").innerHTML = "";
+            txt_typewriter = "The player has been defeated!";
+            typeWriter();
+    
+            document.getElementById("cell_core_battle_1").style.display = "none";
+            document.getElementById("cell_core_battle_2").style.display = "none";
+
+            Overlay.close();
+            hud(11);
+
+            }, 2500);
     }
 
     if(callout == 9) {
@@ -2738,14 +2768,14 @@ function Battle_System(callout) {
     if(callout == 10) {
         if(section_boss == 0) {
             //we want to fade out and then go back to the world...
-            Overlay.close()
+            Overlay.close();
             document.getElementById("battle").style.display = "none";
             document.getElementById("game").style.display = "block";
         }
 
         if(section_boss == 1) {
             //the player defeated the boss! and the section screen should pop up now...
-            Overlay.close()
+            Overlay.close();
             document.getElementById("battle").style.display = "none";
             document.getElementById("stage_cleared").style.display = "block";
         }
